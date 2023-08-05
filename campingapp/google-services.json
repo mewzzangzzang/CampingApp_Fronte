@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "503217217825",
+    "project_id": "campingapp-9dd19",
+    "storage_bucket": "campingapp-9dd19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503217217825:android:1172a888038ba7c91d1e60",
+        "android_client_info": {
+          "package_name": "com.camp.campingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503217217825-ukeoftb6535j62sdm64nv220eglts3e1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.camp.campingapp",
+            "certificate_hash": "3d3fe5b6312999fa529ca4c8ddd8957ab3fc8562"
+          }
+        },
+        {
+          "client_id": "503217217825-n08k11b1uh98mnidu7cvtsft18gd2hmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5lKOaMkgF8LrXKJL7AM9bG40kIBfxOGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503217217825-c0gbn7llmi9ltrs7j25ahn2lpsgjlhc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
