@@ -1,6 +1,8 @@
 package com.camp.campingapp
 
 import androidx.multidex.MultiDexApplication
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -11,10 +13,10 @@ class MyApplication: MultiDexApplication() {
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
     }
-// 두번째 테스트
 
     override fun onCreate() {
         super.onCreate()
+
         db = FirebaseFirestore.getInstance()
         storage = Firebase.storage
     }

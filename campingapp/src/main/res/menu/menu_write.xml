@@ -6,5 +6,9 @@
         android:title="gallery"
         android:icon="@android:drawable/ic_menu_gallery"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_add_save"
+        android:title="저장"
+        app:showAsAction="always"/>
 
 </menu>
