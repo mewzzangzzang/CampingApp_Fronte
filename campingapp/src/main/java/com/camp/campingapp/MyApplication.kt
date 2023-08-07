@@ -1,8 +1,6 @@
 package com.camp.campingapp
 
 import androidx.multidex.MultiDexApplication
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
