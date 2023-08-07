@@ -51,7 +51,7 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-analytics-ktx")
-
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -65,11 +65,12 @@ dependencies {
     implementation ("com.google.firebase:firebase-bom:29.0.0")
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
     implementation ("androidx.multidex:multidex:2.0.1")
-    implementation ("com.google.firebase:firebase-auth-ktx:21.0.1")
 
     implementation ("com.google.firebase:firebase-firestore-ktx:24.0.0")
     implementation ("com.google.firebase:firebase-storage-ktx:20.0.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation ("com.firebaseui:firebase-ui-storage:8.0.0")
     implementation ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.facebook.android:facebook-android-sdk:[4,5)")
+    implementation ("com.facebook.android:facebook-login:latest.release")
 }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.camp.campingapp.MyApplication
+import com.camp.campingapp.test.MyApplication
 import com.camp.campingapp.databinding.ItemMainBinding
 import com.camp.campingapp.model.ItemData
 

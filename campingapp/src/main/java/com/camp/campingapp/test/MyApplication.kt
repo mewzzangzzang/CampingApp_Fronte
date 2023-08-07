@@ -1,4 +1,4 @@
-package com.camp.campingapp
+package com.camp.campingapp.test
 
 import androidx.multidex.MultiDexApplication
 import com.google.firebase.auth.FirebaseAuth

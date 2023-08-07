@@ -7,10 +7,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.camp.campingapp.databinding.ActivityAuthBinding
+import com.camp.campingapp.test.MyApplication
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AuthActivity : AppCompatActivity() {
     lateinit var binding: ActivityAuthBinding
@@ -72,6 +75,7 @@ class AuthActivity : AppCompatActivity() {
             //구글 로그인 관련 함수. 옵션부분을 설정
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
                 .requestIdToken(getString(R.string.default_web_client_id))
 //            default_web_client_id 첫 빌드 때 ,컴파일 오류가 일어남
                 //인증 후,안보이게된다 ->인증된 아이디를 가져와서 사용했기때문
@@ -143,6 +147,12 @@ class AuthActivity : AppCompatActivity() {
                 }
         }
     }
+    private fun signOut() {
+        // [START auth_sign_out]
+        Firebase.auth.signOut()
+        // [END auth_sign_out]
+    }
+
 
     //매개변수를 모드라는 변수명,문자열 타입.
     fun changeVisibility(mode: String){
@@ -157,6 +167,8 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility= View.GONE
                 //구글로그인 안보이게
                 googleLoginBtn.visibility= View.GONE
+                //페북로그인 안보이게
+                facebookLoginBtn.visibility=View.GONE
                 //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
                 //패스워드 입력안보이게
@@ -172,8 +184,10 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
+                facebookLoginBtn.visibility=View.VISIBLE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
+
                 signBtn.visibility = View.GONE
                 loginBtn.visibility = View.VISIBLE
             }
@@ -182,6 +196,7 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
+                facebookLoginBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE

@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.camp.campingapp">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".test.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp">
+        <activity
+            android:name=".FacebookLoginActivity"
+            android:exported="true" />
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
         <meta-data
             android:name="com.google.firebase.message.default_notification_icon"
-            android:resource="@drawable/ic_stat_ic_notification"/>
+            android:resource="@drawable/ic_stat_ic_notification" />
         <meta-data
             android:name="com.google.firebase.message.default_notification_color"
-            android:resource="@color/colorAccent"/>
+            android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.message.default_notification_channel_id"
-            android:value="fcm_default_channel"/>
+            android:value="fcm_default_channel" />
 
         <service
-            android:name=".MyFirebaseMessageService"
+            android:name=".test.MyFirebaseMessageService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <activity
-            android:name=".AuthActivity"
-            android:exported="true" />
-        <activity
-            android:name=".AddActivity"
+            android:name=".test.AddActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"/>
+            android:name=".test.MainActivity"
+            android:exported="false" />
 
         <activity
-            android:name=".LoginActivity"
-            android:exported="true">
+            android:name=".AuthActivity"
+            android:exported="true"/>
+            <activity
+                android:name=".test.LoginActivity"
+                android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

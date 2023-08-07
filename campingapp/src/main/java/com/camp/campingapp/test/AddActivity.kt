@@ -1,4 +1,4 @@
-package com.camp.campingapp
+package com.camp.campingapp.test
 
 import android.content.Intent
 import android.net.Uri
@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ActivityAddBinding
 import com.camp.campingapp.util.dateToString
 

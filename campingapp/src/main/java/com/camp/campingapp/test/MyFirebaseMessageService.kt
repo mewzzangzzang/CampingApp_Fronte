@@ -1,4 +1,4 @@
-package com.camp.campingapp
+package com.camp.campingapp.test
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
