@@ -11,6 +11,7 @@ class MyApplication: MultiDexApplication() {
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
     }
+    // 머지테스트
 
     override fun onCreate() {
         super.onCreate()
