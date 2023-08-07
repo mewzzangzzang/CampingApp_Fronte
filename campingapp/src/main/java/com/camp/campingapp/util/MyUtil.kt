@@ -7,7 +7,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
+
 
 fun myCheckPermission(activity: AppCompatActivity) {
 
@@ -20,6 +21,7 @@ fun myCheckPermission(activity: AppCompatActivity) {
             Toast.makeText(activity, "권한 거부", Toast.LENGTH_SHORT).show()
         }
     }
+
     if (ContextCompat.checkSelfPermission(
             activity,
             Manifest.permission.READ_MEDIA_IMAGES
