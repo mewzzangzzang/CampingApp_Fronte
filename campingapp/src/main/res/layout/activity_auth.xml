@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="20dp">
 
         <TextView
             android:id="@+id/authMainTextView"
@@ -52,7 +52,9 @@
         android:backgroundTint="@color/com_facebook_button_background_color"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:visibility="visible" />
+        android:visibility="visible"
+
+        />
 
     <EditText
         android:id="@+id/authEmailEditView"

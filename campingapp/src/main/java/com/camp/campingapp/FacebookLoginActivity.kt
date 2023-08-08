@@ -3,6 +3,7 @@ package com.camp.campingapp
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import com.facebook.CallbackManager
 
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -10,6 +11,7 @@ import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 
 import com.facebook.CallbackManager.Factory.create
+import com.facebook.FacebookSdk
 
 
 /**
@@ -27,6 +29,8 @@ class FacebookLoginActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_facebook_login)
+        FacebookSdk.sdkInitialize(applicationContext);
+
         val loginButton: LoginButton = findViewById(R.id.login_button)
 
         // Set the initial permissions to request from the user while logging in
