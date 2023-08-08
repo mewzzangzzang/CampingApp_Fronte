@@ -1,8 +1,10 @@
 package com.camp.campingapp
 
 import androidx.multidex.MultiDexApplication
+import com.camp.campingapp.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -14,6 +16,9 @@ class MyApplication: MultiDexApplication() {
         var email: String? = null
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
+        lateinit var rdb: DatabaseReference
+
+
         fun checkAuth(): Boolean {
             var currentUser = auth.currentUser
             return currentUser?.let {

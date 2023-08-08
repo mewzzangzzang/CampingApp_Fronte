@@ -6,18 +6,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.camp.campingapp.MyApplication.Companion.auth
+import com.camp.campingapp.MyApplication.Companion.rdb
 import com.camp.campingapp.databinding.ActivityAuthBinding
+import com.camp.campingapp.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DatabaseReference
 
 class AuthActivity : AppCompatActivity() {
     lateinit var binding: ActivityAuthBinding
+
+    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         //MyApplication->checkAuth=>로그인이 확인
         if(MyApplication.checkAuth()){
@@ -86,6 +93,7 @@ class AuthActivity : AppCompatActivity() {
 
         binding.signBtn.setOnClickListener {
             //이메일,비밀번호 회원가입........................
+            val name = binding.authNameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
             //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
@@ -93,6 +101,7 @@ class AuthActivity : AppCompatActivity() {
                 //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
+                    binding.authNameEditView.text.clear()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
                     if(task.isSuccessful){
@@ -104,6 +113,7 @@ class AuthActivity : AppCompatActivity() {
                                     Toast.makeText(baseContext, "회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
+                                    addUserToDatabase(name, email, auth.currentUser?.uid!!)
                                 }else {
                                     Toast.makeText(baseContext, "메일 발송 실패", Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
@@ -112,8 +122,10 @@ class AuthActivity : AppCompatActivity() {
                     }else {
                         Toast.makeText(baseContext, "회원가입 실패", Toast.LENGTH_SHORT).show()
                         changeVisibility("logout")
-                    }
+
                 }
+            }
+
 
         }
 
@@ -144,6 +156,11 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
+    private fun addUserToDatabase(name: String, email: String, uId: String){
+        rdb.child("user").child(uId).setValue(User(name, email, uId))
+
+    }
+
     //매개변수를 모드라는 변수명,문자열 타입.
     fun changeVisibility(mode: String){
         if(mode === "login"){
@@ -157,6 +174,8 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility= View.GONE
                 //구글로그인 안보이게
                 googleLoginBtn.visibility= View.GONE
+                //이름 입력란 안보이게
+                authNameEditView.visibility=View.GONE
                 //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
                 //패스워드 입력안보이게
@@ -172,6 +191,7 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
+                authNameEditView.visibility = View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.GONE
@@ -182,6 +202,7 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
+                authNameEditView.visibility = View.VISIBLE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE
