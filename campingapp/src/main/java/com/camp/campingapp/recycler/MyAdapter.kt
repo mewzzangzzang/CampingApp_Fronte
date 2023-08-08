@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.camp.campingapp.MyApplication
-import com.camp.campingapp.databinding.ItemMainBinding
+import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.ItemData
 
 
 //리사이클러 뷰->목록 형식으로 출력되는 뷰
 //뷰홀더->뷰 객체들의 모음집. 해당 뷰 홀더의 주 생성자의 매개변수에,바인딩 기법으로 객체가 선언됨
 //그래서,해당 매개변수호,전체 뷰 객체에 접근 가능(뷰바인딩 객체는,목록의 아이템의 요소 사용중)
-class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
+class MyViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 //어댑터:데이터<->뷰를 연결 )데이터를 받아오면 해당 바인딩으로 갖고온 데이터를 연결
 //주생성자의 매개변수에 val 형식으로 지정하면,클래스 내부에서 전역처럼 사용가능
@@ -27,10 +27,8 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
     //포기화는(참조형 변수에,해당 메모리 위치 주솟값을 할당하는것에 말함)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return MyViewHolder(ItemMainBinding.inflate(layoutInflater))
+        return MyViewHolder(BoardItemBinding.inflate(layoutInflater))
     }
-
-
     override fun getItemCount(): Int {
         return itemList.size
     }
@@ -64,8 +62,9 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
                     //이미지를 불러오는 역활
                     .load(task.result)
                     //불러온 이미지를,결과뷰에 출력
-                    .into(holder.binding.itemImageView)
+//                    .into(holder.binding.itemImageView)
             }
         }
+
     }
 }

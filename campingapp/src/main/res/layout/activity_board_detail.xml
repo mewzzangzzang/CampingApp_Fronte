@@ -28,7 +28,7 @@
                     android:text="제목"/>
 
                 <TextView
-                    android:id="@+id/title_d"
+                    android:id="@+id/BoardTitle"
                     android:padding="16dp"
                     android:background="#eeeeee"
                     android:layout_width="match_parent"
@@ -49,13 +49,13 @@
                     android:text="작성일"/>
 
                 <TextView
-                    android:id="@+id/date_d"
+                    android:id="@+id/BoardDate"
                     android:padding="16dp"
                     android:background="#eeeeee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="제목입니다."
+                    android:text="작성일입니다."
                     />
             </LinearLayout>
             <TextView
@@ -65,7 +65,7 @@
                 android:text="내용"/>
 
             <TextView
-                android:id="@+id/content_tv"
+                android:id="@+id/BoardContent"
                 android:padding="16dp"
                 android:background="#eeeeee"
                 android:layout_width="match_parent"
