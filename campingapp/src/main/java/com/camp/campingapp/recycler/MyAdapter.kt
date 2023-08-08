@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.camp.campingapp.test.MyApplication
 import com.camp.campingapp.databinding.ItemMainBinding
-import com.camp.campingapp.model.ItemData
+import com.camp.campingapp.model.UserData
 
 
 //리사이클러 뷰->목록 형식으로 출력되는 뷰
@@ -15,13 +15,7 @@ import com.camp.campingapp.model.ItemData
 //그래서,해당 매개변수호,전체 뷰 객체에 접근 가능(뷰바인딩 객체는,목록의 아이템의 요소 사용중)
 class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
 
-//어댑터:데이터<->뷰를 연결 )데이터를 받아오면 해당 바인딩으로 갖고온 데이터를 연결
-//주생성자의 매개변수에 val 형식으로 지정하면,클래스 내부에서 전역처럼 사용가능
-//context 액티비티,프래그넌트
-//itemList,실제데이터(공공데이터)
-//리사이클러뷰 구성 클래스들의 공통으로 모두,Recyclereview
-
-class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(val context: Context, val itemList: MutableList<UserData>): RecyclerView.Adapter<MyViewHolder>() {
 //어댑터 클래스를 만들고,재정의한 함수들임
     //인플레이터가 나옴,해당 뷰를 출력하기 위한 객체를 초기화하는 작업\
     //포기화는(참조형 변수에,해당 메모리 위치 주솟값을 할당하는것에 말함)
@@ -44,6 +38,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
             itemEmailView.text=data.email
             itemDateView.text=data.date
             itemContentView.text=data.content
+            itemTypeView.text=data.type
         }
 
         //스토리지 이미지 다운로드........................

@@ -8,7 +8,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 
-class MyApplication: MultiDexApplication() {
+class HostApplication: MultiDexApplication() {
     companion object {
         lateinit var auth: FirebaseAuth
         var email: String? = null

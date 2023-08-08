@@ -30,6 +30,14 @@
             android:textColor="#727272"
             android:textSize="12sp" />
 
+        <TextView
+            android:id="@+id/itemTypeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#727272"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
     <ImageView

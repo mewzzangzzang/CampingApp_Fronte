@@ -93,7 +93,9 @@ class AuthActivity : AppCompatActivity() {
             //이메일,비밀번호 회원가입........................
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
+//            val type=binding.authTypeEditView.text.toString()
             //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
+//            HostApplication.auth.createUserWithEmailAndPasswordAndType()
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
                 //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
@@ -174,6 +176,11 @@ class AuthActivity : AppCompatActivity() {
                 authEmailEditView.visibility= View.GONE
                 //패스워드 입력안보이게
                 authPasswordEditView.visibility= View.GONE
+                //타입입력 안보이게
+//                authTypeEditView.visibility = View.GONE
+                //호스트 가입 안보이게
+                hostsignBtn.visibility=View.GONE
+
 
                 signBtn.visibility= View.GONE
                 loginBtn.visibility= View.GONE
@@ -186,8 +193,10 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
                 facebookLoginBtn.visibility=View.VISIBLE
+                hostsignBtn.visibility=View.VISIBLE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
+//                authTypeEditView.visibility = View.GONE
 
                 signBtn.visibility = View.GONE
                 loginBtn.visibility = View.VISIBLE
@@ -198,8 +207,10 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
                 facebookLoginBtn.visibility=View.GONE
+                hostsignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
+//                authTypeEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE
                 loginBtn.visibility = View.GONE
             }

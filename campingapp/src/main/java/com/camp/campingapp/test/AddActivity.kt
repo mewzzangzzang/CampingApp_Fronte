@@ -114,7 +114,7 @@ class AddActivity : AppCompatActivity() {
 
         //MyApplication->db->파이어 스토어를 사용하기 위한 객체
         //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
-        MyApplication.db.collection("news")
+        MyApplication.db.collection("user")
             //add 부분에,임의로 만든 data를 추가
             .add(data)
             //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
