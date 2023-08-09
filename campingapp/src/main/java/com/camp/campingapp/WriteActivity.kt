@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -13,11 +12,6 @@ import com.camp.campingapp.MyApplication.Companion.db
 import com.camp.campingapp.MyApplication.Companion.storage
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.util.Date
 
@@ -80,6 +74,10 @@ class WriteActivity : AppCompatActivity() {
                 uploadImage(it.id)
             }
         finish()
+        overridePendingTransition(0, 0) //인텐트 효과 없애기
+        val intent = intent //인텐트
+        startActivity(intent) //액티비티 열기
+        overridePendingTransition(0, 0) //인텐트 효과 없애기
     }
 
     private fun uploadImage(docId: String) {

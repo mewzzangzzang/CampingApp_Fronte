@@ -3,15 +3,11 @@ package com.camp.campingapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityLoginBinding
-import com.camp.campingapp.model.ItemData
-import com.camp.campingapp.recycler.MyAdapter
 import com.camp.campingapp.util.myCheckPermission
 
 class LoginActivity : AppCompatActivity() {
@@ -29,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
             //인증 여부 확인.
             if(MyApplication.checkAuth()){
                 //인증 완료시 AddActivity로 이동
-                startActivity(Intent(this, BoardActivity::class.java))
+                startActivity(Intent(this, Board::class.java))
             }else {
                 //인증실패시 토스트 알림
                 Toast.makeText(this, "인증진행해주세요..", Toast.LENGTH_SHORT).show()

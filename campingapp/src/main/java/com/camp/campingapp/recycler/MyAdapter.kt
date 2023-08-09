@@ -22,7 +22,7 @@ class MyViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(bind
 //리사이클러뷰 구성 클래스들의 공통으로 모두,Recyclereview
 
 class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): RecyclerView.Adapter<MyViewHolder>() {
-//어댑터 클래스를 만들고,재정의한 함수들임
+    //어댑터 클래스를 만들고,재정의한 함수들임
     //인플레이터가 나옴,해당 뷰를 출력하기 위한 객체를 초기화하는 작업\
     //포기화는(참조형 변수에,해당 메모리 위치 주솟값을 할당하는것에 말함)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -48,7 +48,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
         //MyApplication-매니페스트에 등록이 되어있음
         //imgRef 이 객체를 싸용해서,업로드,다운로드 구현
         //다운로드가 잘되면 ,콜백으로 돌아와서 로직 실행
-                //스토리지에서 이미지의 url 주소만 가져온다
+        //스토리지에서 이미지의 url 주소만 가져온다
         val imgRef = MyApplication.storage.reference.child("images/${data.docId}.jpg")
         imgRef.downloadUrl.addOnCompleteListener{ task ->
 
@@ -61,7 +61,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
                 Glide.with(context)
                     //이미지를 불러오는 역활
                     .load(task.result)
-                    //불러온 이미지를,결과뷰에 출력
+                //불러온 이미지를,결과뷰에 출력
 //                    .into(holder.binding.itemImageView)
             }
         }

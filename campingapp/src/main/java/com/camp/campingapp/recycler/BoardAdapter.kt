@@ -5,9 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.camp.campingapp.BoardDetail
-import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.BoardData
 
@@ -37,10 +35,10 @@ class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, BoardDetail::class.java)
             intent.putExtra("DocId", data.docId)
-
             intent.putExtra("BoardTitle", data.title)
             intent.putExtra("BoardContent", data.content)
             intent.putExtra("BoardDate", data.date)
+            intent.putExtra("comment", data.comment?.toString())
             context.startActivity(intent)
         }
     }
