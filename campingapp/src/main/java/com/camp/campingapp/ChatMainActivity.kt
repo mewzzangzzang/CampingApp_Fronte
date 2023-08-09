@@ -1,7 +1,10 @@
 package com.camp.campingapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityChatMainBinding
@@ -59,5 +62,21 @@ class ChatMainActivity : AppCompatActivity() {
                 //실패 시 실행
             }
         })
+    } //onCreate
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.log_out){
+            auth.signOut()
+            val intent = Intent(this@ChatMainActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return true
+        }
+        return true
     }
 }

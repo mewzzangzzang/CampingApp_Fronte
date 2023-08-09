@@ -5,6 +5,7 @@ import com.camp.campingapp.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -35,5 +36,6 @@ class MyApplication: MultiDexApplication() {
         auth = Firebase.auth
         db = FirebaseFirestore.getInstance()
         storage = Firebase.storage
+        rdb = Firebase.database.reference
     }
 }
