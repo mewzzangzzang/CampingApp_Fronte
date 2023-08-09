@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.AuthActivity
 import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ActivityLoginBinding
-import com.camp.campingapp.model.HostData
-import com.camp.campingapp.model.UserData
+import com.camp.campingapp.model.ItemData
 import com.camp.campingapp.recycler.MyAdapter
-import com.camp.campingapp.recycler.HostAdapter
 import com.camp.campingapp.util.myCheckPermission
 
 class LoginActivity : AppCompatActivity() {
@@ -53,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
             binding.logoutTextView.visibility= View.GONE
             binding.mainRecyclerView.visibility= View.VISIBLE
             makeRecyclerView()
-            makeHostRecyclerView()
         }
     }
 
@@ -75,18 +72,18 @@ class LoginActivity : AppCompatActivity() {
         MyApplication.db.collection("user")
             .get()
             //성공후 처리하는 로직
-            //news라는 컬렉션(테이블)에서 모든 문서(행과 비슷)를 가져옴
+            //user라는 컬렉션(테이블)에서 모든 문서(행과 비슷)를 가져옴
             .addOnSuccessListener {result ->
                 //빈 리스트 만들고,임시로 저장할 공간이 필요
                 //DTO(=VO),ItemData
-                val itemList = mutableListOf<UserData>()
+                val itemList = mutableListOf<ItemData>()
                 //반복문으로 받아온 문서를 하나씩 꺼내어서,작업.
                 for(document in result){
                     //document.toObject,gson,jackson,해당 모델 클래스에 자동으로 매핑
                     //받아온 데이터를 지정한 클래스 형으로 자동 변환(매핑)
-                    val item = document.toObject(UserData::class.java)
+                    val item = document.toObject(ItemData::class.java)
                     //문서의 고유 아이디를 docId에 할당
-                    item.docId=document.id
+                    item.uid=document.id
                     //각 ItemData형으로,리스트에 담기
                     itemList.add(item)
                 }
@@ -102,26 +99,5 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "서버 데이터 획득 실패", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun makeHostRecyclerView(){
-        //파이어 스토어의 컬렉션 객체를 선택하는 함수.
-        MyApplication.db.collection("host")
-            .get()
-            .addOnSuccessListener {result ->
 
-                val hostList = mutableListOf<HostData>()
-                for(document in result){
-
-                    val item = document.toObject(HostData::class.java)
-                    item.HId=document.id
-                    hostList.add(item)
-                }
-                binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
-                binding.mainRecyclerView.adapter = HostAdapter(this, hostList)
-            }
-            .addOnFailureListener{exception ->
-                //파이어베이스 콘솔
-                Log.d("kkang", "error.. getting document..", exception)
-                Toast.makeText(this, "서버 데이터 획득 실패", Toast.LENGTH_SHORT).show()
-            }
-    }
 }

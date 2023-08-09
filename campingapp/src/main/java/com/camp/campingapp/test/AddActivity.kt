@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ActivityAddBinding
 import com.camp.campingapp.util.dateToString
+import com.google.firebase.auth.FirebaseAuth
 
 import java.io.File
 import java.util.*
@@ -23,9 +24,7 @@ class AddActivity : AppCompatActivity() {
 
     //전역으로 기본 바인딩,뷰 객체 모음 모음
     lateinit var binding: ActivityAddBinding
-
     lateinit var filePath: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //바인딩 변환후 ,인플레이트를 이용해서,출력 객체 초기화
@@ -108,7 +107,9 @@ class AddActivity : AppCompatActivity() {
             "email" to MyApplication.email,
             //뷰에서 입력된 값
             "content" to binding.addEditView.text.toString(),
+
             "date" to dateToString(Date())
+//            "type" to MyApplication.
         )
 
 

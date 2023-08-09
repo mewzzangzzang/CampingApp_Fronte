@@ -17,21 +17,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#00FFE7"
+        android:backgroundTint="#00BCD4"
         android:text="로그아웃"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />
 
+
+<!--이메일-->
     <EditText
         android:id="@+id/authEmailEditView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:hint="이메일"
         android:inputType="textEmailAddress"
         android:visibility="visible" />
 
+
+<!--    비밀번호-->
     <EditText
         android:id="@+id/authPasswordEditView"
         android:layout_width="match_parent"
@@ -41,14 +45,53 @@
         android:inputType="textPassword"
         android:visibility="visible" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/authTypeEditView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:hint="normal OR host 입력"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:visibility="visible" />-->
+
+<!--    이름-->
+    <EditText
+        android:id="@+id/authUsernameEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="이름"
+        android:inputType="text"
+        android:visibility="visible" />
+    <EditText
+        android:id="@+id/authHostUsernameEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="이름"
+        android:inputType="text"
+        android:visibility="visible" />
+
+<!--    주소-->
+    <EditText
+        android:id="@+id/authAddressEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="주소"
+        android:inputType="text"
+        android:visibility="visible" />
+
+<!--    전화번호-->
+    <EditText
+        android:id="@+id/authTelEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="전화번호"
+        android:inputType="text"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/authHostTelEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="전화번호"
+        android:inputType="text"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/loginBtn"
@@ -74,11 +117,13 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/hostsignBtn"
+        android:id="@+id/goHostSignBtn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
+        android:backgroundTint="#F44336"
         android:text="호스트 가입"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />
 
@@ -109,6 +154,17 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="#00BCD4"
         android:text="가입"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/hostSignBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00BCD4"
+        android:text="호스트 가입"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />

@@ -15,11 +15,14 @@ class MyApplication: MultiDexApplication() {
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
 
+
         fun checkAuth(): Boolean {
             var currentUser = auth.currentUser
             return currentUser?.let {
                 email = currentUser.email
                 currentUser.isEmailVerified
+
+
             } ?: let {
                 false
             }
