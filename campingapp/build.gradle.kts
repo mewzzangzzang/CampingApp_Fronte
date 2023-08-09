@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -48,7 +49,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-messaging-ktx:23.2.1")
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
-    
+    implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
+    implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
 
     implementation ("com.google.firebase:firebase-bom:29.0.0")

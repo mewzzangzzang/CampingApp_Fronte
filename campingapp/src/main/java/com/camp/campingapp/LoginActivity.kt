@@ -1,4 +1,4 @@
-package com.camp.campingapp.test
+package com.camp.campingapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +9,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.camp.campingapp.AuthActivity
-import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ActivityLoginBinding
 import com.camp.campingapp.model.ItemData
 import com.camp.campingapp.recycler.MyAdapter
+import com.camp.campingapp.test.MyApplication
 import com.camp.campingapp.util.myCheckPermission
 
 class LoginActivity : AppCompatActivity() {

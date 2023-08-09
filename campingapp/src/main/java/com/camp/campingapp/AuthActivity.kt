@@ -108,7 +108,7 @@ class AuthActivity : AppCompatActivity() {
 
         binding.signBtn.setOnClickListener {
             //이메일,비밀번호 회원가입........................
-            val name = binding.authNameEditView.text.toString()
+            val name = binding.authUsernameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
 
@@ -119,7 +119,7 @@ class AuthActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
 
-                    binding.authNameEditView.text.clear()
+                    binding.authUsernameEditView.text.clear()
 
                     saveUser()
 
@@ -298,7 +298,7 @@ class AuthActivity : AppCompatActivity() {
                 googleLoginBtn.visibility= View.GONE
 
                 //이름 입력란 안보이게
-                authNameEditView.visibility=View.GONE
+                authUsernameEditView.visibility=View.GONE
 
                 //페북로그인 안보이게
                 facebookLoginBtn.visibility=View.GONE
@@ -330,7 +330,7 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
 
-                authNameEditView.visibility = View.GONE
+                authUsernameEditView.visibility = View.GONE
 
                 facebookLoginBtn.visibility=View.VISIBLE
                 goHostSignBtn.visibility=View.VISIBLE
@@ -354,7 +354,7 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
 
-                authNameEditView.visibility = View.VISIBLE
+                authUsernameEditView.visibility = View.VISIBLE
 
                 facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE

@@ -10,11 +10,3 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.8.0" apply false
     id("com.google.gms.google-services") version "4.3.15" apply false
 }
-buildscript {
-    repositories {
-    mavenCentral()
-    }
-    dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
-    }
-}

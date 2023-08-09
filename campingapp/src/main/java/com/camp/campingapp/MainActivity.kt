@@ -1,4 +1,4 @@
-package com.camp.campingapp.test
+package com.camp.campingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
