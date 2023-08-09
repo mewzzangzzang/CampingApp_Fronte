@@ -1,12 +1,11 @@
-package com.camp.campingapp.test
+package com.camp.campingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.camp.campingapp.R
 
-class MainActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_splash)
     }
 }
