@@ -50,6 +50,15 @@
             android:visibility="gone" />
 
         <EditText
+            android:id="@+id/authNameEditView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="이름"
+            android:inputType="text"
+            android:visibility="gone" />
+
+        <EditText
             android:id="@+id/authEmailEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
