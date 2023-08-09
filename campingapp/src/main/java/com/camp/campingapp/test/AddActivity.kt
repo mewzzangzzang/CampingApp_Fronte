@@ -1,4 +1,4 @@
-package com.camp.campingapp
+package com.camp.campingapp.test
 
 import android.content.Intent
 import android.net.Uri
@@ -12,8 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ActivityAddBinding
 import com.camp.campingapp.util.dateToString
+import com.google.firebase.auth.FirebaseAuth
 
 import java.io.File
 import java.util.*
@@ -22,9 +24,7 @@ class AddActivity : AppCompatActivity() {
 
     //전역으로 기본 바인딩,뷰 객체 모음 모음
     lateinit var binding: ActivityAddBinding
-
     lateinit var filePath: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //바인딩 변환후 ,인플레이트를 이용해서,출력 객체 초기화
@@ -107,13 +107,15 @@ class AddActivity : AppCompatActivity() {
             "email" to MyApplication.email,
             //뷰에서 입력된 값
             "content" to binding.addEditView.text.toString(),
+
             "date" to dateToString(Date())
+//            "type" to MyApplication.
         )
 
 
         //MyApplication->db->파이어 스토어를 사용하기 위한 객체
         //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
-        MyApplication.db.collection("news")
+        MyApplication.db.collection("user")
             //add 부분에,임의로 만든 data를 추가
             .add(data)
             //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.

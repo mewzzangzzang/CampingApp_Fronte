@@ -1,20 +1,25 @@
 {
   "project_info": {
+
     "project_number": "752509786029",
     "firebase_url": "https://androidtest-d3991-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "androidtest-d3991",
     "storage_bucket": "androidtest-d3991.appspot.com"
+
   },
   "client": [
     {
       "client_info": {
+
         "mobilesdk_app_id": "1:752509786029:android:cee1ace9733a8e045fb324",
+
         "android_client_info": {
           "package_name": "com.android4.travel"
         }
       },
       "oauth_client": [
         {
+
           "client_id": "752509786029-i4l1etajvsjqhhmbhgiun1iguphbtpkn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -24,18 +29,22 @@
         },
         {
           "client_id": "752509786029-ubgcavs5k4o03u4h89eq0hbu9ch92gsg.apps.googleusercontent.com",
+
           "client_type": 3
         }
       ],
       "api_key": [
         {
+
           "current_key": "AIzaSyC-jniiYmCmT8kAIFrZKxTRlf6R64V1CpY"
+
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
+
               "client_id": "752509786029-tvgsi6umg760mdvsllslm4ukugg7cisl.apps.googleusercontent.com",
               "client_type": 3
             }
@@ -74,6 +83,7 @@
           "other_platform_oauth_client": [
             {
               "client_id": "752509786029-tvgsi6umg760mdvsllslm4ukugg7cisl.apps.googleusercontent.com",
+
               "client_type": 3
             }
           ]
