@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.camp.campingapp.BoardDetailActivity
+import com.camp.campingapp.BoardDetail
 import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.BoardData
@@ -35,17 +34,9 @@ class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): 
             itemDateView.text=data.date
         }
 
-        // 게시글 클릭 이벤트
-//        holder.itemView.setOnClickListener {
-//            val intent = Intent(context, BoardDetailActivity::class.java)
-//            intent.putExtra("title", data.title)
-//            intent.putExtra("title", data.content)
-//            intent.putExtra("title", data.date)
-//            Toast.makeText(context, "Clicked: ${data.title}", Toast.LENGTH_SHORT).show()
-//            context.startActivity(intent)
-//        }
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, BoardDetailActivity::class.java)
+            val intent = Intent(context, BoardDetail::class.java)
+            intent.putExtra("DocId", data.docId)
             intent.putExtra("BoardTitle", data.title)
             intent.putExtra("BoardContent", data.content)
             intent.putExtra("BoardDate", data.date)
@@ -60,6 +51,5 @@ class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): 
                     .load(task.result)
             }
         }
-
     }
 }

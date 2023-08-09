@@ -23,8 +23,6 @@ import java.util.Date
 
 
 class WriteActivity : AppCompatActivity() {
-//    lateinit var db: FirebaseFirestore
-//    lateinit var storage: FirebaseStorage
 
     lateinit var binding: ActivityWriteBinding
     lateinit var filePath: String
@@ -33,9 +31,6 @@ class WriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        db = FirebaseFirestore.getInstance()
-//        storage = Firebase.storage
 
         binding.postbtn.setOnClickListener {
             saveStore()
@@ -84,9 +79,6 @@ class WriteActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 uploadImage(it.id)
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "error!!", Toast.LENGTH_SHORT).show()
-            }
         finish()
     }
 
@@ -97,14 +89,6 @@ class WriteActivity : AppCompatActivity() {
 
         val file = Uri.fromFile(File(filePath))
         imgRef.putFile(file)
-            .addOnSuccessListener {
-                Toast.makeText(this, "upload ok", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "upload fail", Toast.LENGTH_SHORT).show()
-
-            }
     }
 
 }
