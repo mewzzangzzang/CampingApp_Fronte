@@ -37,19 +37,11 @@ class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, BoardDetail::class.java)
             intent.putExtra("DocId", data.docId)
+
             intent.putExtra("BoardTitle", data.title)
             intent.putExtra("BoardContent", data.content)
             intent.putExtra("BoardDate", data.date)
             context.startActivity(intent)
-        }
-
-        val imgRef = MyApplication.storage.reference.child("images/${data.docId}.jpg")
-        imgRef.downloadUrl.addOnCompleteListener{ task ->
-
-            if(task.isSuccessful){
-                Glide.with(context)
-                    .load(task.result)
-            }
         }
     }
 }

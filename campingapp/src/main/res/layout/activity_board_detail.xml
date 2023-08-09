@@ -77,6 +77,14 @@
                 android:text="삭제" />
             </LinearLayout>
 
+
+            <ImageView
+                android:id="@+id/ImageView"
+                android:src="@drawable/upload"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                />
             <TextView
                 android:id="@+id/BoardContent"
                 android:layout_width="match_parent"
@@ -84,7 +92,6 @@
                 android:background="#eeeeee"
                 android:padding="16dp"
                 android:text="내용입니다." />
-
 
             <LinearLayout
                 android:id="@+id/comment_layout"

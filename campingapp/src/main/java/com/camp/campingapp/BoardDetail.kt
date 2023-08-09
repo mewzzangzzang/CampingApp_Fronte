@@ -3,7 +3,9 @@ package com.camp.campingapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.camp.campingapp.databinding.ActivityBoardDetailBinding
 
 class BoardDetail : AppCompatActivity() {
@@ -40,6 +42,16 @@ class BoardDetail : AppCompatActivity() {
                     .delete()
             }
             finish()
+        }
+
+        // 등록한 이미지 가져 오기
+        val imgRef = MyApplication.storage.reference.child("images/${docId}.jpg")
+        imgRef.downloadUrl.addOnCompleteListener{ task ->
+            if(task.isSuccessful){
+                Glide.with(this)
+                    .load(task.result)
+                    .into(binding.ImageView)
+            }
         }
 
 
