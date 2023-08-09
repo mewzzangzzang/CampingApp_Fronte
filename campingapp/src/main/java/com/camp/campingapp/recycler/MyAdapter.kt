@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.camp.campingapp.MyApplication
-import com.camp.campingapp.databinding.ItemMainBinding
+import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.ItemData
 
 
 //리사이클러 뷰->목록 형식으로 출력되는 뷰
 //뷰홀더->뷰 객체들의 모음집. 해당 뷰 홀더의 주 생성자의 매개변수에,바인딩 기법으로 객체가 선언됨
 //그래서,해당 매개변수호,전체 뷰 객체에 접근 가능(뷰바인딩 객체는,목록의 아이템의 요소 사용중)
-class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
+class MyViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 //어댑터:데이터<->뷰를 연결 )데이터를 받아오면 해당 바인딩으로 갖고온 데이터를 연결
 //주생성자의 매개변수에 val 형식으로 지정하면,클래스 내부에서 전역처럼 사용가능
@@ -22,15 +22,13 @@ class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(bindi
 //리사이클러뷰 구성 클래스들의 공통으로 모두,Recyclereview
 
 class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): RecyclerView.Adapter<MyViewHolder>() {
-//어댑터 클래스를 만들고,재정의한 함수들임
+    //어댑터 클래스를 만들고,재정의한 함수들임
     //인플레이터가 나옴,해당 뷰를 출력하기 위한 객체를 초기화하는 작업\
     //포기화는(참조형 변수에,해당 메모리 위치 주솟값을 할당하는것에 말함)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return MyViewHolder(ItemMainBinding.inflate(layoutInflater))
+        return MyViewHolder(BoardItemBinding.inflate(layoutInflater))
     }
-
-
     override fun getItemCount(): Int {
         return itemList.size
     }
@@ -50,7 +48,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
         //MyApplication-매니페스트에 등록이 되어있음
         //imgRef 이 객체를 싸용해서,업로드,다운로드 구현
         //다운로드가 잘되면 ,콜백으로 돌아와서 로직 실행
-                //스토리지에서 이미지의 url 주소만 가져온다
+        //스토리지에서 이미지의 url 주소만 가져온다
         val imgRef = MyApplication.storage.reference.child("images/${data.docId}.jpg")
         imgRef.downloadUrl.addOnCompleteListener{ task ->
 
@@ -63,9 +61,10 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
                 Glide.with(context)
                     //이미지를 불러오는 역활
                     .load(task.result)
-                    //불러온 이미지를,결과뷰에 출력
-                    .into(holder.binding.itemImageView)
+                //불러온 이미지를,결과뷰에 출력
+//                    .into(holder.binding.itemImageView)
             }
         }
+
     }
 }

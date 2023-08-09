@@ -19,29 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#212121"
-            android:textSize="14sp" />
-
-
-        <TextView
-            android:id="@+id/itemDateView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="#727272"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:text="email"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/itemImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:scaleType="fitXY" />
-
     <TextView
-        android:id="@+id/itemContentView"
+        android:id="@+id/CommentContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
@@ -50,7 +34,9 @@
         android:lineSpacingExtra="2dp"
         android:paddingLeft="10dp"
         android:textColor="#212121"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:text="content"
+        />
 
     <View
         android:layout_width="match_parent"

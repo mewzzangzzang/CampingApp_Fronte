@@ -3,10 +3,10 @@
 
 
 
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -22,6 +22,19 @@
 
         android:theme="@style/Theme.CampingApp">
         <activity
+
+            android:name=".BoardComment"
+            android:exported="false" />
+        <activity
+            android:name=".BoardDelete"
+            android:exported="false" />
+        <activity
+            android:name=".BoardUpdate"
+            android:exported="false" />
+        <activity
+            android:name=".BoardDetail"
+            android:exported="false" />
+
             android:name=".ChatActivity"
             android:exported="true" />
         <activity
@@ -30,6 +43,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
+
 
         <meta-data
             android:name="com.google.firebase.message.default_notification_icon"
@@ -50,6 +64,12 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".Board"
+            android:exported="true" />
+        <activity
+            android:name=".WriteActivity"
+            android:exported="true" />
 
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
@@ -57,6 +77,7 @@
         <activity
             android:name=".DoNmDetailActivity"
             android:exported="false" />
+
         <activity
             android:name=".CampDoNmActivity"
             android:exported="true" />
