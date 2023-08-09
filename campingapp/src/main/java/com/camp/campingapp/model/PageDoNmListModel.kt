@@ -3,7 +3,7 @@ package com.example.k0327_dum_test.model
 import com.google.gson.annotations.SerializedName
 
 data class DoNmListModel(
-    var response : List<campDoNmList>
+    var response: List<campDoNmList>
 )
 
 data class campDoNmList(
@@ -16,6 +16,7 @@ data class campDoNmList(
     @SerializedName("tel")
     var tel: String,
     @SerializedName("lineIntro")
-    var lineIntro: String
-
+    var lineIntro: String,
+    @SerializedName("intro")
+    var intro: String
 )

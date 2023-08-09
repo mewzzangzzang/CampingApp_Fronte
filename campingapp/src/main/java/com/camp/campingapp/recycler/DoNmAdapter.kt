@@ -3,6 +3,7 @@ package com.camp.campingapp.recycler
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
@@ -55,12 +56,15 @@ class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?) :
                 }
             })
 
+        // 클릭시 캠핑장 상세 정보 페이지
         holder.binding.root.setOnClickListener {
             val intent = Intent(holder.binding.root?.context, DoNmDetailActivity::class.java)
-            intent.putExtra("facltNm",model.facltNm)
-            intent.putExtra("urlImg",model.firstImageUrl)
-            intent.putExtra("tel",model.tel)
-            intent.putExtra("lineIntro",model.lineIntro)
+            intent.putExtra("facltNm", model.facltNm)
+            intent.putExtra("urlImg", model.firstImageUrl)
+            intent.putExtra("tel", model.tel)
+            intent.putExtra("lineIntro", model.lineIntro)
+            intent.putExtra("intro", model.intro)
+            Log.d("lsy",model.intro)
             ContextCompat.startActivity(holder.binding.root.context, intent, null)
         }
 

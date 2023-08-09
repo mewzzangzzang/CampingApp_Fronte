@@ -12,5 +12,7 @@ data class ItemModel (
     @SerializedName("tel")
     var tel: String,
     @SerializedName("lineIntro")
-    var lineIntro: String
+    var lineIntro: String,
+    @SerializedName("intro")
+    var intro: String
 )

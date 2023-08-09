@@ -1,5 +1,6 @@
 package com.camp.campingapp
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +11,6 @@ import com.bumptech.glide.request.transition.Transition
 import com.camp.campingapp.databinding.ActivityDoNmDetailBinding
 
 class DoNmDetailActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityDoNmDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDoNmDetailBinding.inflate(layoutInflater)
@@ -20,7 +20,16 @@ class DoNmDetailActivity : AppCompatActivity() {
         binding.facltNm.text = intent.getStringExtra("facltNm")
         binding.tel.text = intent.getStringExtra("tel")
         binding.lineIntro.text = intent.getStringExtra("lineIntro")
+        binding.intro.text = intent.getStringExtra("intro")
         val imgUrl: String? = intent.getStringExtra("urlImg")
+
+        binding.goDonmList.setOnClickListener {
+            val intent = Intent(
+                this@DoNmDetailActivity,
+                CampDoNmActivity::class.java
+            )
+            startActivity(intent)
+        }
 
         Glide.with(this)
             .asBitmap()

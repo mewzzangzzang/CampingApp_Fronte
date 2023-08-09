@@ -13,11 +13,9 @@ import retrofit2.Response
 
 class CampDoNmActivity : AppCompatActivity() {
     lateinit var binding: ActivityCampDoNmBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
         binding = ActivityCampDoNmBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.goHome.setOnClickListener {
