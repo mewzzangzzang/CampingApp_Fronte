@@ -2,22 +2,32 @@ package com.camp.campingapp
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.camp.campingapp.databinding.ActivityAuthBinding
+import com.camp.campingapp.test.MyApplication
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AuthActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     lateinit var binding: ActivityAuthBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth= Firebase.auth
+
+
 
         //MyApplication->checkAuth=>로그인이 확인
         if(MyApplication.checkAuth()){
@@ -65,6 +75,9 @@ class AuthActivity : AppCompatActivity() {
         binding.goSignInBtn.setOnClickListener{
             changeVisibility("signin")
         }
+        binding.goHostSignBtn.setOnClickListener{
+            changeVisibility("h_signin")
+        }
 
 
         binding.googleLoginBtn.setOnClickListener {
@@ -72,6 +85,7 @@ class AuthActivity : AppCompatActivity() {
             //구글 로그인 관련 함수. 옵션부분을 설정
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
                 .requestIdToken(getString(R.string.default_web_client_id))
 //            default_web_client_id 첫 빌드 때 ,컴파일 오류가 일어남
                 //인증 후,안보이게된다 ->인증된 아이디를 가져와서 사용했기때문
@@ -88,20 +102,65 @@ class AuthActivity : AppCompatActivity() {
             //이메일,비밀번호 회원가입........................
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
+
+            // val type=binding.authTypeEditView.text.toString()
             //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
                 //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
+                    saveUser()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
+                    binding.authUsernameEditView.text.clear()
+                    binding.authAddressEditView.text.clear()
+                    binding.authTelEditView.text.clear()
                     if(task.isSuccessful){
                         //인증된 이메일 존재할시 인증메일 보냄
                         MyApplication.auth.currentUser?.sendEmailVerification()
                             ?.addOnCompleteListener{ sendTask ->
                                 if(sendTask.isSuccessful){
                                     //인증메일확인시 가입완료
+
                                     Toast.makeText(baseContext, "회원가입에서 성공, 전송된 메일을 확인해 주세요",
+                                        Toast.LENGTH_SHORT).show()
+                                    changeVisibility("logout")
+                                }else {
+                                    Toast.makeText(baseContext, "메일 발송 실패", Toast.LENGTH_SHORT).show()
+                                    changeVisibility("logout")
+                                }
+                            }
+                    }else {
+                        Toast.makeText(baseContext, "회원가입 실패", Toast.LENGTH_SHORT).show()
+                        changeVisibility("logout")
+                    }
+                }
+
+        }
+
+        binding.hostSignBtn.setOnClickListener {
+            //호스트이메일,비밀번호 회원가입........................
+            val email = binding.authEmailEditView.text.toString()
+            val password = binding.authPasswordEditView.text.toString()
+//            val type=binding.authTypeEditView.text.toString()
+            //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
+//            HostApplication.auth.createUserWithEmailAndPasswordAndType()
+            MyApplication.auth.createUserWithEmailAndPassword(email, password)
+                //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
+                .addOnCompleteListener(this){task ->
+                    //이메일 등록후 수행되는 코드
+                    saveHost()
+                    binding.authEmailEditView.text.clear()
+                    binding.authPasswordEditView.text.clear()
+                    binding.authHostUsernameEditView.text.clear()
+                    binding.authHostTelEditView.text.clear()
+                    if(task.isSuccessful){
+                        //인증된 이메일 존재할시 인증메일 보냄
+                        MyApplication.auth.currentUser?.sendEmailVerification()
+                            ?.addOnCompleteListener{ sendTask ->
+                                if(sendTask.isSuccessful){
+                                    //인증메일확인시 가입완료
+                                    Toast.makeText(baseContext, "host회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
                                 }else {
@@ -143,6 +202,65 @@ class AuthActivity : AppCompatActivity() {
                 }
         }
     }
+    private fun signOut() {
+        // [START auth_sign_out]
+        Firebase.auth.signOut()
+        // [END auth_sign_out]
+    }
+
+
+
+
+    private fun saveUser(){
+        //add............................
+        //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
+        val data = mapOf(
+            //인증된 유정의 이메일을 의미
+            //앱이 시작시 인증을 체크하는 MyApplication의 checkAuth()확인함.
+            "email" to binding.authEmailEditView.text.toString(),
+            //뷰에서 입력된 값
+            "password" to binding.authPasswordEditView.text.toString(),
+            "username" to binding.authUsernameEditView.text.toString(),
+            "address" to binding.authAddressEditView.text.toString(),
+            "tel" to binding.authTelEditView.text.toString()
+        )
+
+        //MyApplication->db->파이어 스토어를 사용하기 위한 객체
+        //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
+        MyApplication.db.collection("user")
+            //add 부분에,임의로 만든 data를 추가
+            .add(data)
+            //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
+            .addOnFailureListener{
+                //데이터 추가 실패시 실행되는 로직
+                Log.d("kkang", "data save error", it)
+            }
+    }
+    private fun saveHost(){
+        //add............................
+        //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
+        val data = mapOf(
+            //인증된 유정의 이메일을 의미
+            //앱이 시작시 인증을 체크하는 MyApplication의 checkAuth()확인함.
+            "email" to binding.authEmailEditView.text.toString(),
+            //뷰에서 입력된 값
+            "password" to binding.authPasswordEditView.text.toString(),
+            "username" to binding.authHostUsernameEditView.text.toString(),
+            "tel" to binding.authHostTelEditView.text.toString()
+        )
+
+        //MyApplication->db->파이어 스토어를 사용하기 위한 객체
+        //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
+        MyApplication.db.collection("host")
+            //add 부분에,임의로 만든 data를 추가
+            .add(data)
+            //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
+            .addOnFailureListener{
+                //데이터 추가 실패시 실행되는 로직
+                Log.d("kkang", "data save error", it)
+            }
+    }
+
 
     //매개변수를 모드라는 변수명,문자열 타입.
     fun changeVisibility(mode: String){
@@ -157,12 +275,25 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility= View.GONE
                 //구글로그인 안보이게
                 googleLoginBtn.visibility= View.GONE
+                //페북로그인 안보이게
+                facebookLoginBtn.visibility=View.GONE
                 //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
                 //패스워드 입력안보이게
                 authPasswordEditView.visibility= View.GONE
+                authAddressEditView.visibility=View.GONE
+                authUsernameEditView.visibility=View.GONE
+                authHostUsernameEditView.visibility=View.GONE
+                authTelEditView.visibility=View.GONE
+                authHostTelEditView.visibility=View.GONE
+                //타입입력 안보이게
+//                authTypeEditView.visibility = View.GONE
+                //호스트 가입 안보이게
+                goHostSignBtn.visibility=View.GONE
+
 
                 signBtn.visibility= View.GONE
+                hostSignBtn.visibility=View.GONE
                 loginBtn.visibility= View.GONE
             }
 
@@ -172,9 +303,19 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
+                facebookLoginBtn.visibility=View.VISIBLE
+                goHostSignBtn.visibility=View.VISIBLE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
+                authAddressEditView.visibility=View.GONE
+                authUsernameEditView.visibility=View.GONE
+                authHostUsernameEditView.visibility=View.GONE
+                authTelEditView.visibility=View.GONE
+                authHostTelEditView.visibility=View.GONE
+//                authTypeEditView.visibility = View.GONE
+
                 signBtn.visibility = View.GONE
+                hostSignBtn.visibility=View.GONE
                 loginBtn.visibility = View.VISIBLE
             }
         }else if(mode === "signin"){
@@ -182,9 +323,38 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
+                facebookLoginBtn.visibility=View.GONE
+                goHostSignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
+                authAddressEditView.visibility=View.VISIBLE
+                authUsernameEditView.visibility=View.VISIBLE
+                authHostUsernameEditView.visibility=View.GONE
+                authTelEditView.visibility=View.VISIBLE
+                authHostTelEditView.visibility=View.GONE
+//                authTypeEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE
+                hostSignBtn.visibility=View.GONE
+                loginBtn.visibility = View.GONE
+            }
+        }
+        else if(mode==="h_signin"){
+            binding.run{
+                logoutBtn.visibility = View.GONE
+                goSignInBtn.visibility = View.GONE
+                googleLoginBtn.visibility = View.GONE
+                facebookLoginBtn.visibility=View.GONE
+                goHostSignBtn.visibility=View.GONE
+                authEmailEditView.visibility = View.VISIBLE
+                authPasswordEditView.visibility = View.VISIBLE
+                authAddressEditView.visibility=View.GONE
+                authUsernameEditView.visibility=View.GONE
+                authHostUsernameEditView.visibility=View.VISIBLE
+                authTelEditView.visibility=View.GONE
+                authHostTelEditView.visibility=View.VISIBLE
+//                authTypeEditView.visibility = View.VISIBLE
+                signBtn.visibility = View.GONE
+                hostSignBtn.visibility = View.VISIBLE
                 loginBtn.visibility = View.GONE
             }
         }
