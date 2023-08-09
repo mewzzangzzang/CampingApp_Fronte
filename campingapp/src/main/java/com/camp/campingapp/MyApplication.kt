@@ -1,14 +1,14 @@
 package com.camp.campingapp
 
 import android.app.Application
-import com.camp.campingapp.retrofit.NetworkService
+import com.camp.campingapp.retrofit.NetworkServiceDoNm
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MyApplication: Application(){
 
     //add....................................
-    var networkService: NetworkService
+    var networkService: NetworkServiceDoNm
 
     val retrofit: Retrofit
         get() = Retrofit.Builder()
@@ -16,6 +16,6 @@ class MyApplication: Application(){
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     init {
-        networkService = retrofit.create(NetworkService::class.java)
+        networkService = retrofit.create(NetworkServiceDoNm::class.java)
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface NetworkService {
+interface NetworkServiceDoNm {
     @GET("camp/campList/{doNm}")
     fun getList(
         @Path("doNm") doNm : String
