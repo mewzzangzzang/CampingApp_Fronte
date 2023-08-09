@@ -14,6 +14,8 @@ data class campDoNmList(
     @SerializedName("doNm")
     var doNm: String,
     @SerializedName("tel")
-    var tel: String
+    var tel: String,
+    @SerializedName("lineIntro")
+    var lineIntro: String
 
 )

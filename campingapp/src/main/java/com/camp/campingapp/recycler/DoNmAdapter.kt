@@ -1,31 +1,38 @@
 package com.camp.campingapp.recycler
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.camp.campingapp.CampDoNmActivity
+import com.camp.campingapp.DoNmDetailActivity
 import com.camp.campingapp.databinding.ItemDonmBinding
 import com.example.k0327_dum_test.model.campDoNmList
 
 
-class MyViewHolder(val binding: ItemDonmBinding): RecyclerView.ViewHolder(binding.root)
+class MyViewHolder(val binding: ItemDonmBinding) : RecyclerView.ViewHolder(binding.root)
 
-class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun getItemCount(): Int{
+    override fun getItemCount(): Int {
         return datas?.size ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-            = MyViewHolder(ItemDonmBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        MyViewHolder(ItemDonmBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
+    // 리사이클러뷰
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding=(holder as MyViewHolder).binding
+        val binding = (holder as MyViewHolder).binding
 
         //add......................................
         val model = datas!![position]
@@ -47,6 +54,15 @@ class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?): 
                     TODO("Not yet implemented")
                 }
             })
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(holder.binding.root?.context, DoNmDetailActivity::class.java)
+            intent.putExtra("facltNm",model.facltNm)
+            intent.putExtra("urlImg",model.firstImageUrl)
+            intent.putExtra("tel",model.tel)
+            intent.putExtra("lineIntro",model.lineIntro)
+            ContextCompat.startActivity(holder.binding.root.context, intent, null)
+        }
 
     }
 }
