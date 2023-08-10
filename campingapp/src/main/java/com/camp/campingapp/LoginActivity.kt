@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
                 //리사이클러 뷰의 어댑터를 연결하는 부분
                 //itemList->파이어 베이스에서 받아온 일반 데이터(문자열)
-                binding.mainRecyclerView.adapter = MyAdapter(this, itemList)
+                binding.mainRecyclerView.adapter = MyAdapter(this@LoginActivity, itemList)
             }
             .addOnFailureListener{exception ->
                 //파이어베이스 콘솔

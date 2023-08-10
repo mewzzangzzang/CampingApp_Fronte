@@ -25,7 +25,7 @@ class MyApplication: MultiDexApplication() {
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
         lateinit var rdb: DatabaseReference
-
+        lateinit var networkService: NetworkServiceDoNm
 
         fun checkAuth(): Boolean {
             var currentUser = auth.currentUser
@@ -45,20 +45,18 @@ class MyApplication: MultiDexApplication() {
         auth = Firebase.auth
         db = FirebaseFirestore.getInstance()
         storage = Firebase.storage
-        rdb =  Firebase.database.reference
+        rdb = Firebase.database.reference
+
     }
-}
 
-    //add....................................
-    var networkService: NetworkServiceDoNm = TODO()
 
-val retrofit: Retrofit
+
+    val retrofit: Retrofit
         get() = Retrofit.Builder()
-            .baseUrl("http://10.100.103.43:8083/")
+            .baseUrl("http://10.100.103.76:8083/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    init {
-        networkService = retrofit.create(NetworkServiceDoNm::class.java)
 
-    }
+    var networkService: NetworkServiceDoNm = retrofit.create(NetworkServiceDoNm::class.java)
+
 }

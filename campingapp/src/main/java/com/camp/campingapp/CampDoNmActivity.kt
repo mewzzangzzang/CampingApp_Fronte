@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityCampDoNmBinding
-import com.camp.campingapp.recycler.MyAdapter
+import com.camp.campingapp.recycler.DoNmAdapter
 import com.example.k0327_dum_test.model.campDoNmList
 import retrofit2.Response
 
@@ -66,7 +66,7 @@ class CampDoNmActivity : AppCompatActivity() {
                 Log.d("lsy", campDoNmList?.get(0).toString())
 
                 binding.recyclerView.adapter =
-                    MyAdapter(this@CampDoNmActivity, campDoNmList)
+                    DoNmAdapter(this@CampDoNmActivity, campDoNmList)
 
                 binding.recyclerView.addItemDecoration(
                     DividerItemDecoration(this@CampDoNmActivity, LinearLayoutManager.VERTICAL)
