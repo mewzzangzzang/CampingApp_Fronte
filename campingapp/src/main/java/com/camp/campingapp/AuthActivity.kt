@@ -7,11 +7,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.camp.campingapp.MyApplication.Companion.auth
 import com.camp.campingapp.MyApplication.Companion.rdb
 import com.camp.campingapp.databinding.ActivityAuthBinding
 import com.camp.campingapp.model.User
-import com.camp.campingapp.test.MyApplication
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -108,7 +106,7 @@ class AuthActivity : AppCompatActivity() {
 
         binding.signBtn.setOnClickListener {
             //이메일,비밀번호 회원가입........................
-            val name = binding.authUsernameEditView.text.toString()
+            val username = binding.authUsernameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
 
@@ -118,8 +116,6 @@ class AuthActivity : AppCompatActivity() {
                 //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
-
-                    binding.authUsernameEditView.text.clear()
 
                     saveUser()
 
@@ -138,7 +134,7 @@ class AuthActivity : AppCompatActivity() {
                                     Toast.makeText(baseContext, "회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
-                                    addUserToDatabase(name, email, auth.currentUser?.uid!!)
+                                    addUserToDatabase(username, email, auth.currentUser?.uid!!)
                                 }else {
                                     Toast.makeText(baseContext, "메일 발송 실패", Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
