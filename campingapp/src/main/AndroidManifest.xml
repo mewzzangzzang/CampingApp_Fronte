@@ -103,7 +103,7 @@
             android:exported="false" />
         <activity
             android:name=".CampDoNmActivity"
-            android:exported="true" />
+            android:exported="false" />
 
         <activity
             android:name=".AddActivity"

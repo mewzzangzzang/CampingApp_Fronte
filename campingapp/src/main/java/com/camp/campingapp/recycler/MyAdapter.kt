@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.camp.campingapp.test.MyApplication
+import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.ItemMainBinding
-import com.camp.campingapp.model.ItemData
+import com.camp.campingapp.model.UserData
 
 
 //리사이클러 뷰->목록 형식으로 출력되는 뷰
@@ -15,7 +15,7 @@ import com.camp.campingapp.model.ItemData
 //그래서,해당 매개변수호,전체 뷰 객체에 접근 가능(뷰바인딩 객체는,목록의 아이템의 요소 사용중)
 class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
 
-class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(val context: Context, val itemList: MutableList<UserData>): RecyclerView.Adapter<MyViewHolder>() {
     //어댑터 클래스를 만들고,재정의한 함수들임
     //인플레이터가 나옴,해당 뷰를 출력하기 위한 객체를 초기화하는 작업\
     //포기화는(참조형 변수에,해당 메모리 위치 주솟값을 할당하는것에 말함)

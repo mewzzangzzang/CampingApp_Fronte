@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.camp.campingapp.databinding.ActivityAddBinding
-import com.camp.campingapp.test.MyApplication
 import com.camp.campingapp.util.dateToString
 
 import java.io.File
