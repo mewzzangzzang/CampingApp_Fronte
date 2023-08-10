@@ -54,7 +54,7 @@ class CampDoNmActivity : AppCompatActivity() {
         val networkService = (applicationContext as MyApplication).networkService
         val userListCall =
             networkService.getList(donm)
-        Log.d("lsy", "url:" + userListCall.request().url().toString())
+//        Log.d("lsy", "url:" + userListCall.request().url().toString())
 
         userListCall.enqueue(object : retrofit2.Callback<List<campDoNmList>> {
             override fun onResponse(
