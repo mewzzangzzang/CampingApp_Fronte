@@ -41,6 +41,33 @@ class CampDoNmActivity : AppCompatActivity() {
         binding.donm3.setOnClickListener {
             getCampDoNmList("3")
         }
+        binding.donm4.setOnClickListener {
+            getCampDoNmList("4")
+        }
+        binding.donm5.setOnClickListener {
+            getCampDoNmList("5")
+        }
+        binding.donm6.setOnClickListener {
+            getCampDoNmList("6")
+        }
+        binding.donm7.setOnClickListener {
+            getCampDoNmList("7")
+        }
+        binding.donm8.setOnClickListener {
+            getCampDoNmList("8")
+        }
+        binding.donm9.setOnClickListener {
+            getCampDoNmList("9")
+        }
+        binding.donm10.setOnClickListener {
+            getCampDoNmList("10")
+        }
+        binding.donm11.setOnClickListener {
+            getCampDoNmList("11")
+        }
+        binding.donm12.setOnClickListener {
+            getCampDoNmList("12")
+        }
 
         // ==========================================================================================
     }//onCreate 문 닫음
