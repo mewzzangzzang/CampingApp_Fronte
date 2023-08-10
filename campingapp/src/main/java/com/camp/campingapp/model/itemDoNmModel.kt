@@ -1,8 +1,8 @@
-package com.example.k0327_dum_test.model
+package com.camp.campingapp.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemModel (
+data class DoNmModel (
     @SerializedName("facltNm")
     var facltNm: String,
     @SerializedName("firstImageUrl")

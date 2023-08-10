@@ -22,6 +22,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<ItemData>): Recy
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return MyViewHolder(ItemMainBinding.inflate(layoutInflater))
+
     }
 
 

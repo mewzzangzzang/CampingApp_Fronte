@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,9 +17,9 @@ import com.camp.campingapp.databinding.ItemDonmBinding
 import com.example.k0327_dum_test.model.campDoNmList
 
 
-class MyViewHolder(val binding: ItemDonmBinding) : RecyclerView.ViewHolder(binding.root)
+class DoNmViewHolder(val binding: ItemDonmBinding) : RecyclerView.ViewHolder(binding.root)
 
-class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?) :
+class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -29,11 +27,11 @@ class MyAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        MyViewHolder(ItemDonmBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        DoNmViewHolder(ItemDonmBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     // 리사이클러뷰
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding = (holder as MyViewHolder).binding
+        val binding = (holder as DoNmViewHolder).binding
 
         //add......................................
         val model = datas!![position]
