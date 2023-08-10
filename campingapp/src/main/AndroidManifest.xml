@@ -18,9 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="yg9oer3xr2" />
+
         <activity
             android:name=".DoNmDetailActivity"
             android:exported="false" />
+
         <activity
             android:name=".CampDoNmActivity"
             android:exported="true" />

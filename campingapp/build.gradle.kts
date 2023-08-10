@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+
 android {
     namespace = "com.camp.campingapp"
     compileSdk = 33
@@ -44,8 +45,14 @@ dependencies {
     // gps
     implementation ("com.google.android.gms:play-services-location:18.0.0")
 
+    // 네이버 지도
+    implementation("com.naver.maps:map-sdk:3.17.0")
+
     // 카드뷰
     implementation ("androidx.cardview:cardview:1.0.0")
+
+    // 아래 메뉴
+    implementation ("com.google.android.material:material:1.1.0")
 
     implementation ("com.google.android.libraries.places:places:3.2.0")
     implementation ("com.android.volley:volley:1.2.1")

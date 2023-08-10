@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityCampDoNmBinding
-import com.camp.campingapp.recycler.MyAdapter
-import com.example.k0327_dum_test.model.campDoNmList
+import com.camp.campingapp.model.campDoNmList
+import com.camp.campingapp.recycler.DoNmAdapter
 import retrofit2.Response
 
 class CampDoNmActivity : AppCompatActivity() {
@@ -41,6 +41,33 @@ class CampDoNmActivity : AppCompatActivity() {
         binding.donm3.setOnClickListener {
             getCampDoNmList("3")
         }
+        binding.donm4.setOnClickListener {
+            getCampDoNmList("4")
+        }
+        binding.donm5.setOnClickListener {
+            getCampDoNmList("5")
+        }
+        binding.donm6.setOnClickListener {
+            getCampDoNmList("6")
+        }
+        binding.donm7.setOnClickListener {
+            getCampDoNmList("7")
+        }
+        binding.donm8.setOnClickListener {
+            getCampDoNmList("8")
+        }
+        binding.donm9.setOnClickListener {
+            getCampDoNmList("9")
+        }
+        binding.donm10.setOnClickListener {
+            getCampDoNmList("10")
+        }
+        binding.donm11.setOnClickListener {
+            getCampDoNmList("11")
+        }
+        binding.donm12.setOnClickListener {
+            getCampDoNmList("12")
+        }
 
         // ==========================================================================================
     }//onCreate 문 닫음
@@ -54,7 +81,7 @@ class CampDoNmActivity : AppCompatActivity() {
         val networkService = (applicationContext as MyApplication).networkService
         val userListCall =
             networkService.getList(donm)
-        Log.d("lsy", "url:" + userListCall.request().url().toString())
+        Log.d("lsy", "url:" + userListCall.request().url.toString())
 
         userListCall.enqueue(object : retrofit2.Callback<List<campDoNmList>> {
             override fun onResponse(
@@ -66,7 +93,7 @@ class CampDoNmActivity : AppCompatActivity() {
                 Log.d("lsy", campDoNmList?.get(0).toString())
 
                 binding.recyclerView.adapter =
-                    MyAdapter(this@CampDoNmActivity, campDoNmList)
+                    DoNmAdapter(this@CampDoNmActivity, campDoNmList)
 
                 binding.recyclerView.addItemDecoration(
                     DividerItemDecoration(this@CampDoNmActivity, LinearLayoutManager.VERTICAL)
