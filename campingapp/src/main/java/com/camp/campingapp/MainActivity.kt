@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     inner class PanelEventListener : SlidingUpPanelLayout.PanelSlideListener {
         // 패널이 슬라이드 중일 때
         override fun onPanelSlide(panel: View?, slideOffset: Float) {
-            binding.tvSlideOffset.text = slideOffset.toString()
+//            binding.tvSlideOffset.text = slideOffset.toString()
         }
 
         // 패널의 상태가 변했을 때
@@ -54,11 +54,12 @@ class MainActivity : AppCompatActivity() {
             panel: View?,
             previousState: SlidingUpPanelLayout.PanelState?,
             newState: SlidingUpPanelLayout.PanelState?
-        ) {
+        )
+        {
             if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-                binding.btnToggle.text = "열기"
+//                binding.btnToggle.text = "열기"
             } else if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                binding.btnToggle.text = "닫기"
+//                binding.btnToggle.text = "닫기"
             }
         }
     }
