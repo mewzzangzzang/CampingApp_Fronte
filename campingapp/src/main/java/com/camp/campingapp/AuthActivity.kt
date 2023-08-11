@@ -336,7 +336,7 @@ class AuthActivity : AppCompatActivity() {
                 authUsernameEditView.visibility=View.GONE
 
                 //페북로그인 안보이게
-                facebookLoginBtn.visibility=View.GONE
+//                facebookLoginBtn.visibility=View.GONE
 
                 //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
@@ -369,7 +369,7 @@ class AuthActivity : AppCompatActivity() {
 
                 authUsernameEditView.visibility = View.GONE
 
-                facebookLoginBtn.visibility=View.VISIBLE
+//                facebookLoginBtn.visibility=View.VISIBLE
                 goHostSignBtn.visibility=View.VISIBLE
 
                 authEmailEditView.visibility = View.VISIBLE
@@ -395,7 +395,7 @@ class AuthActivity : AppCompatActivity() {
 
                 authUsernameEditView.visibility = View.VISIBLE
 
-                facebookLoginBtn.visibility=View.GONE
+//                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
 
                 authEmailEditView.visibility = View.VISIBLE
@@ -418,7 +418,7 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
-                facebookLoginBtn.visibility=View.GONE
+//                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
@@ -441,7 +441,7 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
                 authUsernameEditView.visibility = View.VISIBLE
-                facebookLoginBtn.visibility=View.GONE
+//                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
