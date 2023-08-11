@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
         // 축제
         binding.btnmenu3.setOnClickListener {
-            val intent = Intent(this@MainActivity, BoardActivity::class.java)
+            val intent = Intent(this@MainActivity, Board::class.java)
             startActivity(intent)
         }
         // 커뮤니티
