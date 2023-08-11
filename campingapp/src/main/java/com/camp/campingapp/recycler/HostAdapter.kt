@@ -6,17 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.camp.campingapp.MyApplication
+import com.camp.campingapp.databinding.HostListItemBinding
 import com.camp.campingapp.databinding.ItemMainBinding
 import com.camp.campingapp.model.HostData
 
 
-class HostViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
+class HostViewHolder(val binding: HostListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 class HostAdapter(val context: Context, val hostList: MutableList<HostData>): RecyclerView.Adapter<HostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HostViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return HostViewHolder(ItemMainBinding.inflate(layoutInflater))
+        return HostViewHolder(HostListItemBinding.inflate(layoutInflater))
 
     }
 
@@ -30,10 +31,10 @@ class HostAdapter(val context: Context, val hostList: MutableList<HostData>): Re
         //받은 데이터의 리스트의 인덱스
         val data = hostList.get(position)
 
+        //목록에 보여주는 요소
         holder.binding.run {
-            itemHostView.text=data.hostname
-            itemHtelView.text=data.htel
-            itemHaddrView.text=data.haddr
+            HostCampNameView.text=data.campname
+
         }
 
         //스토리지 이미지 다운로드........................
@@ -54,7 +55,7 @@ class HostAdapter(val context: Context, val hostList: MutableList<HostData>): Re
                     //이미지를 불러오는 역활
                     .load(task.result)
                     //불러온 이미지를,결과뷰에 출력
-                    .into(holder.binding.itemImageView)
+                    .into(holder.binding.HostCampImageView)
             }
         }
     }
