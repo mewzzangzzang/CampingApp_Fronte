@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 
     <application
         android:name=".MyApplication"
@@ -21,7 +20,7 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".HostList"
+            android:name=".HostListItemActivity"
             android:exported="false" />
         <activity
             android:name=".HostListActivity"
@@ -114,11 +113,10 @@
             android:exported="false" />
         <activity
             android:name=".CampDoNmActivity"
-            android:exported="true" />
-        <activity
-            android:name=".AddActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".AddActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:windowSoftInputMode="adjustResize" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="true" />
