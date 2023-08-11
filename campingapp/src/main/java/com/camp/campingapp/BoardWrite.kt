@@ -13,16 +13,11 @@ import com.camp.campingapp.MyApplication.Companion.db
 import com.camp.campingapp.MyApplication.Companion.storage
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.util.Date
 
 
-class WriteActivity : AppCompatActivity() {
+class BoardWrite : AppCompatActivity() {
 //    lateinit var db: FirebaseFirestore
 //    lateinit var storage: FirebaseStorage
 

@@ -9,17 +9,17 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.camp.campingapp.databinding.ActivityLoginBinding
+import com.camp.campingapp.databinding.ActivityMenuBinding
 import com.camp.campingapp.model.HostData
 import com.camp.campingapp.recycler.HostAdapter
 import com.camp.campingapp.util.myCheckPermission
 
-class LoginActivity : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
+class MenuActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         myCheckPermission(this)
@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         binding.addFab.setOnClickListener {
             //인증 여부 확인.
             if(MyApplication.checkAuth()){
+                //인증 완료시 AddActivity로 이동
                 startActivity(Intent(this, Board::class.java))
             }else {
                 //인증실패시 토스트 알림
@@ -88,12 +89,12 @@ class LoginActivity : AppCompatActivity() {
                 binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
                 //리사이클러 뷰의 어댑터를 연결하는 부분
                 //itemList->파이어 베이스에서 받아온 일반 데이터(문자열)
-                binding.mainRecyclerView.adapter = HostAdapter(this@LoginActivity, itemList)
+                binding.mainRecyclerView.adapter = HostAdapter(this@MenuActivity, itemList)
             }
             .addOnFailureListener{exception ->
                 //파이어베이스 콘솔
                 Log.d("kkang", "error.. getting document..", exception)
-                Toast.makeText(this, "LoginActivity-서버 데이터 획득 실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "서버 데이터 획득 실패", Toast.LENGTH_SHORT).show()
             }
     }
 
