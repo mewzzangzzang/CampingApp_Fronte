@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.camp.campingapp.databinding.ActivityBoardDetailBinding
 import com.camp.campingapp.model.BoardData
+import com.camp.campingapp.recycler.CommentAdapter
 import com.google.firebase.firestore.FieldValue
+import java.text.SimpleDateFormat
 
 class BoardDetail : AppCompatActivity() {
     lateinit var binding: ActivityBoardDetailBinding
+    data class comment(val comment : String, val time : String)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +31,28 @@ class BoardDetail : AppCompatActivity() {
         binding.BoardDate.text = date
         binding.BoardContent.text = content
 
-//        if (docId != null) {
-//            MyApplication.db.collection("Boards").document(docId).collection("Comments")
-//                .get()
-//                .addOnSuccessListener { result ->
-//                    val itemList = mutableListOf<BoardData>()
-//                    for (document in result) {
-//                        val item = document.toObject(BoardData::class.java)
-//                        item.comment=document.id
-//                        itemList.add(item)
-//                    }
-//                    binding.commentRecyclerView.layoutManager = LinearLayoutManager(this)
-//                    binding.commentRecyclerView.adapter = CommentAdapter(this, itemList)
-//                }
-//        }
+        var commentlist = mutableListOf<comment>()
+        var count = 0
+        if (docId != null) {
+            MyApplication.db.collection("Boards").document(docId).collection("Comments")
+                .get()
+                .addOnSuccessListener { result ->
+                    val itemList = mutableListOf<BoardData>()
+                    for (document in result) {
+                        //val item = document.toObject(BoardData::class.java)
+                        //item.comment=document.id
+                        //itemList.add(item)
+                        commentlist.add(comment(document.data.get("comment").toString(), document.data.get("timestamp").toString()))
+                        count++
+                        if(result.size() == count) {
+                            Log.d("test", "$commentlist")
+                            binding.commentRecyclerView.layoutManager = LinearLayoutManager(this)
+                            binding.commentRecyclerView.adapter = CommentAdapter(this, commentlist)
+                        }
+                    }
+
+                }
+        }
 
 
 
@@ -81,11 +92,12 @@ class BoardDetail : AppCompatActivity() {
             }
         }
 
+        val datenow = SimpleDateFormat("yyyy-MM-dd HH:mm")
         // 댓글 등록
         binding.CommentWrite.setOnClickListener {
             val commentData = mapOf(
                 "comment" to binding.BoardComment.text.toString(),
-                "timestamp" to FieldValue.serverTimestamp()
+                "timestamp" to datenow.format(System.currentTimeMillis()).toString()
             )
             if (docId != null) {
                 MyApplication.db.collection("Boards").document(docId)
