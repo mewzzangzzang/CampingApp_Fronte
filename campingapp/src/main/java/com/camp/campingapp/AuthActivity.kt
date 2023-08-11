@@ -61,12 +61,7 @@ class AuthActivity : AppCompatActivity() {
                             //구글인증으로 된 이메일의 현재앱의 로그인된 email 재할당하는 부분
                             MyApplication.email = account.email
                             //changeVisibility각모드마다 보여주는 뷰가 다름
-                            saveGoogleUser()
-                            binding.authEmailEditView.text.clear()
-                            binding.authPasswordEditView.text.clear()
-                            binding.authUsernameEditView.text.clear()
-                            binding.authAddressEditView.text.clear()
-                            binding.authTelEditView.text.clear()
+
 
                             changeVisibility("login")
                         }else {
@@ -117,6 +112,34 @@ class AuthActivity : AppCompatActivity() {
 
         }
 
+        binding.googleSignBtn.setOnClickListener {
+            //구글 로그인....................
+            //구글 로그인 관련 함수. 옵션부분을 설정
+
+
+            val gso = GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
+                .requestIdToken(getString(R.string.default_web_client_id))
+//            default_web_client_id 첫 빌드 때 ,컴파일 오류가 일어남
+                //인증 후,안보이게된다 ->인증된 아이디를 가져와서 사용했기때문
+                //DEFAULT_SIGH_IN-> 파이어베이스 콘솔에서,지정함
+                .requestEmail()
+                //옵션객체에 담아두면
+                .build()
+            saveUser()
+            binding.authEmailEditView.text.clear()
+            binding.authPasswordEditView.text.clear()
+            binding.authUsernameEditView.text.clear()
+            binding.authAddressEditView.text.clear()
+            binding.authTelEditView.text.clear()
+
+            val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
+            requestLauncher.launch(signInIntent)
+
+
+        }
+
         binding.signBtn.setOnClickListener {
             //이메일,비밀번호 회원가입........................
             val username = binding.authUsernameEditView.text.toString()
@@ -131,7 +154,6 @@ class AuthActivity : AppCompatActivity() {
                     //이메일 등록후 수행되는 코드
 
                     saveUser()
-
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
                     binding.authUsernameEditView.text.clear()
@@ -238,31 +260,8 @@ class AuthActivity : AppCompatActivity() {
 
 
 
-    private fun saveGoogleUser(){
-        //add............................
-        //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
-        val data = mapOf(
-            //인증된 유정의 이메일을 의미
-            //앱이 시작시 인증을 체크하는 MyApplication의 checkAuth()확인함.
-            "email" to binding.authEmailEditView.text.toString(),
-            //뷰에서 입력된 값
-            "password" to binding.authPasswordEditView.text.toString(),
-            "username" to binding.authUsernameEditView.text.toString(),
-            "address" to binding.authAddressEditView.text.toString(),
-            "tel" to binding.authTelEditView.text.toString()
-        )
 
-        //MyApplication->db->파이어 스토어를 사용하기 위한 객체
-        //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
-        MyApplication.db.collection("user")
-            //add 부분에,임의로 만든 data를 추가
-            .add(data)
-            //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
-            .addOnFailureListener{
-                //데이터 추가 실패시 실행되는 로직
-                Log.d("kkang", "data save error", it)
-            }
-    }
+
     private fun saveUser(){
         //add............................
         //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
@@ -358,6 +357,7 @@ class AuthActivity : AppCompatActivity() {
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility= View.GONE
                 goGoogleSignInBtn.visibility=View.GONE
+                googleSignBtn.visibility=View.GONE
             }
 
         }else if(mode === "logout"){
@@ -385,6 +385,7 @@ class AuthActivity : AppCompatActivity() {
                 goGoogleSignInBtn.visibility=View.VISIBLE
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility = View.VISIBLE
+                googleSignBtn.visibility=View.GONE
             }
         }else if(mode === "signin"){
             binding.run {
@@ -409,6 +410,7 @@ class AuthActivity : AppCompatActivity() {
                 goGoogleSignInBtn.visibility=View.GONE
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility = View.GONE
+                googleSignBtn.visibility=View.GONE
             }
         }
         else if(mode==="h_signin"){
@@ -430,13 +432,14 @@ class AuthActivity : AppCompatActivity() {
                 goGoogleSignInBtn.visibility=View.GONE
                 hostSignBtn.visibility = View.VISIBLE
                 loginBtn.visibility = View.GONE
+                googleSignBtn.visibility=View.GONE
             }
         }
         else if(mode==="G_signin"){
             binding.run{
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
-                googleLoginBtn.visibility = View.VISIBLE
+                googleLoginBtn.visibility = View.GONE
                 authUsernameEditView.visibility = View.VISIBLE
                 facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
@@ -451,6 +454,7 @@ class AuthActivity : AppCompatActivity() {
                 goGoogleSignInBtn.visibility=View.GONE
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility = View.GONE
+                googleSignBtn.visibility=View.VISIBLE
             }
         }
 
