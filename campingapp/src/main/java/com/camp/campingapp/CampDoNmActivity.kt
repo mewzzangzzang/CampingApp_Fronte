@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityCampDoNmBinding
 import com.camp.campingapp.recycler.DoNmAdapter
 import com.example.k0327_dum_test.model.campDoNmList
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import retrofit2.Response
 
 class CampDoNmActivity : AppCompatActivity() {
@@ -25,6 +26,22 @@ class CampDoNmActivity : AppCompatActivity() {
 
         binding.recyclerView.setOnClickListener {
             Log.d("lsy", "")
+        }
+        // 슬라이딩 패널 ==============================================================================
+        val slidePanel = binding.mainFrame                      // SlidingUpPanel
+//        slidePanel.addPanelSlideListener(PanelEventListener())  // 이벤트 리스너 추가
+
+        // 패널 열고 닫기
+        binding.btnToggle.setOnClickListener {
+            val state = slidePanel.panelState
+            // 닫힌 상태일 경우 열기
+            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+            }
+            // 열린 상태일 경우 닫기
+            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+            }
         }
 
         // 지역 코드로 캠핑장 불러오기 ==================================================================
