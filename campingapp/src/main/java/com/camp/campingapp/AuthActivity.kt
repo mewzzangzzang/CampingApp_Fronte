@@ -336,7 +336,7 @@ class AuthActivity : AppCompatActivity() {
                 authUsernameEditView.visibility=View.GONE
 
                 //페북로그인 안보이게
-//                facebookLoginBtn.visibility=View.GONE
+                facebookLoginBtn.visibility=View.GONE
 
                 //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
@@ -345,6 +345,8 @@ class AuthActivity : AppCompatActivity() {
                 authAddressEditView.visibility=View.GONE
                 authUsernameEditView.visibility=View.GONE
                 authHostUsernameEditView.visibility=View.GONE
+                authHostAddressEditView.visibility=View.GONE
+                authHostCampNameEditView.visibility=View.GONE
                 authTelEditView.visibility=View.GONE
                 authHostTelEditView.visibility=View.GONE
                 //타입입력 안보이게
@@ -369,7 +371,7 @@ class AuthActivity : AppCompatActivity() {
 
                 authUsernameEditView.visibility = View.GONE
 
-//                facebookLoginBtn.visibility=View.VISIBLE
+                facebookLoginBtn.visibility=View.VISIBLE
                 goHostSignBtn.visibility=View.VISIBLE
 
                 authEmailEditView.visibility = View.VISIBLE
@@ -379,6 +381,8 @@ class AuthActivity : AppCompatActivity() {
                 authHostUsernameEditView.visibility=View.GONE
                 authTelEditView.visibility=View.GONE
                 authHostTelEditView.visibility=View.GONE
+                authHostAddressEditView.visibility=View.GONE
+                authHostCampNameEditView.visibility=View.GONE
 //                authTypeEditView.visibility = View.GONE
 
                 signBtn.visibility = View.GONE
@@ -395,7 +399,7 @@ class AuthActivity : AppCompatActivity() {
 
                 authUsernameEditView.visibility = View.VISIBLE
 
-//                facebookLoginBtn.visibility=View.GONE
+                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
 
                 authEmailEditView.visibility = View.VISIBLE
@@ -405,6 +409,8 @@ class AuthActivity : AppCompatActivity() {
                 authHostUsernameEditView.visibility=View.GONE
                 authTelEditView.visibility=View.VISIBLE
                 authHostTelEditView.visibility=View.GONE
+                authHostAddressEditView.visibility=View.GONE
+                authHostCampNameEditView.visibility=View.GONE
 //                authTypeEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE
                 goGoogleSignInBtn.visibility=View.GONE
@@ -418,7 +424,7 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
-//                facebookLoginBtn.visibility=View.GONE
+                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
@@ -427,12 +433,13 @@ class AuthActivity : AppCompatActivity() {
                 authHostUsernameEditView.visibility=View.VISIBLE
                 authTelEditView.visibility=View.GONE
                 authHostTelEditView.visibility=View.VISIBLE
-//                authTypeEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.GONE
                 goGoogleSignInBtn.visibility=View.GONE
                 hostSignBtn.visibility = View.VISIBLE
                 loginBtn.visibility = View.GONE
                 googleSignBtn.visibility=View.GONE
+                authHostAddressEditView.visibility=View.VISIBLE
+                authHostCampNameEditView.visibility=View.VISIBLE
             }
         }
         else if(mode==="G_signin"){
@@ -441,7 +448,7 @@ class AuthActivity : AppCompatActivity() {
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
                 authUsernameEditView.visibility = View.VISIBLE
-//                facebookLoginBtn.visibility=View.GONE
+                facebookLoginBtn.visibility=View.GONE
                 goHostSignBtn.visibility=View.GONE
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
@@ -455,6 +462,8 @@ class AuthActivity : AppCompatActivity() {
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility = View.GONE
                 googleSignBtn.visibility=View.VISIBLE
+                authHostAddressEditView.visibility=View.GONE
+                authHostCampNameEditView.visibility=View.GONE
             }
         }
 
