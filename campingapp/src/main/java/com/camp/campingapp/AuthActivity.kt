@@ -186,6 +186,7 @@ class AuthActivity : AppCompatActivity() {
 
         binding.hostSignBtn.setOnClickListener {
             //호스트이메일,비밀번호 회원가입........................
+            val username = binding.authHostUsernameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
 //            val type=binding.authTypeEditView.text.toString()
@@ -195,6 +196,7 @@ class AuthActivity : AppCompatActivity() {
                 //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
+
                     saveHost()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
@@ -209,6 +211,7 @@ class AuthActivity : AppCompatActivity() {
                                     Toast.makeText(baseContext, "host회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
+                                    addUserToDatabase(username, email, auth.currentUser?.uid!!)
                                 }else {
                                     Toast.makeText(baseContext, "메일 발송 실패", Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
