@@ -115,6 +115,8 @@ class AuthActivity : AppCompatActivity() {
         binding.googleSignBtn.setOnClickListener {
             //구글 로그인....................
             //구글 로그인 관련 함수. 옵션부분을 설정
+
+
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 
@@ -125,16 +127,16 @@ class AuthActivity : AppCompatActivity() {
                 .requestEmail()
                 //옵션객체에 담아두면
                 .build()
-            saveGoogleUser()
+            saveUser()
             binding.authEmailEditView.text.clear()
             binding.authPasswordEditView.text.clear()
             binding.authUsernameEditView.text.clear()
             binding.authAddressEditView.text.clear()
             binding.authTelEditView.text.clear()
-            //gso
 
             val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
             requestLauncher.launch(signInIntent)
+
 
         }
 
@@ -152,7 +154,6 @@ class AuthActivity : AppCompatActivity() {
                     //이메일 등록후 수행되는 코드
 
                     saveUser()
-
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
                     binding.authUsernameEditView.text.clear()
@@ -259,24 +260,8 @@ class AuthActivity : AppCompatActivity() {
 
 
 
-    private fun saveGoogleUser(){
 
 
-
-        val data = mapOf(
-            "email" to binding.authEmailEditView.text.toString(),
-            "password" to binding.authPasswordEditView.text.toString(),
-            "username" to binding.authUsernameEditView.text.toString(),
-            "address" to binding.authAddressEditView.text.toString(),
-            "tel" to binding.authTelEditView.text.toString()
-        )
-
-        MyApplication.db.collection("user")
-            .add(data)
-            .addOnFailureListener{
-                Log.d("kkang", "data save error", it)
-            }
-    }
     private fun saveUser(){
         //add............................
         //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
