@@ -41,6 +41,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // 캠핑장
+        binding.btnmenu1.setOnClickListener {
+            val intent = Intent(this@MainActivity, CampDoNmActivity::class.java)
+            startActivity(intent)
+        }
+        // 예약
+        binding.btnmenu2.setOnClickListener {
+            val intent = Intent(this@MainActivity, HostListActivity::class.java)
+            startActivity(intent)
+        }
+        // 축제
+        binding.btnmenu3.setOnClickListener {
+            val intent = Intent(this@MainActivity, TourActivity::class.java)
+            startActivity(intent)
+        }
+        // 커뮤니티
+        binding.btnmenu4.setOnClickListener {
+            val intent = Intent(this@MainActivity, BoardActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     inner class PanelEventListener : SlidingUpPanelLayout.PanelSlideListener {
@@ -54,8 +75,7 @@ class MainActivity : AppCompatActivity() {
             panel: View?,
             previousState: SlidingUpPanelLayout.PanelState?,
             newState: SlidingUpPanelLayout.PanelState?
-        )
-        {
+        ) {
             if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
 //                binding.btnToggle.text = "열기"
             } else if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {

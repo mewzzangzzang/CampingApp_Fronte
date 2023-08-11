@@ -13,26 +13,52 @@
         android:id="@+id/back_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#42A5F5">
+        android:background="@drawable/oc">
+
 
         <TextView
             android:id="@+id/tv_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Background Layout"
+            android:background="#B3000000"
+            android:backgroundTint="@color/black"
+            android:paddingLeft="40dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp"
+            android:text="   님"
             android:textColor="?android:attr/textColorPrimaryInverse"
-            android:textSize="18sp"
+            android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.117"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.121" />
+
+        <TextView
+            android:id="@+id/tv_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#B3000000"
+            android:backgroundTint="@color/black"
+            android:padding="10dp"
+            android:text="환영합니다"
+            android:textColor="?android:attr/textColorPrimaryInverse"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/slide_layout"
         android:layout_width="match_parent"
-        android:layout_height="600dp">
+        android:layout_height="550dp">
 
         <Button
             android:id="@+id/btn_toggle"
@@ -42,7 +68,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
         <!--   하단 구간    -->
@@ -64,6 +89,7 @@
                 android:layout_marginRight="20dp"
                 app:cardCornerRadius="20dp">
 
+                <!--       캠핑장        -->
                 <ImageView
                     android:id="@+id/btnmenu1"
                     android:layout_width="180dp"
@@ -81,6 +107,7 @@
                 android:layout_marginRight="40dp"
                 app:cardCornerRadius="20dp">
 
+                <!--       예약        -->
                 <ImageView
                     android:id="@+id/btnmenu2"
                     android:layout_width="180dp"
@@ -108,10 +135,11 @@
                 android:layout_marginRight="20dp"
                 app:cardCornerRadius="20dp">
 
+                <!--       축제        -->
                 <ImageView
                     android:id="@+id/btnmenu3"
-                    android:layout_width="180dp"
-                    android:layout_height="250dp"
+                    android:layout_width="280dp"
+                    android:layout_height="120dp"
                     android:layout_row="1"
                     android:layout_column="2"
                     android:scaleType="centerCrop"
@@ -126,6 +154,7 @@
                 android:layout_marginRight="20dp"
                 app:cardCornerRadius="20dp">
 
+                <!--       커뮤니티        -->
                 <ImageView
                     android:id="@+id/btnmenu4"
                     android:layout_width="180dp"
