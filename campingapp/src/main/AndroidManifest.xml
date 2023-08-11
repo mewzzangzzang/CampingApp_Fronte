@@ -21,6 +21,12 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HostList"
+            android:exported="false" />
+        <activity
+            android:name=".HostListActivity"
+            android:exported="true" />
+        <activity
             android:name=".BoardUpdate"
             android:exported="true" />
         <activity
@@ -34,9 +40,6 @@
             android:exported="true" />
         <activity
             android:name=".Board"
-            android:exported="true" />
-        <activity
-            android:name=".MenuActivity"
             android:exported="true" />
         <activity
             android:name=".ChatActivity"
@@ -94,7 +97,9 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
+        </service> <!-- <activity -->
+        <!-- android:name=".WriteActivity" -->
+        <!-- android:exported="false" /> -->
         <!-- <activity -->
         <!-- android:name=".BoardActivity" -->
         <!-- android:exported="false" /> -->
@@ -110,6 +115,10 @@
         <activity
             android:name=".CampDoNmActivity"
             android:exported="true" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
