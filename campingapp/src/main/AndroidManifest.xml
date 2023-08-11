@@ -19,10 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".HostList"
+            android:exported="false" />
         <activity
             android:name=".HostListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".BoardUpdate"
             android:exported="true" />
