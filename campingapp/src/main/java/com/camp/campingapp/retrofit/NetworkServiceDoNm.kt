@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface NetworkServiceDoNm {
     @GET("camp/campList/{doNm}")
@@ -34,7 +35,10 @@ interface NetworkServiceDoNm {
         "X-NCP-APIGW-API-KEY-ID: 426fftzyvu",
         "X-NCP-APIGW-API-KEY: EbRpqWC1Aehm3Nv2UmftiLQNqLgIIUGjyRNFaVPV"
         )
-    fun GetAddrGps():Call<AddrList>
+    fun GetAddrGps(
+    @Query("coords") coords: String?,
+    ):Call<AddrList>
+
 
 
 

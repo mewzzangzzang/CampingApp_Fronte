@@ -3,8 +3,10 @@ package com.camp.campingapp.recycler
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.camp.campingapp.R
 import com.camp.campingapp.TourActivity
 import com.camp.campingapp.TourDetailActivity
 import com.camp.campingapp.model.TourList
@@ -25,6 +27,8 @@ class TourAdapter(val context: TourActivity, val datas:List<TourList>?): Recycle
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding=(holder as TourViewHolder).binding
+        val animation = AnimationUtils.loadAnimation(holder.binding.root.context, R.anim.list_item_ani)
+        holder.binding.root.animation = animation
 
         //add......................................
         val model = datas!![position]
