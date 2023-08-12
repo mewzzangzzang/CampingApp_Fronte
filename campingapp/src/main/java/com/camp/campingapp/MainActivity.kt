@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.camp.campingapp.databinding.ActivityMainBinding
+import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         // 커뮤니티
         binding.btnmenu4.setOnClickListener {
             val intent = Intent(this@MainActivity, TourActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnlogin.setOnClickListener {
+            val intent = Intent(this@MainActivity, AuthActivity::class.java)
             startActivity(intent)
         }
 

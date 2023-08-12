@@ -34,20 +34,10 @@ class DoNmDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.facltNm.text = intent.getStringExtra("facltNm")
         binding.tel.text = intent.getStringExtra("tel")
         binding.lineIntro.text = intent.getStringExtra("lineIntro")
-//        binding.induty.text = intent.getStringExtra("induty")
         binding.intro.text = intent.getStringExtra("intro")
         binding.sbrsCl.text = intent.getStringExtra("sbrsCl")
         binding.addr1.text = intent.getStringExtra("addr1")
-        binding.animalCmgCl.text = intent.getStringExtra("animalCmgCl")
         val imgUrl: String? = intent.getStringExtra("urlImg")
-
-//        binding.goDonmList.setOnClickListener {
-//            val intent = Intent(
-//                this@DoNmDetailActivity,
-//                CampDoNmActivity::class.java
-//            )
-//            startActivity(intent)
-//        }
 
         var tel : String? = intent.getStringExtra("tel")
 

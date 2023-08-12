@@ -132,44 +132,6 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/sans_medium"
-            android:text="🐶 반려견 출입"
-            android:textSize="17dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="29dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/white"
-            app:cardCornerRadius="20dp">
-
-            <TextView
-                android:id="@+id/animalCmgCl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/sans_medium"
-                android:padding="15dp"
-                android:text="가능!"
-                android:textSize="15dp" />
-
-        </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/sans_medium"
             android:text="📞 연락 정보"
             android:textSize="17dp" />
 
