@@ -8,6 +8,7 @@
     android:orientation="vertical"
     app:umanoDragView="@id/slide_layout"
     android:background="@drawable/camp_donm_default2"
+
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,38 +16,46 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="220dp"
     android:orientation="horizontal">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sans_medium"
-        android:padding="20dp"
-        android:text="ㅁㄴㅇㄹ :)"
-        android:textSize="50sp"
+        android:text="you are here"
+        android:textSize="20sp"/>
+
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="3sp"
+        android:text="부산광역시"
         android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.423"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여백이 "
-        android:visibility="invisible"/>
-
+         />
+</LinearLayout>
     <ImageView
         android:id="@+id/btnlogin"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="right"
+        android:layout_marginLeft="300dp"
         android:src="@mipmap/ic_launcher_foreground" />
-
-</LinearLayout>
+</RelativeLayout>
 
 
         <!--   버튼 영역     -->
