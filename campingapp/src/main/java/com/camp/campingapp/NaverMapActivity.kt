@@ -6,13 +6,12 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.camp.campingapp.databinding.ActivityNaverMapBinding
 import com.camp.campingapp.model.NaverReverseGeocodeResponse
-import com.camp.campingapp.retrofit.NetworkServiceDoNm
+import com.camp.campingapp.retrofit.NaverNetworkService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -26,29 +25,19 @@ import javax.security.auth.callback.Callback
 
 
 class NaverMapActivity : AppCompatActivity() {
-    class NaverMapActivity : AppCompatActivity() {
-        lateinit var binding: ActivityNaverMapBinding
-        private var mFusedLocationProviderClient: FusedLocationProviderClient? =
-            null //현재 위치를 가져오기 위한 변수
-        lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
 
+        lateinit var binding: ActivityNaverMapBinding
+        private var mFusedLocationProviderClient: FusedLocationProviderClient? = null //현재 위치를 가져오기 위한 변수
+        lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
         //    internal lateinit var mLocationRequest: LocationRequest // 위치 정보 요청의 매개변수를 저장하는
         lateinit var mLocationRequest: LocationRequest  // 위치 정보 요청의 매개변수를 저장하는
         private val REQUEST_PERMISSION_LOCATION = 10
-
-        //    private var mapX : String = ""
-//    private var mapY : String=""
         private var coords: String = ""
 
         override fun onCreate(savedInstanceState: Bundle?) {
 
             //키는 다른 파일에 저장해서, 불러와서 사용하고,
             // 키를 가지고 있는 파일은 .gitIgnore 등록 후 , 원격지에 푸쉬 안함.
-//        val serviceKey =
-//            "c8vC2OkkWTTNDGQwB5sEm58CgNwMvmXLZ+N50mqAMab74s82Vxw2VjiTBLdDxHdnzgnD++jCobFAR9L/pXVSIA=="
-//        val _type = "json"
-//
-//        val radius = 10000
 
 
             super.onCreate(savedInstanceState)
@@ -57,7 +46,7 @@ class NaverMapActivity : AppCompatActivity() {
 
             mLocationRequest = LocationRequest.create().apply {
 
-                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
             }
 
@@ -108,8 +97,8 @@ class NaverMapActivity : AppCompatActivity() {
         // 시스템으로 부터 받은 위치정보를 화면에 갱신해주는 메소드
         fun onLocationChanged(location: Location) {
             mLastLocation = location
-        binding.text2.text = "위도 : " + mLastLocation.latitude // 갱신 된 위도
-        binding.text1.text = "경도 : " + mLastLocation.longitude // 갱신 된 경도
+//        binding.text2.text = "위도 : " + mLastLocation.latitude // 갱신 된 위도
+//        binding.text1.text = "경도 : " + mLastLocation.longitude // 갱신 된 경도
 
 //        mapX = mLastLocation.longitude.toString()
 //        mapY = mLastLocation.latitude.toString()
@@ -130,7 +119,6 @@ class NaverMapActivity : AppCompatActivity() {
             }
 
 
-            val networkServiceDoNm = (applicationContext as MyApplication).networkService
 //            val userListCall = networkService.GetAddrGps(coords, output)
 //            userListCall.enqueue(object : retrofit2.Callback<AddrList> {
 //                override fun onResponse(call: Call<AddrList>, response: Response<AddrList>) {
@@ -145,12 +133,13 @@ class NaverMapActivity : AppCompatActivity() {
 //                }
 //            })
 
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://naveropenapi.apigw.ntruss.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            val naverService = retrofit.create(NetworkServiceDoNm::class.java)
+            val naverService = retrofit.create(NaverNetworkService::class.java)
             val call = naverService.reverseGeocode(coords, "json")
 
             call.enqueue(object : retrofit2.Callback<NaverReverseGeocodeResponse> {
@@ -163,14 +152,22 @@ class NaverMapActivity : AppCompatActivity() {
                         val firstAddress = addressList?.getOrNull(0)
                         val areaName = firstAddress?.region?.area1?.name
                         // areaName을 사용하여 필요한 처리를 수행
+                        Toast.makeText(this@NaverMapActivity, "주소: $areaName", Toast.LENGTH_LONG).show()
+//                        binding.addressTextView.text = "주소: $areaName"
                     } else {
+                       Toast.makeText(this@NaverMapActivity, "주소를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+//                        binding.addressTextView.text = "안녕하세요"
                         // API 호출은 성공했지만 응답이 실패한 경우의 처리
                     }
                 }
 
+
                 override fun onFailure(call: Call<NaverReverseGeocodeResponse>, t: Throwable) {
+                   Toast.makeText(this@NaverMapActivity, "API 호출이 실패했습니다.", Toast.LENGTH_SHORT).show()
+//                    binding.addressTextView.text = "API 호출이 실패했습니다."
                     // API 호출 자체가 실패한 경우의 처리
                 }
+
             })
         }
 
@@ -212,4 +209,3 @@ class NaverMapActivity : AppCompatActivity() {
             }
         }
     }
-}
