@@ -47,7 +47,7 @@ class TourAdapter(val context: TourActivity, val datas:List<TourList>?): Recycle
 //                }
 //
 //                override fun onLoadCleared(placeholder: Drawable?) {
-//                    TODO("Not yet implemented")
+//
 //                }
 //            })
 

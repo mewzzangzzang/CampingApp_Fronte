@@ -20,7 +20,6 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
 
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
         return datas?.size ?: 0
 
 

@@ -38,6 +38,7 @@ class DoNmDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.intro.text = intent.getStringExtra("intro")
         binding.sbrsCl.text = intent.getStringExtra("sbrsCl")
         binding.addr1.text = intent.getStringExtra("addr1")
+        binding.animalCmgCl.text = intent.getStringExtra("animalCmgCl")
         val imgUrl: String? = intent.getStringExtra("urlImg")
 
 //        binding.goDonmList.setOnClickListener {

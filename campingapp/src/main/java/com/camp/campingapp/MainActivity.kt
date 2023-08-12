@@ -25,20 +25,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val slidePanel = binding.mainFrame                      // SlidingUpPanel
-        slidePanel.addPanelSlideListener(PanelEventListener())  // 이벤트 리스너 추가
+//        slidePanel.addPanelSlideListener(PanelEventListener())  // 이벤트 리스너 추가
 
-        // 패널 열고 닫기
-        binding.btnToggle.setOnClickListener {
-            val state = slidePanel.panelState
-            // 닫힌 상태일 경우 열기
-            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-                slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
-            }
-            // 열린 상태일 경우 닫기
-            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
-                slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
-            }
-        }
+//        // 패널 열고 닫기
+//        binding.btnToggle.setOnClickListener {
+//            val state = slidePanel.panelState
+//            // 닫힌 상태일 경우 열기
+//            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+//                slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+//            }
+//            // 열린 상태일 경우 닫기
+//            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+//                slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+//            }
+//        }
 
         // 캠핑장
         binding.btnmenu1.setOnClickListener {
