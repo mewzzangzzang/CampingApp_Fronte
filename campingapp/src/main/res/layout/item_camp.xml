@@ -1,0 +1,102 @@
+<!-- res/layout/activity_host_detail.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/camp_Photo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/camp_Name"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/camp_Name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camp_Photo"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/host_Name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camp_Name"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/camp_Addr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/host_Name"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/camp_Tel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camp_Addr"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/camp_intro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camp_Tel"
+            android:layout_marginTop="16dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/camp_intro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 전화 걸기 버튼 -->
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화 걸기"
+            app:layout_constraintTop_toBottomOf="@+id/camp_intro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/chatButton"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            />
+
+        <!-- 채팅 버튼 -->
+        <Button
+            android:id="@+id/chatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채팅으로 연결"
+            app:layout_constraintTop_toBottomOf="@+id/camp_intro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/callButton"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            />
+
+        <!-- 다른 호스트 정보를 표시할 TextView 등 추가 -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
