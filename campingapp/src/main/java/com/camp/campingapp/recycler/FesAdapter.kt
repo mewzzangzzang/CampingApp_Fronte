@@ -17,6 +17,7 @@ class FesAdapter(val context: FesActivity, val datas:List<FesList>?): RecyclerVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
             = FesViewHolder(ItemFesBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
+
     override fun getItemCount(): Int {
         return datas?.size?:0
     }

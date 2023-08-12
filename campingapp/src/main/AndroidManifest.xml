@@ -19,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
+<!--클립보드 오류-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+
         <activity
             android:name=".NaverMapActivity"
             android:exported="true" />
@@ -138,18 +142,20 @@
         <!-- android:windowSoftInputMode="adjustResize" /> -->
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AuthActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

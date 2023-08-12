@@ -72,7 +72,7 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     // gps
-    implementation ("com.google.android.gms:play-services-location:18.0.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.naver.maps:map-sdk:3.17.0")
 
     // 카드뷰
