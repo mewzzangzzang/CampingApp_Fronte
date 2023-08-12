@@ -22,13 +22,22 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
-            <Button
-                android:id="@+id/go_home"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_margin="20dp"
+                android:fontFamily="@font/sans_medium"
+                android:textSize="25dp"
+                android:text="가보고 싶은 캠핑장이 있나요?"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="home"
-                tools:ignore="MissingConstraints" />
+                />
+
+<!--            <Button-->
+<!--                android:id="@+id/go_home"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="left"-->
+<!--                android:text="home"-->
+<!--                tools:ignore="MissingConstraints" />-->
 
 
             <androidx.recyclerview.widget.RecyclerView

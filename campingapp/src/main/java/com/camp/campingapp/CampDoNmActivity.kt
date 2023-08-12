@@ -19,17 +19,15 @@ class CampDoNmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.goHome.setOnClickListener {
-            val intent = Intent(this@CampDoNmActivity, MainActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.goHome.setOnClickListener {
+//            val intent = Intent(this@CampDoNmActivity, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.recyclerView.setOnClickListener {
-            Log.d("lsy", "")
         }
         // 슬라이딩 패널 ==============================================================================
         val slidePanel = binding.mainFrame                      // SlidingUpPanel
-//        slidePanel.addPanelSlideListener(PanelEventListener())  // 이벤트 리스너 추가
 
         // 패널 열고 닫기
         binding.btnToggle.setOnClickListener {
@@ -89,16 +87,12 @@ class CampDoNmActivity : AppCompatActivity() {
         // ==========================================================================================
     }//onCreate 문 닫음
 
-
     private fun getCampDoNmList(donm: String) {
-//        val serviceKey =
-//            "c8vC2OkkWTTNDGQwB5sEm58CgNwMvmXLZ%2BN50mqAMab74s82Vxw2VjiTBLdDxHdnzgnD%2B%2BjCobFAR9L%2FpXVSIA%3D%3D"
 
         var donm: String = donm
         val networkService = (applicationContext as MyApplication).networkService
         val userListCall =
             networkService.getList(donm)
-//        Log.d("lsy", "url:" + userListCall.request().url().toString())
 
         userListCall.enqueue(object : retrofit2.Callback<List<campDoNmList>> {
             override fun onResponse(
@@ -106,8 +100,6 @@ class CampDoNmActivity : AppCompatActivity() {
                 response: Response<List<campDoNmList>>
             ) {
                 val campDoNmList = response.body()
-                Log.d("lsy", "실행 여부 확인. userListCall.enqueue")
-                Log.d("lsy", campDoNmList?.get(0).toString())
 
                 binding.recyclerView.adapter =
                     DoNmAdapter(this@CampDoNmActivity, campDoNmList)
@@ -115,12 +107,10 @@ class CampDoNmActivity : AppCompatActivity() {
                 binding.recyclerView.addItemDecoration(
                     DividerItemDecoration(this@CampDoNmActivity, LinearLayoutManager.VERTICAL)
                 )
-                Log.d("lsy", "실행 여부 확인. userListCall.enqueue")
 
             }
 
             override fun onFailure(call: retrofit2.Call<List<campDoNmList>>, t: Throwable) {
-                Log.d("lsy", "fail")
                 call.cancel()
             }
         })

@@ -3,6 +3,7 @@ package com.camp.campingapp
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,17 +34,26 @@ class DoNmDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.facltNm.text = intent.getStringExtra("facltNm")
         binding.tel.text = intent.getStringExtra("tel")
         binding.lineIntro.text = intent.getStringExtra("lineIntro")
-        binding.induty.text = intent.getStringExtra("induty")
+//        binding.induty.text = intent.getStringExtra("induty")
         binding.intro.text = intent.getStringExtra("intro")
         binding.sbrsCl.text = intent.getStringExtra("sbrsCl")
         binding.addr1.text = intent.getStringExtra("addr1")
         val imgUrl: String? = intent.getStringExtra("urlImg")
 
-        binding.goDonmList.setOnClickListener {
-            val intent = Intent(
-                this@DoNmDetailActivity,
-                CampDoNmActivity::class.java
-            )
+//        binding.goDonmList.setOnClickListener {
+//            val intent = Intent(
+//                this@DoNmDetailActivity,
+//                CampDoNmActivity::class.java
+//            )
+//            startActivity(intent)
+//        }
+
+        var tel : String? = intent.getStringExtra("tel")
+
+        // 전화 버튼
+        binding.callBtn.setOnClickListener {
+            var telNumber = "tel:${tel}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(telNumber))
             startActivity(intent)
         }
 
@@ -60,7 +70,6 @@ class DoNmDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    TODO("Not yet implemented")
                 }
             })
 
