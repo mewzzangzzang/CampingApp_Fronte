@@ -35,6 +35,9 @@
             android:name=".ShopActivity"
             android:exported="true" />
         <activity
+            android:name=".HostDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".HostListItemActivity"
             android:exported="false" />
         <activity
@@ -128,7 +131,8 @@
             android:exported="false" />
         <activity
             android:name=".CampDoNmActivity"
-            android:exported="true" /> <!-- <activity -->
+            android:exported="true" />
+        <!-- <activity -->
         <!-- android:name=".AddActivity" -->
         <!-- android:exported="true" -->
         <!-- android:windowSoftInputMode="adjustResize" /> -->

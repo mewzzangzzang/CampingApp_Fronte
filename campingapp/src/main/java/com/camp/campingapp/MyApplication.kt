@@ -59,10 +59,10 @@ class MyApplication: MultiDexApplication() {
 
 }
 
-    val naver: Retrofit
-        get() = Retrofit.Builder()
-         .baseUrl("https://naveropenapi.apigw.ntruss.com/")
-         .addConverterFactory(GsonConverterFactory.create())
-         .build()
+val naver: Retrofit
+    get() = Retrofit.Builder()
+        .baseUrl("https://naveropenapi.apigw.ntruss.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    var networkService: NetworkServiceDoNm = naver.create(NetworkServiceDoNm::class.java)
+var networkService: NetworkServiceDoNm = naver.create(NetworkServiceDoNm::class.java)
