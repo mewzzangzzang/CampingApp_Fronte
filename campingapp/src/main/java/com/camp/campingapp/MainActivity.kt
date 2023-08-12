@@ -4,23 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.camp.campingapp.databinding.ActivityMainBinding
 import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import org.checkerframework.checker.units.qual.A
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var auth : FirebaseAuth
+
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         val view = binding.root
         setContentView(view)
