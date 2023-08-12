@@ -20,6 +20,21 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".NaverMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FesDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ShopDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShopActivity"
+            android:exported="true" />
+        <activity
             android:name=".HostListItemActivity"
             android:exported="false" />
         <activity
