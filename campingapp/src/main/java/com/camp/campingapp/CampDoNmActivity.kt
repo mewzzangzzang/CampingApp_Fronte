@@ -46,42 +46,55 @@ class CampDoNmActivity : AppCompatActivity() {
 
         // 디폴트 : 강원도
         getCampDoNmList("1")
+        binding.whereBtn.text = "강원도"
 
         binding.donm1.setOnClickListener {
             getCampDoNmList("1")
+            binding.whereBtn.text = "강원도"
         }
         binding.donm2.setOnClickListener {
             getCampDoNmList("2")
+            binding.whereBtn.text = "경기도"
         }
         binding.donm3.setOnClickListener {
             getCampDoNmList("3")
+            binding.whereBtn.text = "경상남도"
         }
         binding.donm4.setOnClickListener {
             getCampDoNmList("4")
+            binding.whereBtn.text = "경상북도"
         }
         binding.donm5.setOnClickListener {
             getCampDoNmList("5")
+            binding.whereBtn.text = "대구"
         }
         binding.donm6.setOnClickListener {
             getCampDoNmList("6")
+            binding.whereBtn.text = "서울"
         }
         binding.donm7.setOnClickListener {
             getCampDoNmList("7")
+            binding.whereBtn.text = "인천"
         }
         binding.donm8.setOnClickListener {
             getCampDoNmList("8")
+            binding.whereBtn.text = "전라남도"
         }
         binding.donm9.setOnClickListener {
             getCampDoNmList("9")
+            binding.whereBtn.text = "전라북도"
         }
         binding.donm10.setOnClickListener {
             getCampDoNmList("10")
+            binding.whereBtn.text = "제주도"
         }
         binding.donm11.setOnClickListener {
             getCampDoNmList("11")
+            binding.whereBtn.text = "충청남도"
         }
         binding.donm12.setOnClickListener {
             getCampDoNmList("12")
+            binding.whereBtn.text = "충청북도"
         }
 
         // ==========================================================================================

@@ -25,9 +25,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/sans_medium"
-                android:text="가보고 싶은 캠핑장이 있나요?"
+                android:text="지금 여기는?"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/where_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/sans_medium"
+                android:text="지금 여기는?"
                 android:textSize="25dp" />
 
             <!--            <Button-->
@@ -44,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="700dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
