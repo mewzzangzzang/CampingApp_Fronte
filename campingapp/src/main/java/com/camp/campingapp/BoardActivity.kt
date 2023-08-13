@@ -16,9 +16,10 @@ class BoardActivity : AppCompatActivity() {
 
         myCheckPermission(this)
 
-        binding.add.setOnClickListener {
-            startActivity(Intent(this, WriteActivity::class.java))
-        }
+
+//        binding.add.setOnClickListener {
+//            startActivity(Intent(this, WriteActivity::class.java))
+//        }
 
     }
 }

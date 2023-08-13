@@ -36,8 +36,7 @@ class MyAdapter(val context: Context, val itemList: MutableList<UserData>): Recy
         val data = itemList.get(position)
 
         holder.binding.run {
-            itemEmailView.text=data.email
-            itemTypeView.text=data.type
+
         }
 
         //스토리지 이미지 다운로드........................

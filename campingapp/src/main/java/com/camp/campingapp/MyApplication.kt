@@ -3,7 +3,6 @@ package com.camp.campingapp
 
 import androidx.multidex.MultiDexApplication
 
-import com.camp.campingapp.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -22,6 +21,7 @@ class MyApplication: MultiDexApplication() {
     companion object {
         lateinit var auth: FirebaseAuth
         var email: String? = null
+        var username:String?=null
         lateinit var db: FirebaseFirestore
         lateinit var storage: FirebaseStorage
         lateinit var rdb: DatabaseReference
@@ -32,8 +32,6 @@ class MyApplication: MultiDexApplication() {
             return currentUser?.let {
                 email = currentUser.email
                 currentUser.isEmailVerified
-
-
             } ?: let {
                 false
             }
@@ -53,10 +51,18 @@ class MyApplication: MultiDexApplication() {
 
     val retrofit: Retrofit
         get() = Retrofit.Builder()
-            .baseUrl("http://10.100.103.76:8083/")
+            .baseUrl("http://10.100.103.49:8083/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     var networkService: NetworkServiceDoNm = retrofit.create(NetworkServiceDoNm::class.java)
 
 }
+
+val naver: Retrofit
+    get() = Retrofit.Builder()
+        .baseUrl("https://naveropenapi.apigw.ntruss.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+var networkService: NetworkServiceDoNm = naver.create(NetworkServiceDoNm::class.java)

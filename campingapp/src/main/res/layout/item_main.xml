@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/itemEmailView"
+            android:id="@+id/itemHostView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#212121"
@@ -23,7 +23,7 @@
 
 
         <TextView
-            android:id="@+id/itemDateView"
+            android:id="@+id/itemHtelView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -31,7 +31,7 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/itemTypeView"
+            android:id="@+id/itemHaddrView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -58,7 +58,8 @@
         android:lineSpacingExtra="2dp"
         android:paddingLeft="10dp"
         android:textColor="#212121"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:hint="쓰고싶은 말을 작성하세요"/>
 
     <View
         android:layout_width="match_parent"

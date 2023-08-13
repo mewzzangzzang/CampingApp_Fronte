@@ -50,7 +50,7 @@ class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    TODO("Not yet implemented")
+
                 }
             })
 
@@ -61,7 +61,15 @@ class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?)
             intent.putExtra("urlImg", model.firstImageUrl)
             intent.putExtra("tel", model.tel)
             intent.putExtra("lineIntro", model.lineIntro)
+            intent.putExtra("induty", model.induty)
+            intent.putExtra("sbrsCl", model.sbrsCl)
+            intent.putExtra("addr1", model.addr1)
             intent.putExtra("intro", model.intro)
+            intent.putExtra("doNm", model.doNm)
+            intent.putExtra("mapX", model.mapX)
+            intent.putExtra("mapY", model.mapY)
+            intent.putExtra("homepage", model.homepage)
+            intent.putExtra("animalCmgCl", model.animalCmgCl)
             Log.d("lsy",model.intro)
             ContextCompat.startActivity(holder.binding.root.context, intent, null)
         }

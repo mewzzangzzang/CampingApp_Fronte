@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,10 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-
 
     <application
         android:name=".MyApplication"
@@ -23,9 +17,51 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.CampingApp"
-        >
+        android:usesCleartextTraffic="true">
+<!--클립보드 오류-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+
+        <activity
+            android:name=".NaverMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FesDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ShopDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShopActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HostDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HostListItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HostListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".BoardUpdate"
+            android:exported="true" />
+        <activity
+            android:name=".BoardDelete"
+            android:exported="true" />
+        <activity
+            android:name=".BoardDetail"
+            android:exported="true" />
+        <activity
+            android:name=".BoardWrite"
+            android:exported="true" />
+        <activity
+            android:name=".Board"
+            android:exported="true" />
         <activity
             android:name=".ChatActivity"
             android:exported="true" />
@@ -35,10 +71,10 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
-
         <activity
             android:name=".FacebookLoginActivity"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.firebase.message.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
@@ -47,33 +83,33 @@
             android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.message.default_notification_channel_id"
-            android:value="fcm_default_channel" />
-
-<!--        네이버지도-->
+            android:value="fcm_default_channel" /> <!-- 네이버지도 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="426fftzyvu" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-
-
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
 
         <service
             android:name=".MyFirebaseMessageService"
@@ -82,16 +118,12 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-
-<!--        <activity-->
-<!--            android:name=".WriteActivity"-->
-<!--            android:exported="false" />-->
-
-<!--        <activity-->
-<!--            android:name=".BoardActivity"-->
-<!--            android:exported="false" />-->
-
+        </service> <!-- <activity -->
+        <!-- android:name=".WriteActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".BoardActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".TourActivity"
             android:exported="true" />
@@ -103,29 +135,28 @@
             android:exported="false" />
         <activity
             android:name=".CampDoNmActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".AddActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="true" />
+        <!-- <activity -->
+        <!-- android:name=".AddActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:windowSoftInputMode="adjustResize" /> -->
         <activity
             android:name=".MainActivity"
-
-            android:exported="false" />
-        <activity
-            android:name=".AuthActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity
+            android:name=".AuthActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
 
+        </activity>
+    </application>
 
 </manifest>

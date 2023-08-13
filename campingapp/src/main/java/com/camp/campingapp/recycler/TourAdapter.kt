@@ -3,16 +3,18 @@ package com.camp.campingapp.recycler
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.camp.campingapp.R
 import com.camp.campingapp.TourActivity
 import com.camp.campingapp.TourDetailActivity
 import com.camp.campingapp.model.TourList
-import com.camp.campingapp.databinding.ItemRetrofitBinding
+import com.camp.campingapp.databinding.ItemTourBinding
 
 
 
-class TourViewHolder(val binding: ItemRetrofitBinding): RecyclerView.ViewHolder(binding.root)
+class TourViewHolder(val binding: ItemTourBinding): RecyclerView.ViewHolder(binding.root)
 
 class TourAdapter(val context: TourActivity, val datas:List<TourList>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -21,15 +23,18 @@ class TourAdapter(val context: TourActivity, val datas:List<TourList>?): Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-            = TourViewHolder(ItemRetrofitBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            = TourViewHolder(ItemTourBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding=(holder as TourViewHolder).binding
+        val animation = AnimationUtils.loadAnimation(holder.binding.root.context, R.anim.list_item_ani)
+        holder.binding.root.animation = animation
 
         //add......................................
         val model = datas!![position]
         binding.name.text = model.name
         binding.addr1.text = model.addr1
+        binding.addr2.text = model.addr2
         binding.tel.text = model.tel
 //        val urlImg = model.firstImageUrl
 ////        binding.itemTime.text = "${model.author} At ${model.publishedAt}"
@@ -46,7 +51,7 @@ class TourAdapter(val context: TourActivity, val datas:List<TourList>?): Recycle
 //                }
 //
 //                override fun onLoadCleared(placeholder: Drawable?) {
-//                    TODO("Not yet implemented")
+//
 //                }
 //            })
 

@@ -22,7 +22,8 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
 
     //화면 설정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):UserViewHolder {
-      val view: View = LayoutInflater.from(context).
+//      val view: View = LayoutInflater.from(context).
+        val view: View = LayoutInflater.from(context).
       inflate(R.layout.user_layout, parent, false)
 //        binding = LayoutInflater.from(context).inflate(R.layout.user_layout, parent, false)
 

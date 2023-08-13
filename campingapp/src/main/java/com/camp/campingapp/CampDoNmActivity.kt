@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityCampDoNmBinding
 import com.camp.campingapp.recycler.DoNmAdapter
 import com.example.k0327_dum_test.model.campDoNmList
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import retrofit2.Response
 
 class CampDoNmActivity : AppCompatActivity() {
@@ -18,13 +19,27 @@ class CampDoNmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.goHome.setOnClickListener {
-            val intent = Intent(this@CampDoNmActivity, MainActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.goHome.setOnClickListener {
+//            val intent = Intent(this@CampDoNmActivity, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.recyclerView.setOnClickListener {
-            Log.d("lsy", "")
+        }
+        // 슬라이딩 패널 ==============================================================================
+        val slidePanel = binding.mainFrame                      // SlidingUpPanel
+
+        // 패널 열고 닫기
+        binding.btnToggle.setOnClickListener {
+            val state = slidePanel.panelState
+            // 닫힌 상태일 경우 열기
+            if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+            }
+            // 열린 상태일 경우 닫기
+            else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+            }
         }
 
         // 지역 코드로 캠핑장 불러오기 ==================================================================
@@ -41,20 +56,43 @@ class CampDoNmActivity : AppCompatActivity() {
         binding.donm3.setOnClickListener {
             getCampDoNmList("3")
         }
+        binding.donm4.setOnClickListener {
+            getCampDoNmList("4")
+        }
+        binding.donm5.setOnClickListener {
+            getCampDoNmList("5")
+        }
+        binding.donm6.setOnClickListener {
+            getCampDoNmList("6")
+        }
+        binding.donm7.setOnClickListener {
+            getCampDoNmList("7")
+        }
+        binding.donm8.setOnClickListener {
+            getCampDoNmList("8")
+        }
+        binding.donm9.setOnClickListener {
+            getCampDoNmList("9")
+        }
+        binding.donm10.setOnClickListener {
+            getCampDoNmList("10")
+        }
+        binding.donm11.setOnClickListener {
+            getCampDoNmList("11")
+        }
+        binding.donm12.setOnClickListener {
+            getCampDoNmList("12")
+        }
 
         // ==========================================================================================
     }//onCreate 문 닫음
 
-
     private fun getCampDoNmList(donm: String) {
-//        val serviceKey =
-//            "c8vC2OkkWTTNDGQwB5sEm58CgNwMvmXLZ%2BN50mqAMab74s82Vxw2VjiTBLdDxHdnzgnD%2B%2BjCobFAR9L%2FpXVSIA%3D%3D"
 
         var donm: String = donm
         val networkService = (applicationContext as MyApplication).networkService
         val userListCall =
             networkService.getList(donm)
-//        Log.d("lsy", "url:" + userListCall.request().url().toString())
 
         userListCall.enqueue(object : retrofit2.Callback<List<campDoNmList>> {
             override fun onResponse(
@@ -62,8 +100,6 @@ class CampDoNmActivity : AppCompatActivity() {
                 response: Response<List<campDoNmList>>
             ) {
                 val campDoNmList = response.body()
-                Log.d("lsy", "실행 여부 확인. userListCall.enqueue")
-                Log.d("lsy", campDoNmList?.get(0).toString())
 
                 binding.recyclerView.adapter =
                     DoNmAdapter(this@CampDoNmActivity, campDoNmList)
@@ -71,12 +107,10 @@ class CampDoNmActivity : AppCompatActivity() {
                 binding.recyclerView.addItemDecoration(
                     DividerItemDecoration(this@CampDoNmActivity, LinearLayoutManager.VERTICAL)
                 )
-                Log.d("lsy", "실행 여부 확인. userListCall.enqueue")
 
             }
 
             override fun onFailure(call: retrofit2.Call<List<campDoNmList>>, t: Throwable) {
-                Log.d("lsy", "fail")
                 call.cancel()
             }
         })
