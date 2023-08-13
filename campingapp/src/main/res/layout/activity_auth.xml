@@ -123,48 +123,98 @@
         android:textStyle="bold"
         android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/authNotEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="계정을 보유 안 보유 하셨을 경우"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+
     <Button
         android:id="@+id/goSignInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:visibility="visible"
         android:backgroundTint="#F44336"
-        android:text="이메일 가입"
+        android:text="이메일"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:visibility="visible" />
+        />
 
     <Button
         android:id="@+id/goHostSignBtn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         android:backgroundTint="#F44336"
-        android:text="호스트 가입"
+        android:text="호스트"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />
 
-    <Button
-        android:id="@+id/goGoogleSignInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#F44336"
-        android:text="구글 가입"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleLoginBtn"
+        <Button
+            android:id="@+id/goGoogleSignInBtn"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:backgroundTint="#F44336"
+            android:text="구글"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/authSNS"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="구글 계정이나 sns계정을 보유하실 경우"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        >
+
+
+        <ImageView
+            android:id="@+id/googleLoginBtn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="10dp"
+
+            android:src="@drawable/ic_google_icon"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/facebookLoginBtn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/facebook_logo_icon"
+
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSignBtn"
@@ -176,15 +226,7 @@
         android:textStyle="bold"
         android:visibility="visible" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebookLoginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/com_facebook_button_background_color"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
+
 
     <Button
         android:id="@+id/signBtn"
