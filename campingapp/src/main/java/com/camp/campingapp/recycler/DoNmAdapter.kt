@@ -41,6 +41,7 @@ class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?)
             .asBitmap()
             .load(urlImg)
             .into(object : CustomTarget<Bitmap>(200, 200) {
+
                 override fun onResourceReady(
                     resource: Bitmap,
                     transition: Transition<in Bitmap>?
@@ -69,7 +70,6 @@ class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?)
             intent.putExtra("mapX", model.mapX)
             intent.putExtra("mapY", model.mapY)
             intent.putExtra("homepage", model.homepage)
-            intent.putExtra("animalCmgCl", model.animalCmgCl)
             Log.d("lsy",model.intro)
             ContextCompat.startActivity(holder.binding.root.context, intent, null)
         }
