@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityChatMainBinding
 import com.camp.campingapp.model.User
@@ -40,6 +41,11 @@ class ChatMainActivity : AppCompatActivity() {
 
         adapter = UserAdapter(this, userList)
         binding.userRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        // RecyclerView에 ItemAnimator 추가
+        val itemAnimator = DefaultItemAnimator()
+        binding.userRecyclerView.itemAnimator = itemAnimator
+
         binding.userRecyclerView.adapter = adapter
 
         //사용자 정보 가져오기

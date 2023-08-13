@@ -49,7 +49,7 @@ class HostAdapter(
             }
 
             root.setOnClickListener {
-                // Call the clickListener with the selected HostData
+                // 클릭리스너로 호스트 데이터 불러오기
                 clickListener(data)
 
 
