@@ -1,6 +1,7 @@
 package com.camp.campingapp
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.camp.campingapp.MyApplication.Companion.rdb
 import com.camp.campingapp.databinding.ActivityAuthBinding
 import com.camp.campingapp.model.User
+import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -38,6 +40,13 @@ class AuthActivity : AppCompatActivity() {
         //MyApplication->checkAuth=>로그인이 확인
         if(MyApplication.checkAuth()){
             changeVisibility("login")
+        }else {
+            changeVisibility("logout")
+        }
+
+//호스트 로그인
+        if(MyApplication.checkAuth()){
+            changeVisibility("h_login")
         }else {
             changeVisibility("logout")
         }
@@ -97,13 +106,8 @@ class AuthActivity : AppCompatActivity() {
             //구글 로그인 관련 함수. 옵션부분을 설정
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-
                 .requestIdToken(getString(R.string.default_web_client_id))
-//            default_web_client_id 첫 빌드 때 ,컴파일 오류가 일어남
-                //인증 후,안보이게된다 ->인증된 아이디를 가져와서 사용했기때문
-                //DEFAULT_SIGH_IN-> 파이어베이스 콘솔에서,지정함
                 .requestEmail()
-                //옵션객체에 담아두면
                 .build()
             //gso
 
@@ -113,7 +117,7 @@ class AuthActivity : AppCompatActivity() {
         }
 
         binding.googleSignBtn.setOnClickListener {
-            //구글 로그인....................
+            //구글 로그인
             //구글 로그인 관련 함수. 옵션부분을 설정
 
 
@@ -121,9 +125,6 @@ class AuthActivity : AppCompatActivity() {
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 
                 .requestIdToken(getString(R.string.default_web_client_id))
-//            default_web_client_id 첫 빌드 때 ,컴파일 오류가 일어남
-                //인증 후,안보이게된다 ->인증된 아이디를 가져와서 사용했기때문
-                //DEFAULT_SIGH_IN-> 파이어베이스 콘솔에서,지정함
                 .requestEmail()
                 //옵션객체에 담아두면
                 .build()
@@ -146,12 +147,8 @@ class AuthActivity : AppCompatActivity() {
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
 
-            // val type=binding.authTypeEditView.text.toString()
-            //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
-                //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
                 .addOnCompleteListener(this){task ->
-                    //이메일 등록후 수행되는 코드
 
                     saveUser()
                     binding.authEmailEditView.text.clear()
@@ -242,6 +239,11 @@ class AuthActivity : AppCompatActivity() {
                         if(MyApplication.checkAuth()){
                             MyApplication.email = email
                             changeVisibility("login")
+                            Toast.makeText(baseContext, "로그인 성공.", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(this@AuthActivity, MainActivity::class.java)
+                            startActivity(intent)
+
                         }else {
                             Toast.makeText(baseContext, "전송된 메일로 이메일 인증이 되지 않았습니다.", Toast.LENGTH_SHORT).show()
 
@@ -324,6 +326,8 @@ class AuthActivity : AppCompatActivity() {
             binding.run {
                 //인증된 이메일 부분
                 authMainTextView.text = "${MyApplication.email} 님 반갑습니다."
+                authSNS.visibility=View.GONE
+                authNotEmail.visibility=View.GONE
                 //뷰를 show & hide
                 //로그아웃 버튼은 보이게
                 logoutBtn.visibility= View.VISIBLE
@@ -368,6 +372,8 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.VISIBLE
+                authSNS.visibility=View.VISIBLE
+                authNotEmail.visibility=View.VISIBLE
 
                 authUsernameEditView.visibility = View.GONE
 
@@ -396,6 +402,8 @@ class AuthActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
+                authSNS.visibility=View.GONE
+                authNotEmail.visibility=View.GONE
 
                 authUsernameEditView.visibility = View.VISIBLE
 
@@ -421,6 +429,8 @@ class AuthActivity : AppCompatActivity() {
         }
         else if(mode==="h_signin"){
             binding.run{
+                authSNS.visibility=View.GONE
+                authNotEmail.visibility=View.GONE
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
@@ -444,6 +454,8 @@ class AuthActivity : AppCompatActivity() {
         }
         else if(mode==="G_signin"){
             binding.run{
+                authSNS.visibility=View.GONE
+                authNotEmail.visibility=View.GONE
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE

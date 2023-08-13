@@ -37,6 +37,7 @@ class DoNmDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.intro.text = intent.getStringExtra("intro")
         binding.sbrsCl.text = intent.getStringExtra("sbrsCl")
         binding.addr1.text = intent.getStringExtra("addr1")
+        binding.induty.text = intent.getStringExtra("induty")
         val imgUrl: String? = intent.getStringExtra("urlImg")
 
         var tel : String? = intent.getStringExtra("tel")
