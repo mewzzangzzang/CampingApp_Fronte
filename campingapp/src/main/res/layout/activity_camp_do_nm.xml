@@ -23,21 +23,30 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:layout_margin="20dp"
-                android:fontFamily="@font/sans_medium"
-                android:textSize="25dp"
-                android:text="가보고 싶은 캠핑장이 있나요?"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/sans_medium"
+                android:text="지금 여기는?"
+                android:textSize="15dp" />
 
-<!--            <Button-->
-<!--                android:id="@+id/go_home"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="left"-->
-<!--                android:text="home"-->
-<!--                tools:ignore="MissingConstraints" />-->
+            <TextView
+                android:id="@+id/where_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/sans_medium"
+                android:text="지금 여기는?"
+                android:textSize="25dp" />
+
+            <!--            <Button-->
+            <!--                android:id="@+id/go_home"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="left"-->
+            <!--                android:text="home"-->
+            <!--                tools:ignore="MissingConstraints" />-->
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -45,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="700dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -56,7 +66,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/slide_layout"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="400dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,37 +94,103 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 tools:ignore="MissingConstraints">
 
-                <Button
-                    android:id="@+id/donm_1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="강원도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_2"
+                    <ImageView
+                        android:id="@+id/donm_1"
+                        android:layout_width="73dp"
+                        android:layout_height="73dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_1"
+                        android:text="강원도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  강원도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="경기도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_3"
+                    <ImageView
+                        android:id="@+id/donm_2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_2"
+                        android:text="경기도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  경기도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="경상남도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_4"
+                    <ImageView
+                        android:id="@+id/donm_3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_3"
+                        android:text="경상남도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 경상남도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="경상북도" />
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/donm_4"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/detail_4"
+                        android:text="경상북도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 경상북도"
+                        android:textSize="15dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--  하단 버튼 2 줄  -->
@@ -125,34 +201,99 @@
                 android:orientation="horizontal"
                 tools:ignore="MissingConstraints">
 
-                <Button
-                    android:id="@+id/donm_5"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="대구시" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_6"
+                    <ImageView
+                        android:id="@+id/donm_5"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_5"
+                        android:text="대구시" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  대구시"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="서울시" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_7"
+                    <ImageView
+                        android:id="@+id/donm_6"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_6"
+                        android:text="서울시" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  서울시"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="인천시" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_8"
+                    <ImageView
+                        android:id="@+id/donm_7"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_7"
+                        android:text="인천시" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  인천시"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="전라남도" />
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/donm_8"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/detail_8"
+                        android:text="전라남도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 전라남도"
+                        android:textSize="15dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--  하단 버튼 3 줄  -->
@@ -163,34 +304,99 @@
                 android:orientation="horizontal"
                 tools:ignore="MissingConstraints">
 
-                <Button
-                    android:id="@+id/donm_9"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="전라북도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_10"
+                    <ImageView
+                        android:id="@+id/donm_9"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_9"
+                        android:text="전라북도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 전라북도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="제주도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_11"
+                    <ImageView
+                        android:id="@+id/donm_10"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_10"
+                        android:text="제주도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text="  제주도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="충청남도" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/donm_12"
+                    <ImageView
+                        android:id="@+id/donm_11"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/detail_11"
+                        android:text="충청남도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 충청남도"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="충청북도" />
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/donm_12"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/detail_12"
+                        android:text="충청북도" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/sans_medium"
+                        android:text=" 충청북도"
+                        android:textSize="15dp" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
