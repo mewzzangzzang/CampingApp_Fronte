@@ -51,10 +51,18 @@ class MyApplication: MultiDexApplication() {
 
     val retrofit: Retrofit
         get() = Retrofit.Builder()
-            .baseUrl("http://10.100.103.76:8083/")
+            .baseUrl("http://10.100.103.43:8083/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     var networkService: NetworkServiceDoNm = retrofit.create(NetworkServiceDoNm::class.java)
 
 }
+
+val naver: Retrofit
+    get() = Retrofit.Builder()
+        .baseUrl("https://naveropenapi.apigw.ntruss.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+var networkService: NetworkServiceDoNm = naver.create(NetworkServiceDoNm::class.java)

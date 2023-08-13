@@ -68,6 +68,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-bom:29.0.0")
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
     implementation ("androidx.multidex:multidex:2.0.1")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     //뷰페이저2
     implementation(("androidx.viewpager2:viewpager2:1.0.0"))

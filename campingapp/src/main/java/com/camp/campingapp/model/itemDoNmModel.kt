@@ -23,6 +23,10 @@ data class DoNmModel (
     var mapX: Double,
     @SerializedName("mapY")
     var mapY: Double,
+    @SerializedName("animalCmgCl")
+    var animalCmgCl: String,
+    @SerializedName("homepage")
+    var homepage: String,
     @SerializedName("intro")
     var intro: String
 )
