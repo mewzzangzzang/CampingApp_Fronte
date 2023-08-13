@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
             interval = 1000
+            //초기화 시간
 
         }
 

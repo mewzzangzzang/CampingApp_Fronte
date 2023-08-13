@@ -72,7 +72,7 @@ class FesDetailActivity : AppCompatActivity(),OnMapReadyCallback {
         })
 
 
-    }
+    }//onmapccc
 
     companion object {
         private val naverMap: NaverMap? = null
