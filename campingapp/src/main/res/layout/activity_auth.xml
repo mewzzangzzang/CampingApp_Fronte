@@ -128,7 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="계정을 보유 안 보유 하셨을 경우"
+        android:text="계정이 없으실 경우"
         />
 
     <LinearLayout
@@ -182,7 +182,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="구글 계정이나 sns계정을 보유하실 경우"/>
+        android:text="구글 계정이나 sns계정이 있으실 경우"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

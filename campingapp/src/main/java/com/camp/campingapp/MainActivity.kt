@@ -7,27 +7,20 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
-import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.camp.campingapp.databinding.ActivityMainBinding
-import com.camp.campingapp.databinding.ActivityNaverMapBinding
 import com.camp.campingapp.model.NaverReverseGeocodeResponse
 import com.camp.campingapp.retrofit.NaverNetworkService
-import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
-import org.checkerframework.checker.units.qual.A
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -97,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, HostListActivity::class.java)
             startActivity(intent)
         }
-        // 축제
+        // 관광지
         binding.btnmenu3.setOnClickListener {
             val intent = Intent(this@MainActivity, Board::class.java)
             startActivity(intent)
@@ -107,8 +100,24 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, TourActivity::class.java)
             startActivity(intent)
         }
+//        로그인, 인증
         binding.btnlogin.setOnClickListener {
             val intent = Intent(this@MainActivity, AuthActivity::class.java)
+            startActivity(intent)
+        }
+//        축제
+        binding.btnmenu5.setOnClickListener {
+            val intent = Intent(this@MainActivity, FesActivity::class.java)
+            startActivity(intent)
+        }
+//        shop
+        binding.btnmenu6.setOnClickListener {
+            val intent = Intent(this@MainActivity,ShopActivity::class.java)
+            startActivity(intent)
+        }
+//       chatmin
+        binding.btnmenu7.setOnClickListener {
+            val intent = Intent(this@MainActivity,ChatMainActivity::class.java)
             startActivity(intent)
         }
 
