@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.camp.campingapp.databinding.ActivityFesDetailBinding
+import com.camp.campingapp.databinding.ActivityTourDetailBinding
 import com.camp.campingapp.model.TourList
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
@@ -16,9 +18,19 @@ import java.security.Permission
 
 class TourDetailActivity : AppCompatActivity(), com.naver.maps.map.OnMapReadyCallback {
     private var mapView: com.naver.maps.map.MapView? = null
+    lateinit var binding:ActivityTourDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding= ActivityTourDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tour_detail)
+        setContentView(binding.root)
+
+        binding.name.text = intent.getStringExtra("name")
+        binding.addr1.text = intent.getStringExtra("addr1")
+        binding.addr2.text = intent.getStringExtra("addr2")
+        binding.agencyname.text = intent.getStringExtra("agencyname")
+        binding.tel.text = intent.getStringExtra("tel")
+        binding.convenience.text = intent.getStringExtra("convenience")
+        var tel : String? = intent.getStringExtra("tel")
 
         //네이버 지도
         mapView = findViewById<View>(R.id.map_view) as com.naver.maps.map.MapView

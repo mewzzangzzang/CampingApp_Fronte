@@ -1,11 +1,14 @@
 package com.camp.campingapp
 
-import android.annotation.SuppressLint
+
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.camp.campingapp.R.id.map_view
+import com.camp.campingapp.databinding.ActivityFesDetailBinding
 import com.camp.campingapp.model.FesList
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
@@ -18,11 +21,27 @@ import retrofit2.Response
 
 class FesDetailActivity : AppCompatActivity(),OnMapReadyCallback {
     private var mapView: com.naver.maps.map.MapView? = null
+    lateinit var binding:ActivityFesDetailBinding
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding=ActivityFesDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fes_detail)
+       setContentView(binding.root)
+
+        binding.fesname.text = intent.getStringExtra("fesname")
+        binding.addr.text = intent.getStringExtra("addr")
+        binding.startdate.text = intent.getStringExtra("startdate")
+        binding.enddate.text = intent.getStringExtra("enddate")
+        binding.tel.text = intent.getStringExtra("tel")
+        binding.pageaddr.text = intent.getStringExtra("pageaddr")
+        var tel : String? = intent.getStringExtra("tel")
+
+        // 전화 버튼
+        binding.callBtn.setOnClickListener {
+            var telNumber = "tel:${tel}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(telNumber))
+            startActivity(intent)
+        }
 
         //네이버 지도
         mapView = findViewById<View>(map_view) as com.naver.maps.map.MapView
