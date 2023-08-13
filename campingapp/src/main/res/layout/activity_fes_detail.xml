@@ -1,20 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FesDetailActivity">
 
-
-    <com.naver.maps.map.MapView
-        android:id="@+id/map_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fesname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sans_bold"
+            android:gravity="center"
+            android:text="이름"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/line" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="📍위치"
+            android:textSize="17dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sans_light"
+            android:text="상세주소"
+            android:textColor="#70000000"
+            android:textSize="15dp" />
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="📆축제기간"
+            android:textSize="17dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/startdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"
+                android:padding="13dp"
+                android:layout_marginLeft="20dp"
+                android:text="2023-08-15"
+                android:textSize="17dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/enddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"
+                android:layout_marginLeft="20dp"
+                android:padding="13dp"
+                android:text="2023-08-15"
+                android:textSize="17dp" />
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="📞 연락 정보"
+            android:textSize="17dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="29dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sans_medium"
+                    android:layout_marginLeft="10dp"
+                    android:padding="13dp"
+                    android:text="000-000-000"
+                    android:textSize="17dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!--     전화 버튼       -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/call_btn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="20dp" >
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:text="☎" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/pageaddr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="pageaddr" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="✨소개"
+            android:textSize="17dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_light"
+                android:padding="15dp"
+                android:text="자연의 아름다움과 평화로움이 어우러진 특별한 장소입니다. 숲 속에 자리한 우리의 캠핑장에서는 신선한 공기와 새소리를 즐기며 캠핑의 진정한 매력을 느낄 수 있습니다. 다양한 야외 활동과 함께, 밤에는 별들이 환상적인 편백나무 아래 빛납니다. 푸른 들판 캠프에서는 여러분의 자연과의 만남을 기다리고 있습니다."
+                android:textSize="15dp"></TextView>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="📋 시설 소개"
+            android:textSize="17dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/convenience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_light"
+                android:padding="15dp"
+                android:text="전기, 무선인터넷, 장작판매 등등 .."
+                android:textSize="15dp" />
+
+        </androidx.cardview.widget.CardView>
 
 
 
 
 
-</LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>
