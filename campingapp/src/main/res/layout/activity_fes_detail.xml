@@ -225,43 +225,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sans_light"
                 android:padding="15dp"
-                android:text="자연의 아름다움과 평화로움이 어우러진 특별한 장소입니다. 숲 속에 자리한 우리의 캠핑장에서는 신선한 공기와 새소리를 즐기며 캠핑의 진정한 매력을 느낄 수 있습니다. 다양한 야외 활동과 함께, 밤에는 별들이 환상적인 편백나무 아래 빛납니다. 푸른 들판 캠프에서는 여러분의 자연과의 만남을 기다리고 있습니다."
+                android:text="문화와 예술의 만남이 있는 축제로, 다양한 전시와 공연으로 예술의 세계를 탐험해보세요."
                 android:textSize="15dp"></TextView>
 
         </androidx.cardview.widget.CardView>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/sans_medium"
-            android:text="📋 시설 소개"
-            android:textSize="17dp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:backgroundTint="@color/white"
-            app:cardCornerRadius="20dp">
-
-            <TextView
-                android:id="@+id/convenience"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sans_light"
-                android:padding="15dp"
-                android:text="전기, 무선인터넷, 장작판매 등등 .."
-                android:textSize="15dp" />
-
-        </androidx.cardview.widget.CardView>
-
-
 
 
 
