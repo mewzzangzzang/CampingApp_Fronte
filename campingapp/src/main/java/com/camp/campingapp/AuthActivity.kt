@@ -195,11 +195,14 @@ class AuthActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
 
+                    //데이터 저장
                     saveHost()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
                     binding.authHostUsernameEditView.text.clear()
                     binding.authHostTelEditView.text.clear()
+                    binding.authHostCampNameEditView.text.clear()
+                    binding.authHostAddressEditView.text.clear()
                     if(task.isSuccessful){
                         //인증된 이메일 존재할시 인증메일 보냄
                         MyApplication.auth.currentUser?.sendEmailVerification()
@@ -299,6 +302,8 @@ class AuthActivity : AppCompatActivity() {
             //뷰에서 입력된 값
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authHostUsernameEditView.text.toString(),
+            "campname" to binding.authHostCampNameEditView.text.toString(),
+            "addr" to binding.authHostAddressEditView.text.toString(),
             "tel" to binding.authHostTelEditView.text.toString()
         )
 
