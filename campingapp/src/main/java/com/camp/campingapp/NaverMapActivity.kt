@@ -27,6 +27,7 @@ import javax.security.auth.callback.Callback
 
 
 class NaverMapActivity : AppCompatActivity() {
+    //네이버 api테스트했어요
 
         lateinit var binding: ActivityNaverMapBinding
         private var mFusedLocationProviderClient: FusedLocationProviderClient? =

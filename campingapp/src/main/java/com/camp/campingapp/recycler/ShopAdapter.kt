@@ -34,10 +34,16 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
             binding.tel.text = model.tel
 
 
+            //클릭시 관광지 상세정보 페이지에 정보넘기기
             holder.binding.root.setOnClickListener {
                 val intent = Intent(holder.binding.root?.context, ShopDetailActivity::class.java)
                 intent.putExtra("lat", model.lat)
                 intent.putExtra("lnt", model.lnt)
+                intent.putExtra("name", model.name)
+                intent.putExtra("tel", model.tel)
+                intent.putExtra("addr", model.addr)
+                intent.putExtra("info", model.info)
+
                 ContextCompat.startActivity(holder.binding.root.context, intent, null)
             }
 
