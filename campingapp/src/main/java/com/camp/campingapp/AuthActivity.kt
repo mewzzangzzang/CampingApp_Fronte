@@ -27,7 +27,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var binding: ActivityAuthBinding
 
-    private lateinit var database: DatabaseReference
+//    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityAuthBinding.inflate(layoutInflater)
@@ -102,31 +102,20 @@ class AuthActivity : AppCompatActivity() {
 
 
         binding.googleLoginBtn.setOnClickListener {
-            //구글 로그인....................
-            //구글 로그인 관련 함수. 옵션부분을 설정
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
-            //gso
-
             val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
             requestLauncher.launch(signInIntent)
-
         }
 
         binding.googleSignBtn.setOnClickListener {
-            //구글 로그인
-            //구글 로그인 관련 함수. 옵션부분을 설정
-
-
             val gso = GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
-                //옵션객체에 담아두면
                 .build()
             saveUser()
             binding.authEmailEditView.text.clear()
@@ -134,11 +123,8 @@ class AuthActivity : AppCompatActivity() {
             binding.authUsernameEditView.text.clear()
             binding.authAddressEditView.text.clear()
             binding.authTelEditView.text.clear()
-
             val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
             requestLauncher.launch(signInIntent)
-
-
         }
 
         binding.signBtn.setOnClickListener {
@@ -149,7 +135,6 @@ class AuthActivity : AppCompatActivity() {
 
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this){task ->
-
                     saveUser()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
@@ -157,12 +142,9 @@ class AuthActivity : AppCompatActivity() {
                     binding.authAddressEditView.text.clear()
                     binding.authTelEditView.text.clear()
                     if(task.isSuccessful){
-                        //인증된 이메일 존재할시 인증메일 보냄
                         MyApplication.auth.currentUser?.sendEmailVerification()
                             ?.addOnCompleteListener{ sendTask ->
                                 if(sendTask.isSuccessful){
-                                    //인증메일확인시 가입완료
-
                                     Toast.makeText(baseContext, "회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
@@ -175,11 +157,8 @@ class AuthActivity : AppCompatActivity() {
                     }else {
                         Toast.makeText(baseContext, "회원가입 실패", Toast.LENGTH_SHORT).show()
                         changeVisibility("logout")
-
                 }
             }
-
-
         }
 
         binding.hostSignBtn.setOnClickListener {
@@ -187,15 +166,9 @@ class AuthActivity : AppCompatActivity() {
             val username = binding.authHostUsernameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
-//            val type=binding.authTypeEditView.text.toString()
-            //인증 방법 중에서 이메일,패스워드를 이용한 회원 가입 부분.
-//            HostApplication.auth.createUserWithEmailAndPasswordAndType()
-            MyApplication.auth.createUserWithEmailAndPassword(email, password)
-                //파이어베이스 인증서비스에 이메일 등록->인증이메일 보냄->이메일 확인되면 등록
-                .addOnCompleteListener(this){task ->
-                    //이메일 등록후 수행되는 코드
 
-                    //데이터 저장
+            MyApplication.auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this){task ->
                     saveHost()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
@@ -204,11 +177,9 @@ class AuthActivity : AppCompatActivity() {
                     binding.authHostCampNameEditView.text.clear()
                     binding.authHostAddressEditView.text.clear()
                     if(task.isSuccessful){
-                        //인증된 이메일 존재할시 인증메일 보냄
                         MyApplication.auth.currentUser?.sendEmailVerification()
                             ?.addOnCompleteListener{ sendTask ->
                                 if(sendTask.isSuccessful){
-                                    //인증메일확인시 가입완료
                                     Toast.makeText(baseContext, "host회원가입에서 성공, 전송된 메일을 확인해 주세요",
                                         Toast.LENGTH_SHORT).show()
                                     changeVisibility("logout")
@@ -223,33 +194,25 @@ class AuthActivity : AppCompatActivity() {
                         changeVisibility("logout")
                     }
                 }
-
         }
 
         binding.loginBtn.setOnClickListener {
             //이메일, 비밀번호 로그인.......................
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
-            //인증객체 함수중에서 로그인 처리하는 함수
             MyApplication.auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this){ task ->
-                    //유효성 체크가 성공하면 수행
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
                     if(task.isSuccessful){
-                        //이메일과 비번이 보내지면 수행되는 함수
-                        //인증된 이메일을 시스템에 등록
                         if(MyApplication.checkAuth()){
                             MyApplication.email = email
                             changeVisibility("login")
                             Toast.makeText(baseContext, "로그인 성공.", Toast.LENGTH_SHORT).show()
-
                             val intent = Intent(this@AuthActivity, MainActivity::class.java)
                             startActivity(intent)
-
                         }else {
                             Toast.makeText(baseContext, "전송된 메일로 이메일 인증이 되지 않았습니다.", Toast.LENGTH_SHORT).show()
-
                         }
                     }else {
                         Toast.makeText(baseContext, "로그인 실패", Toast.LENGTH_SHORT).show()
@@ -268,53 +231,31 @@ class AuthActivity : AppCompatActivity() {
 
 
     private fun saveUser(){
-        //add............................
-        //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
         val data = mapOf(
-            //인증된 유정의 이메일을 의미
-            //앱이 시작시 인증을 체크하는 MyApplication의 checkAuth()확인함.
             "email" to binding.authEmailEditView.text.toString(),
-            //뷰에서 입력된 값
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authUsernameEditView.text.toString(),
             "address" to binding.authAddressEditView.text.toString(),
             "tel" to binding.authTelEditView.text.toString()
         )
-
-        //MyApplication->db->파이어 스토어를 사용하기 위한 객체
-        //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
         MyApplication.db.collection("user")
-            //add 부분에,임의로 만든 data를 추가
             .add(data)
-            //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
             .addOnFailureListener{
-                //데이터 추가 실패시 실행되는 로직
                 Log.d("kkang", "data save error", it)
             }
     }
     private fun saveHost(){
-        //add............................
-        //맵 객체에 키,값의 형태로 데이터를 data변수에 담음
         val data = mapOf(
-            //인증된 유정의 이메일을 의미
-            //앱이 시작시 인증을 체크하는 MyApplication의 checkAuth()확인함.
             "email" to binding.authEmailEditView.text.toString(),
-            //뷰에서 입력된 값
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authHostUsernameEditView.text.toString(),
             "campname" to binding.authHostCampNameEditView.text.toString(),
             "addr" to binding.authHostAddressEditView.text.toString(),
             "tel" to binding.authHostTelEditView.text.toString()
         )
-
-        //MyApplication->db->파이어 스토어를 사용하기 위한 객체
-        //collection->컬렉션을 생성하는 함수 매개변수로 컬렉션 명,(임의로 지정가능.)
         MyApplication.db.collection("host")
-            //add 부분에,임의로 만든 data를 추가
             .add(data)
-            //파이어 스토어에 데이터를 저장을 잘 했을 시, 동작하는 함수.
             .addOnFailureListener{
-                //데이터 추가 실패시 실행되는 로직
                 Log.d("kkang", "data save error", it)
             }
     }
@@ -329,27 +270,15 @@ class AuthActivity : AppCompatActivity() {
     fun changeVisibility(mode: String){
         if(mode === "login"){
             binding.run {
-                //인증된 이메일 부분
                 authMainTextView.text = "${MyApplication.email} 님 반갑습니다."
                 authSNS.visibility=View.GONE
                 authNotEmail.visibility=View.GONE
-                //뷰를 show & hide
-                //로그아웃 버튼은 보이게
                 logoutBtn.visibility= View.VISIBLE
-                //인증버튼 안보이게
                 goSignInBtn.visibility= View.GONE
-                //구글로그인 안보이게
                 googleLoginBtn.visibility= View.GONE
-
-                //이름 입력란 안보이게
                 authUsernameEditView.visibility=View.GONE
-
-                //페북로그인 안보이게
                 facebookLoginBtn.visibility=View.GONE
-
-                //이메일 입력란 안보이게
                 authEmailEditView.visibility= View.GONE
-                //패스워드 입력안보이게
                 authPasswordEditView.visibility= View.GONE
                 authAddressEditView.visibility=View.GONE
                 authUsernameEditView.visibility=View.GONE
@@ -358,12 +287,7 @@ class AuthActivity : AppCompatActivity() {
                 authHostCampNameEditView.visibility=View.GONE
                 authTelEditView.visibility=View.GONE
                 authHostTelEditView.visibility=View.GONE
-                //타입입력 안보이게
-//                authTypeEditView.visibility = View.GONE
-                //호스트 가입 안보이게
                 goHostSignBtn.visibility=View.GONE
-
-
                 signBtn.visibility= View.GONE
                 hostSignBtn.visibility=View.GONE
                 loginBtn.visibility= View.GONE
