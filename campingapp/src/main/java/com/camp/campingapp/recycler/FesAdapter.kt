@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,6 +13,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.camp.campingapp.FesActivity
 import com.camp.campingapp.FesDetailActivity
+import com.camp.campingapp.R
 import com.camp.campingapp.databinding.ItemFesBinding
 import com.camp.campingapp.model.FesList
 
@@ -29,6 +31,8 @@ class FesAdapter(val context: FesActivity, val datas:List<FesList>?): RecyclerVi
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding=(holder as FesViewHolder).binding
+        val animation = AnimationUtils.loadAnimation(holder.binding.root.context, R.anim.list_item_ani)
+        holder.binding.root.animation = animation
 
         //add......................................
         val model = datas!![position]
