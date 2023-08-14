@@ -50,26 +50,28 @@ android {
     }
 
 
+
 }
 
 dependencies {
 
+    //파이어베이스 파트
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-messaging-ktx:23.2.1")
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
     implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
     implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
-
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-
     implementation ("com.google.firebase:firebase-bom:29.0.0")
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
     implementation ("androidx.multidex:multidex:2.0.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    //뷰페이저2
+    implementation(("androidx.viewpager2:viewpager2:1.0.0"))
 
     // gps
     implementation ("com.google.android.gms:play-services-location:21.0.1")

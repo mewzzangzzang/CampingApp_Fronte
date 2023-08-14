@@ -10,13 +10,14 @@ import com.camp.campingapp.model.TourList
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.security.Permission
 
-class TourDetailActivity : AppCompatActivity(), com.naver.maps.map.OnMapReadyCallback {
+class TourDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private var mapView: com.naver.maps.map.MapView? = null
     lateinit var binding:ActivityTourDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
