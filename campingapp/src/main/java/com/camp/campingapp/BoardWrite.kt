@@ -34,6 +34,10 @@ class BoardWrite : AppCompatActivity() {
 
         binding.postbtn.setOnClickListener {
             saveStore()
+            val intent = intent //인텐트
+            startActivity(intent) //액티비티 열기
+            overridePendingTransition(0, 0) //인텐트 효과 없애기
+            finish()
         }
 
         binding.upload.setOnClickListener {

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -8,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +24,7 @@
             android:layout_weight="1"
             android:hint="제목을 입력하세요."
             />
-    </LinearLayout>
+
 
 <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
@@ -50,7 +49,7 @@
     <EditText
         android:id="@+id/addEditView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#eeeeee"
         android:hint="내용을 입력하세요."
@@ -65,4 +64,6 @@
         android:text="등록하기"
         android:textColor="#FFFFFF"
         android:background="#C62828"/>
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

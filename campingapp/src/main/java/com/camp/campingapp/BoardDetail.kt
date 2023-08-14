@@ -74,12 +74,11 @@ class BoardDetail : AppCompatActivity() {
             if (docId != null) {
                 MyApplication.db.collection("Boards").document(docId)
                     .delete()
+                val intent = intent //인텐트
+                startActivity(intent) //액티비티 열기
+                overridePendingTransition(0, 0) //인텐트 효과 없애기
+                finish() //인텐트 효과 없애기
             }
-            finish()
-            overridePendingTransition(0, 0) //인텐트 효과 없애기
-            val intent = intent //인텐트
-            startActivity(intent) //액티비티 열기
-            overridePendingTransition(0, 0) //인텐트 효과 없애기
         }
 
         // 등록한 이미지 가져 오기
