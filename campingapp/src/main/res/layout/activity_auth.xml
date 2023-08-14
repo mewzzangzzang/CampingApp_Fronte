@@ -122,6 +122,37 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />
+    <Button
+        android:id="@+id/signBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00BCD4"
+        android:text="가입"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+    <Button
+        android:id="@+id/hostSignBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00BCD4"
+        android:text="호스트 가입"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleSignBtn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00BCD4"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
 
     <TextView
         android:id="@+id/authNotEmail"
@@ -213,42 +244,6 @@
             android:visibility="visible" />
 
     </LinearLayout>
-
-
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignBtn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
-
-
-    <Button
-        android:id="@+id/signBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:text="가입"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/hostSignBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:text="호스트 가입"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
 
 </LinearLayout>
 
