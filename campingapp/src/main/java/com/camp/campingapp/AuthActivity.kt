@@ -195,6 +195,7 @@ class AuthActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){task ->
                     //이메일 등록후 수행되는 코드
 
+                    //데이터 저장
                     saveHost()
                     binding.authEmailEditView.text.clear()
                     binding.authPasswordEditView.text.clear()
