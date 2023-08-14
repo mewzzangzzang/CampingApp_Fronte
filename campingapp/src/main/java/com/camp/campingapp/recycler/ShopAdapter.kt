@@ -3,8 +3,10 @@ package com.camp.campingapp.recycler
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.camp.campingapp.R
 import com.camp.campingapp.ShopActivity
 import com.camp.campingapp.ShopDetailActivity
 import com.camp.campingapp.databinding.ItemShopBinding
@@ -26,6 +28,8 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
     }
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val binding=(holder as ShopViewHolder).binding
+            val animation = AnimationUtils.loadAnimation(holder.binding.root.context, R.anim.list_item_ani)
+            holder.binding.root.animation = animation
 
             //add......................................
             val model = datas!![position]
@@ -52,3 +56,5 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
 
 
 }
+
+

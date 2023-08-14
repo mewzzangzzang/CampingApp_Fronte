@@ -6,3 +6,5 @@ data class NaverReverseGeocodeResponseList(
     @SerializedName("results")
     val results: List<ReverseGeocodeResult>
 )
+
+
