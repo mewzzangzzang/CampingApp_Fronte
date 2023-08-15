@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sans_light"
                 android:padding="15dp"
-                android:text="어서오세요!"
+                android:text="이 관광지는 역사적인 가치와 함께 현대적인 매력을 가지고 있는 곳입니다. 오래된 건물과 현대 건축물이 조화를 이루며 고유한 분위기를 자아내고 있습니다. 로컬 음식과 장터도 방문해보면 좋은 추억이 될 것 같아요"
                 android:textSize="15dp"></TextView>
 
         </androidx.cardview.widget.CardView>

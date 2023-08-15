@@ -53,7 +53,6 @@ class TourActivity : AppCompatActivity() {
     private var mapY : String=""
 //    private var coords: String = ""
 
-    private lateinit var auth : FirebaseAuth
 
     lateinit var binding: ActivityTourBinding
     override fun onCreate(savedInstanceState: Bundle?) {
