@@ -60,7 +60,6 @@ class ShopDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                     // 마커 객체 생성
                     val marker = Marker()
 
-                    // DB의 첫번째 행 식당의 위도, 경도 값 가져와 변수에 넣기
                     val lat: Double = intent.getDoubleExtra("lat", Double.MAX_VALUE)
                     val lnt: Double = intent.getDoubleExtra("lnt", Double.MAX_VALUE)
 

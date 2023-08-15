@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sans_light"
                 android:padding="15dp"
-                android:text="무제"
+                android:text="어서오세요!"
                 android:textSize="15dp"></TextView>
 
         </androidx.cardview.widget.CardView>

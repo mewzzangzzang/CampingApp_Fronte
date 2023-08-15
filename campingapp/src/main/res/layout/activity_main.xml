@@ -247,7 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="관광지 모아보기"
+                        android:text="주변 관광지 모아보기"
                         android:fontFamily="@font/sans_medium"
                         android:textSize="20dp"
 
