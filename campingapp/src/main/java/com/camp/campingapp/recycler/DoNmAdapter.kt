@@ -47,7 +47,6 @@ class DoNmAdapter(val context: CampDoNmActivity, val datas: List<campDoNmList>?)
                     transition: Transition<in Bitmap>?
                 ) {
                     binding.avatarView.setImageBitmap(resource)
-//                    Log.d("lsy", "width : ${resource.width}, height: ${resource.height}")
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {
