@@ -70,8 +70,6 @@ dependencies {
     implementation ("androidx.multidex:multidex:2.0.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
-    //뷰페이저2
-    implementation(("androidx.viewpager2:viewpager2:1.0.0"))
 
     // gps
     implementation ("com.google.android.gms:play-services-location:21.0.1")
