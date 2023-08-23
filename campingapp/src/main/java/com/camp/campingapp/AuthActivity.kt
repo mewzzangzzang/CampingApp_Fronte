@@ -163,9 +163,10 @@ class AuthActivity : AppCompatActivity() {
 
         binding.hostSignBtn.setOnClickListener {
             //호스트이메일,비밀번호 회원가입........................
-            val username = binding.authHostUsernameEditView.text.toString()
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
+            val username = binding.authHostUsernameEditView.text.toString()
+
 
             MyApplication.auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this){task ->

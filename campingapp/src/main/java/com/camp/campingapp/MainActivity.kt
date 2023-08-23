@@ -103,8 +103,15 @@ class MainActivity : AppCompatActivity() {
         }
 //        로그인, 인증
         binding.btnlogin.setOnClickListener {
+            if(MyApplication.checkAuth()){
+                val intent=Intent(this@MainActivity, MyPageActivity::class.java)
+                startActivity(intent)
+            }
+            else{
             val intent = Intent(this@MainActivity, AuthActivity::class.java)
             startActivity(intent)
+        }
+
         }
 //        축제
         binding.btnmenu5.setOnClickListener {
