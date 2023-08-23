@@ -19,8 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
-
-        <!-- 클립보드 오류 -->
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".util.MainActivity22"
+            android:exported="false" /> <!-- 클립보드 오류 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
