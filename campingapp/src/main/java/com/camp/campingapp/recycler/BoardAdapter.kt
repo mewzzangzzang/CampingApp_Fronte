@@ -9,36 +9,36 @@ import com.camp.campingapp.BoardDetail
 import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.BoardData
 
-class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-}
+class BoardAdapter(private val context: Context, private val itemList: List<BoardData>) :
+    RecyclerView.Adapter<BoardViewHolder>() {
 
-class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): RecyclerView.Adapter<BoardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return BoardViewHolder(BoardItemBinding.inflate(layoutInflater))
+        val binding = BoardItemBinding.inflate(layoutInflater, parent, false)
+        return BoardViewHolder(binding)
+    }
 
-    }
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
+    override fun getItemCount(): Int = itemList.size
 
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
-        val data = itemList.get(position)
+        val data = itemList[position]
 
-        holder.binding.run {
-            itemTitleView.text=data.title
-            itemContentView.text=data.content
-            itemDateView.text=data.date
+        with(holder.binding) {
+            itemTitleView.text = data.title
+            itemContentView.text = data.content
+            itemDateView.text = data.date
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, BoardDetail::class.java)
-            intent.putExtra("DocId", data.docId)
-            intent.putExtra("BoardTitle", data.title)
-            intent.putExtra("BoardContent", data.content)
-            intent.putExtra("BoardDate", data.date)
-            intent.putExtra("Comment", data.comment)
+            val intent = Intent(context, BoardDetail::class.java).apply {
+                putExtra("DocId", data.docId)
+                putExtra("BoardTitle", data.title)
+                putExtra("BoardContent", data.content)
+                putExtra("BoardDate", data.date)
+                putExtra("Comment", data.comment)
+            }
             context.startActivity(intent)
         }
     }
