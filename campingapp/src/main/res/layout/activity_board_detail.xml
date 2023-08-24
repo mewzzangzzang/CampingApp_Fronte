@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
-
+<!--보드 상세보기-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
-
+<!--게시글 제목-->
         <TextView
             android:id="@+id/BoardTitle"
             android:layout_width="match_parent"
@@ -19,51 +19,86 @@
             android:textSize="18sp"
             android:textColor="#333333"
             android:paddingBottom="8dp"/>
-
+<!--작성일입니다-->
         <TextView
             android:id="@+id/BoardDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="작성일입니다."
             android:textSize="14sp"
             android:textColor="#666666"
             android:paddingBottom="16dp"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/line"/>
+<!--수정, 삭제 버튼 리니어-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp">
+
             <Button
                 android:id="@+id/BoardModify"
-                android:layout_width="0dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="left"
                 android:text="수정"
                 android:textColor="#FFFFFF"
                 android:background="#009688"
                 android:layout_marginEnd="8dp"/>
 
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp">
+
             <Button
                 android:id="@+id/BoardDelete"
-                android:layout_width="0dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="right"
                 android:text="삭제"
                 android:textColor="#FFFFFF"
                 android:background="#009688"
                 android:layout_marginStart="8dp"/>
 
+            </androidx.cardview.widget.CardView>
+<!--           버튼 리니어 문닫음-->
         </LinearLayout>
+
+        <!--        게시글 이미지-->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="10dp">
 
         <ImageView
             android:id="@+id/ImageView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
+            android:layout_height="270dp"
+            android:scaleType="centerInside"
             android:src="@drawable/upload"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"/>
+        </androidx.cardview.widget.CardView>
+<!--작성된 게시글 내용-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:cardCornerRadius="10dp">
 
         <TextView
             android:id="@+id/BoardContent"
@@ -73,9 +108,10 @@
             android:textSize="16sp"
             android:textColor="#333333"
             android:background="#F0F0F0"
-            android:padding="16dp"
             android:layout_marginBottom="16dp"/>
 
+        </androidx.cardview.widget.CardView>
+<!--        댓글-->
         <TextView
             android:id="@+id/BoardCommentLabel"
             android:layout_width="match_parent"
@@ -83,14 +119,24 @@
             android:text="댓글"
             android:textSize="18sp"
             android:textColor="#333333"
-            android:paddingBottom="8dp"/>
-
+            />
+<!--댓글목록 리사이클러뷰-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"/>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+
+<!--댓글작성 레이아웃-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
         <LinearLayout
             android:id="@+id/comment_layout"
             android:layout_width="match_parent"
@@ -99,28 +145,48 @@
             android:padding="8dp"
             android:background="#F0F0F0">
 
+<!--            댓글 내용입력창 카드뷰-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:cardCornerRadius="10dp">
+
             <EditText
                 android:id="@+id/BoardComment"
-                android:layout_width="0dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="left"
                 android:hint="댓글 내용을 입력하세요"
                 android:background="#FFFFFF"
                 android:padding="8dp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="5dp"/>
+            </androidx.cardview.widget.CardView>
+
+<!--            버튼 카드뷰-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_marginLeft="5dp">
 
             <Button
                 android:id="@+id/CommentWrite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="등록하기"
+                android:layout_gravity="left"
+                android:text="등록"
+                android:textSize="15sp"
                 android:textColor="#FFFFFF"
                 android:background="#009688"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"/>
-
+                />
+            </androidx.cardview.widget.CardView>
+<!--            댓글작성 레이아웃 닫아요-->
         </LinearLayout>
+<!--            댓글작성칸 카드뷰 닫음-->
+        </androidx.cardview.widget.CardView>
 
+        </androidx.cardview.widget.CardView>
+<!--        보드 전체 레이아웃 닫아요-->
     </LinearLayout>
-
 </ScrollView>

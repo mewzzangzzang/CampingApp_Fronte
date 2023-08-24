@@ -217,7 +217,3 @@ class TourActivity : AppCompatActivity() {
         handler.removeCallbacksAndMessages(null) // 핸들러 메시지 제거
     }
 }
-
-
-
-
