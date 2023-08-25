@@ -13,43 +13,36 @@ import com.camp.campingapp.MyApplication.Companion.db
 import com.camp.campingapp.MyApplication.Companion.storage
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.util.Date
 
 
 class BoardWrite : AppCompatActivity() {
-//    lateinit var db: FirebaseFirestore
-//    lateinit var storage: FirebaseStorage
-
     lateinit var binding: ActivityWriteBinding
     lateinit var filePath: String
+    lateinit var db: FirebaseFirestore
+    lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        db = FirebaseFirestore.getInstance()
-//        storage = Firebase.storage
+        db = FirebaseFirestore.getInstance()
+        storage = FirebaseStorage.getInstance()
 
         binding.postbtn.setOnClickListener {
             saveStore()
-            val intent = intent //인텐트
-            startActivity(intent) //액티비티 열기
-            overridePendingTransition(0, 0) //인텐트 효과 없애기
             finish()
         }
 
         binding.upload.setOnClickListener {
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.setDataAndType(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    "image/*"
-                )
-                requestLauncher.launch(intent)
-
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
+            requestLauncher.launch(intent)
         }
-
     }
 
     private val requestLauncher = registerForActivityResult(
@@ -80,31 +73,41 @@ class BoardWrite : AppCompatActivity() {
         )
         db.collection("Boards")
             .add(data)
-            .addOnSuccessListener {
-                uploadImage(it.id)
+            .addOnSuccessListener { documentReference ->
+                // 업로드한 이미지의 URL을 Firestore에 저장한 후, Document ID를 사용하여 업데이트합니다.
+                val docId = documentReference.id
+                uploadImage(docId)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "error!!", Toast.LENGTH_SHORT).show()
             }
-        finish()
     }
 
     private fun uploadImage(docId: String) {
-        val storage = storage
         val storageRef = storage.reference
         val imgRef = storageRef.child("images/${docId}.jpg")
 
         val file = Uri.fromFile(File(filePath))
         imgRef.putFile(file)
             .addOnSuccessListener {
-                Toast.makeText(this, "upload ok", Toast.LENGTH_SHORT).show()
-                finish()
+                imgRef.downloadUrl.addOnSuccessListener { uri ->
+                    // 업로드된 이미지의 다운로드 URL을 Firestore에 업데이트합니다.
+                    db.collection("Boards").document(docId)
+                        .update("imageUrl", uri.toString())
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "upload ok", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "image URL update fail", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener {
                 Toast.makeText(this, "upload fail", Toast.LENGTH_SHORT).show()
-
             }
     }
+
 
 }
 

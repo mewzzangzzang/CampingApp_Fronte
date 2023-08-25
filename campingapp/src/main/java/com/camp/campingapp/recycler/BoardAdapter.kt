@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.camp.campingapp.BoardDetail
 import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.BoardData
@@ -29,6 +30,14 @@ class BoardAdapter(private val context: Context, private val itemList: List<Boar
             itemTitleView.text = data.title
             itemContentView.text = data.content
             itemDateView.text = data.date
+
+            val imageUrl = data.imageUrl
+            if (imageUrl != null) {
+                // imageUrl을 사용하여 Glide를 통해 이미지를 로드하고 해당 아이템의 이미지뷰에 설정합니다.
+                Glide.with(context)
+                    .load(imageUrl)
+                    .into(itemImageView) // itemImageView는 BoardItemBinding에서 선언한 ImageView ID입니다.
+            }
         }
 
         holder.itemView.setOnClickListener {
