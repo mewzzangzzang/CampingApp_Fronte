@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fillViewport="true"
     app:umanoDragView="@id/slide_layout"
     tools:context=".MainActivity"
     android:background="@drawable/camp_donm_default3">
