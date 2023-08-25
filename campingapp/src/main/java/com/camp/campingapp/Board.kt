@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.camp.campingapp.databinding.ActivityBoardBinding
 import com.camp.campingapp.model.BoardData
 import com.camp.campingapp.recycler.BoardAdapter
@@ -38,6 +39,17 @@ class Board : AppCompatActivity() {
                 }
                 binding.boardRecyclerView.layoutManager = LinearLayoutManager(this)
                 binding.boardRecyclerView.adapter = BoardAdapter(this, itemList)
+
+                // 각 아이템의 imageUrl을 가져와서 이미지를 로드합니다.
+//                for (item in itemList) {
+//                    val imageUrl = item.imageUrl
+//                    if (imageUrl != null) {
+//                        // imageUrl을 사용하여 Glide를 통해 이미지를 로드합니다.
+//                        Glide.with(this)
+//                            .load(imageUrl)
+//                            .into(binding.imageView) // 여기서 imageView는 단일 이미지를 표시할 ImageView입니다.
+//                    }
+//                }
             }
             .addOnFailureListener { exception ->
                 Log.d("kkang", "error.. getting document..", exception)
