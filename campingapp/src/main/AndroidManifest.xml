@@ -70,10 +70,10 @@
             android:name=".BoardUpdate"
             android:exported="true" />
         <activity
-            android:name=".BoardDelete"
+            android:name=".BoardDetail"
             android:exported="true" />
         <activity
-            android:name=".BoardDetail"
+            android:name=".BoardDelete"
             android:exported="true" />
         <activity
             android:name=".BoardWrite"

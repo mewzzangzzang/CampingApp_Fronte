@@ -1,64 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/CommentUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#727272"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/CommentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#727272"
+                android:textSize="12sp"
+                android:text="date" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/itemEmailView"
-            android:layout_width="wrap_content"
+            android:id="@+id/Comment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="15dp"
+            android:lineSpacingExtra="2dp"
+            android:paddingLeft="10dp"
             android:textColor="#212121"
-            android:textSize="14sp" />
-
-
-        <TextView
-            android:id="@+id/CommentDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="#727272"
-            android:textSize="12sp"
-            android:text="date"
-            />
+            android:textSize="14sp"
+            android:text="content" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/Comment"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:lineSpacingExtra="2dp"
-        android:paddingLeft="10dp"
-        android:textColor="#212121"
-        android:textSize="14sp"
-        android:text="content"
-        />
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_marginTop="10dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="20dp"
-        android:background="#40000000" />
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수정"
+            android:textSize="12sp"
+            android:backgroundTint="#009688"
+            android:textColor="@android:color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="2dp"
+            android:layout_gravity="end" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/boardCheck"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="보기" />-->
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            android:textSize="12sp"
+            android:backgroundTint="#FF5733"
+            android:textColor="@android:color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_gravity="end" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -24,7 +24,6 @@ class ChatMainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityChatMainBinding
     lateinit var adapter: UserAdapter
-
     private lateinit var userList: ArrayList<User>
     private lateinit var auth: FirebaseAuth
     private lateinit var rdb: DatabaseReference
@@ -34,30 +33,21 @@ class ChatMainActivity : AppCompatActivity() {
         binding = ActivityChatMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //초기화
         auth = Firebase.auth
         rdb = Firebase.database.reference
         userList = ArrayList()
 
         adapter = UserAdapter(this, userList)
         binding.userRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        // RecyclerView에 ItemAnimator 추가
-        val itemAnimator = DefaultItemAnimator()
-        binding.userRecyclerView.itemAnimator = itemAnimator
-
+        binding.userRecyclerView.itemAnimator = DefaultItemAnimator()
         binding.userRecyclerView.adapter = adapter
 
-        //사용자 정보 가져오기
-        rdb.child("user").addValueEventListener(object :ValueEventListener{
-            @SuppressLint("RestrictedApi")
+        rdb.child("user").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for(postSnapshot in snapshot.children){
-
-                    //유저 정보
+                userList.clear()
+                for (postSnapshot in snapshot.children) {
                     val currentUser = postSnapshot.getValue(User::class.java)
-
-                    if(auth.currentUser?.uid!=currentUser?.uid){
+                    if (auth.currentUser?.uid != currentUser?.uid) {
                         userList.add(currentUser!!)
                     }
                 }
@@ -65,10 +55,10 @@ class ChatMainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                //실패 시 실행
+                // 실패 시 실행
             }
         })
-    } //onCreate
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
@@ -76,10 +66,9 @@ class ChatMainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.log_out){
+        if (item.itemId == R.id.log_out) {
             auth.signOut()
-            val intent = Intent(this@ChatMainActivity, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@ChatMainActivity, LoginActivity::class.java))
             finish()
             return true
         }

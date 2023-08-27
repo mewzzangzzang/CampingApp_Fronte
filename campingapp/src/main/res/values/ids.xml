@@ -2,4 +2,7 @@
 <resources>
     <item name="send_message_text" type="id" />
     <item name="receive_message_text" type="id" />
+    <item name="editTextComment" type="id" />
+    <item name="btnEditCommentConfirm" type="id" />
+    <item name="btnEditCommentCancel" type="id" />
 </resources>

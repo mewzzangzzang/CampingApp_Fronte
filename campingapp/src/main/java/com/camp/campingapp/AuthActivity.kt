@@ -22,6 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 
 class AuthActivity : AppCompatActivity() {
@@ -245,8 +246,10 @@ class AuthActivity : AppCompatActivity() {
 
 
 
-    private fun saveUser(){
+    private fun saveUser() {
+        val uid = MyApplication.auth.currentUser?.uid ?: ""
         val data = mapOf(
+            "uid" to uid,
             "email" to binding.authEmailEditView.text.toString(),
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authUsernameEditView.text.toString(),
@@ -255,12 +258,15 @@ class AuthActivity : AppCompatActivity() {
         )
         MyApplication.db.collection("user")
             .add(data)
-            .addOnFailureListener{
-                Log.d("kkang", "data save error", it)
+            .addOnFailureListener {
+                Log.d("khs", "data save error", it)
             }
     }
-    private fun saveHost(){
+
+    private fun saveHost() {
+        val uid = MyApplication.auth.currentUser?.uid ?: ""
         val data = mapOf(
+            "uid" to uid,
             "email" to binding.authEmailEditView.text.toString(),
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authHostUsernameEditView.text.toString(),
@@ -270,8 +276,24 @@ class AuthActivity : AppCompatActivity() {
         )
         MyApplication.db.collection("host")
             .add(data)
+            .addOnFailureListener {
+                Log.d("khs", "data save error", it)
+            }
+    }
+
+    private fun updateUser(uid: String) {
+        val data = mapOf(
+            "email" to binding.authEmailEditView.text.toString(),
+            "password" to binding.authPasswordEditView.text.toString(),
+            "username" to binding.authUsernameEditView.text.toString(),
+            "address" to binding.authAddressEditView.text.toString(),
+            "tel" to binding.authTelEditView.text.toString()
+        )
+        MyApplication.db.collection("user")
+            .document(uid) // 해당 uid를 가진 문서를 찾음
+            .set(data, SetOptions.merge()) // 데이터 업데이트
             .addOnFailureListener{
-                Log.d("kkang", "data save error", it)
+                Log.d("khs", "data update error", it)
             }
     }
 

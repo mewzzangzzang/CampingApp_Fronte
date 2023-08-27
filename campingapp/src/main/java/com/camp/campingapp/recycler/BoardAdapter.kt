@@ -2,6 +2,7 @@ package com.camp.campingapp.recycler
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,14 @@ import com.camp.campingapp.model.BoardData
 
 class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-class BoardAdapter(private val context: Context, private val itemList: List<BoardData>) :
+class BoardAdapter(private val context: Context, private var itemList: List<BoardData>) :
     RecyclerView.Adapter<BoardViewHolder>() {
+
+    // updateData 메서드 추가
+    fun updateData(newItemList: List<BoardData>) {
+        itemList = newItemList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,14 +37,13 @@ class BoardAdapter(private val context: Context, private val itemList: List<Boar
             itemTitleView.text = data.title
             itemContentView.text = data.content
             itemDateView.text = data.date
-            itemUsernameView.text = data.username // Add this line for username
+            itemUsernameView.text = data.username
 
             val imageUrl = data.imageUrl
             if (imageUrl != null) {
-                // imageUrl을 사용하여 Glide를 통해 이미지를 로드하고 해당 아이템의 이미지뷰에 설정합니다.
                 Glide.with(context)
                     .load(imageUrl)
-                    .into(itemImageView) // itemImageView는 BoardItemBinding에서 선언한 ImageView ID입니다.
+                    .into(itemImageView)
             }
         }
 
