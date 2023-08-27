@@ -23,21 +23,25 @@
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"/>
 
             <TextView
                 android:id="@+id/addr1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"/>
             <TextView
                 android:id="@+id/addr2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"/>
 
             <TextView
                 android:id="@+id/tel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_medium"/>
 
 
         </LinearLayout>

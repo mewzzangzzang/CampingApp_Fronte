@@ -55,10 +55,20 @@ class TourAdapter(val context: TourActivity, val datas:List<TourList>?): Recycle
 //                }
 //            })
 
+        //클릭시 관광지 상세정보 페이지에 정보넘기기
         holder.binding.root.setOnClickListener {
             val intent = Intent(holder.binding.root?.context, TourDetailActivity::class.java)
             intent.putExtra("lat", model.lat)
             intent.putExtra("lnt", model.lnt)
+            intent.putExtra("name", model.name)
+            intent.putExtra("tourtype", model.tourtype)
+            intent.putExtra("addr1", model.addr1)
+            intent.putExtra("addr2", model.addr2)
+            intent.putExtra("convenience", model.convenience)
+            intent.putExtra("info", model.info)
+            intent.putExtra("tel", model.tel)
+            intent.putExtra("agencyname", model.agencyname)
+
             ContextCompat.startActivity(holder.binding.root.context, intent, null)
         }
 

@@ -28,6 +28,7 @@ android {
             )
         }
     }
+//    자바1.8버전
 //    compileOptions {
 //        sourceCompatibility = JavaVersion.VERSION_1_8
 //        targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,26 +51,27 @@ android {
     }
 
 
+
 }
 
 dependencies {
 
+    //파이어베이스 파트
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-messaging-ktx:23.2.1")
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
     implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
     implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
-
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-
     implementation ("com.google.firebase:firebase-bom:29.0.0")
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
     implementation ("androidx.multidex:multidex:2.0.1")
+//    뷰페이저
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
 
     // gps
     implementation ("com.google.android.gms:play-services-location:21.0.1")
@@ -98,14 +100,19 @@ dependencies {
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+//    구글맵스
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("androidx.annotation:annotation:1.3.0")
 
 
     implementation ("com.firebaseui:firebase-ui-storage:8.0.0")
+//    깃허브 컴파일러
     implementation ("com.github.bumptech.glide:compiler:4.12.0")
+//    페이스북 sdk
     implementation ("com.facebook.android:facebook-android-sdk:[4,5)")
     implementation ("com.facebook.android:facebook-login:latest.release")
     implementation ("com.sothree.slidinguppanel:library:3.4.0")
 
+//    이미지뷰 둥글
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

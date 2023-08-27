@@ -6,4 +6,5 @@ class BoardData {
     var content: String? = null
     var date: String? = null
     var comment: String? = null
+    var imageUrl: String? = null
 }

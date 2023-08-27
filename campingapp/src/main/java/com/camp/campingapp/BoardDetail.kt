@@ -74,12 +74,11 @@ class BoardDetail : AppCompatActivity() {
             if (docId != null) {
                 MyApplication.db.collection("Boards").document(docId)
                     .delete()
+                val intent = intent //인텐트
+                startActivity(intent) //액티비티 열기
+                overridePendingTransition(0, 0) //인텐트 효과 없애기
+                finish() //인텐트 효과 없애기
             }
-            finish()
-            overridePendingTransition(0, 0) //인텐트 효과 없애기
-            val intent = intent //인텐트
-            startActivity(intent) //액티비티 열기
-            overridePendingTransition(0, 0) //인텐트 효과 없애기
         }
 
         // 등록한 이미지 가져 오기
@@ -110,29 +109,4 @@ class BoardDetail : AppCompatActivity() {
             overridePendingTransition(0, 0) //인텐트 효과 없애기
         }
     }
-//    private fun commentRecycelerView() {
-//        val docId = intent.getStringExtra("DocId")
-//        if (docId != null) {
-//            MyApplication.db.collection("Boards").document(docId).collection("Comments")
-//                .get()
-//                .addOnSuccessListener { result ->
-//                    val itemList = mutableListOf<BoardData>()
-//                    for (document in result) {
-//                        val item = document.toObject(BoardData::class.java)
-//                        item.docId = document.id
-//                        itemList.add(item)
-//                    }
-//                    binding.commentRecyclerView.layoutManager = LinearLayoutManager(this)
-//                    binding.commentRecyclerView.adapter = CommentAdapter(this, itemList)
-//                }
-//                .addOnFailureListener { exception ->
-//                    // 파이어베이스 콘솔에 해당 서비스의 권한(규칙을 설정 안했을 때 나오는 문구.)
-//                    Log.d("kkang", "error.. getting document..", exception)
-//                    Toast.makeText(this, "서버 데이터 획득 실패", Toast.LENGTH_SHORT).show()
-//                }
-//        }
-//    }
-
-
-
 }

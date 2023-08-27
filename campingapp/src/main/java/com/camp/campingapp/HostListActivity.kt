@@ -44,7 +44,9 @@ class HostListActivity : AppCompatActivity() {
         super.onStart()
         if (!MyApplication.checkAuth()) {
             binding.HostRecyclerView.visibility = View.GONE
+            binding.HostListwarning.visibility=View.VISIBLE
         } else {
+            binding.HostListwarning.visibility=View.GONE
             binding.HostRecyclerView.visibility = View.VISIBLE
             makeHostListRecyclerView()
         }

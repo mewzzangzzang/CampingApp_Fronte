@@ -13,15 +13,18 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
-<!--클립보드 오류-->
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="true" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity
             android:name=".NaverMapActivity"
@@ -118,12 +121,8 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service> <!-- <activity -->
-        <!-- android:name=".WriteActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".BoardActivity" -->
-        <!-- android:exported="false" /> -->
+        </service>
+
         <activity
             android:name=".TourActivity"
             android:exported="true" />
@@ -136,13 +135,9 @@
         <activity
             android:name=".CampDoNmActivity"
             android:exported="true" />
-        <!-- <activity -->
-        <!-- android:name=".AddActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:windowSoftInputMode="adjustResize" /> -->
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -154,9 +149,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -27,4 +27,6 @@ data class FesList(
     var lat : String,
     @SerializedName("lnt")
     var lnt : String,
+    @SerializedName("firstImageUrl")
+    var firstImageUrl : String,
 )

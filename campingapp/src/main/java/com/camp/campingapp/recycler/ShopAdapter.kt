@@ -3,8 +3,10 @@ package com.camp.campingapp.recycler
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.camp.campingapp.R
 import com.camp.campingapp.ShopActivity
 import com.camp.campingapp.ShopDetailActivity
 import com.camp.campingapp.databinding.ItemShopBinding
@@ -26,6 +28,8 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
     }
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val binding=(holder as ShopViewHolder).binding
+            val animation = AnimationUtils.loadAnimation(holder.binding.root.context, R.anim.list_item_ani)
+            holder.binding.root.animation = animation
 
             //add......................................
             val model = datas!![position]
@@ -34,10 +38,16 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
             binding.tel.text = model.tel
 
 
+            //클릭시 관광지 상세정보 페이지에 정보넘기기
             holder.binding.root.setOnClickListener {
                 val intent = Intent(holder.binding.root?.context, ShopDetailActivity::class.java)
                 intent.putExtra("lat", model.lat)
                 intent.putExtra("lnt", model.lnt)
+                intent.putExtra("name", model.name)
+                intent.putExtra("tel", model.tel)
+                intent.putExtra("addr", model.addr)
+                intent.putExtra("info", model.info)
+
                 ContextCompat.startActivity(holder.binding.root.context, intent, null)
             }
 
@@ -46,3 +56,5 @@ class ShopAdapter (val context: ShopActivity, val datas:List<ShopList>?): Recycl
 
 
 }
+
+

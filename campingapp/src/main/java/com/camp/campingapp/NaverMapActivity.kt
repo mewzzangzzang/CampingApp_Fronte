@@ -27,6 +27,7 @@ import javax.security.auth.callback.Callback
 
 
 class NaverMapActivity : AppCompatActivity() {
+    //네이버 api테스트했어요
 
         lateinit var binding: ActivityNaverMapBinding
         private var mFusedLocationProviderClient: FusedLocationProviderClient? =
@@ -42,15 +43,6 @@ class NaverMapActivity : AppCompatActivity() {
         private var coords: String = ""
 
         override fun onCreate(savedInstanceState: Bundle?) {
-
-            //키는 다른 파일에 저장해서, 불러와서 사용하고,
-            // 키를 가지고 있는 파일은 .gitIgnore 등록 후 , 원격지에 푸쉬 안함.
-//        val serviceKey =
-//            "c8vC2OkkWTTNDGQwB5sEm58CgNwMvmXLZ+N50mqAMab74s82Vxw2VjiTBLdDxHdnzgnD++jCobFAR9L/pXVSIA=="
-//        val _type = "json"
-//
-//        val radius = 10000
-
 
             super.onCreate(savedInstanceState)
             binding = ActivityNaverMapBinding.inflate(layoutInflater)

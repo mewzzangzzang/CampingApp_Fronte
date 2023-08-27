@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.camp.campingapp.ChatActivity
+import com.camp.campingapp.ChatMainActivity
 import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.ItemCampBinding
 import com.camp.campingapp.model.HostData
@@ -52,7 +52,7 @@ class HostListAdapter(private val context: Context, private val hostList: List<H
 
                 // 채팅 버튼 클릭 이벤트 설정
                 chatButton.setOnClickListener {
-                    val chatIntent = Intent(context, ChatActivity::class.java)
+                    val chatIntent = Intent(context, ChatMainActivity::class.java)
                     chatIntent.putExtra("hostData", hostData)
                     context.startActivity(chatIntent)
                 }

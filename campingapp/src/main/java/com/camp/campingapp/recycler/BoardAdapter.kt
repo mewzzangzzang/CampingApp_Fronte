@@ -5,40 +5,49 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.camp.campingapp.BoardDetail
 import com.camp.campingapp.databinding.BoardItemBinding
 import com.camp.campingapp.model.BoardData
 
-class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-}
+class BoardAdapter(private val context: Context, private val itemList: List<BoardData>) :
+    RecyclerView.Adapter<BoardViewHolder>() {
 
-class BoardAdapter(val context: Context, val itemList: MutableList<BoardData>): RecyclerView.Adapter<BoardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return BoardViewHolder(BoardItemBinding.inflate(layoutInflater))
+        val binding = BoardItemBinding.inflate(layoutInflater, parent, false)
+        return BoardViewHolder(binding)
+    }
 
-    }
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
+    override fun getItemCount(): Int = itemList.size
 
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
-        val data = itemList.get(position)
+        val data = itemList[position]
 
-        holder.binding.run {
-            itemTitleView.text=data.title
-            itemContentView.text=data.content
-            itemDateView.text=data.date
+        with(holder.binding) {
+            itemTitleView.text = data.title
+            itemContentView.text = data.content
+            itemDateView.text = data.date
+
+            val imageUrl = data.imageUrl
+            if (imageUrl != null) {
+                // imageUrl을 사용하여 Glide를 통해 이미지를 로드하고 해당 아이템의 이미지뷰에 설정합니다.
+                Glide.with(context)
+                    .load(imageUrl)
+                    .into(itemImageView) // itemImageView는 BoardItemBinding에서 선언한 ImageView ID입니다.
+            }
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, BoardDetail::class.java)
-            intent.putExtra("DocId", data.docId)
-            intent.putExtra("BoardTitle", data.title)
-            intent.putExtra("BoardContent", data.content)
-            intent.putExtra("BoardDate", data.date)
-            intent.putExtra("Comment", data.comment)
+            val intent = Intent(context, BoardDetail::class.java).apply {
+                putExtra("DocId", data.docId)
+                putExtra("BoardTitle", data.title)
+                putExtra("BoardContent", data.content)
+                putExtra("BoardDate", data.date)
+                putExtra("Comment", data.comment)
+            }
             context.startActivity(intent)
         }
     }
