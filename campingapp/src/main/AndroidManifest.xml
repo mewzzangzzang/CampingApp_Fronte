@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MyPageActivity"
-            android:exported="false" />
+            android:exported="true" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

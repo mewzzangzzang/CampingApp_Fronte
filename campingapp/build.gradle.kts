@@ -113,4 +113,6 @@ dependencies {
     implementation ("com.facebook.android:facebook-login:latest.release")
     implementation ("com.sothree.slidinguppanel:library:3.4.0")
 
+//    이미지뷰 둥글
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }
