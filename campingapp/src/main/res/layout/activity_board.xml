@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="#FAFAFA">
 
+<!--보드 리사이클러 뷰-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/boardRecyclerView"
         android:layout_width="match_parent"

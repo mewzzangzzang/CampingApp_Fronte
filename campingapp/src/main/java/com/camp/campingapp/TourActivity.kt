@@ -1,7 +1,7 @@
 package com.camp.campingapp
 
+import android.R
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
@@ -9,30 +9,23 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.camp.campingapp.databinding.ActivityMainBinding
 import com.camp.campingapp.databinding.ActivityTourBinding
-import com.camp.campingapp.model.NaverReverseGeocodeResponse
 import com.camp.campingapp.model.TourList
 import com.camp.campingapp.recycler.TourAdapter
-import com.camp.campingapp.retrofit.NaverNetworkService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.firebase.auth.FirebaseAuth
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class TourActivity : AppCompatActivity() {
@@ -49,7 +42,7 @@ class TourActivity : AppCompatActivity() {
     lateinit var mLocationRequest: LocationRequest  // 위치 정보 요청의 매개변수를 저장하는
     private val REQUEST_PERMISSION_LOCATION = 10
 
-        private var mapX : String = ""
+    private var mapX : String = ""
     private var mapY : String=""
 //    private var coords: String = ""
 
@@ -75,11 +68,21 @@ class TourActivity : AppCompatActivity() {
             startLocationUpdates()
 
         }
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
 
     }//oncreate
 
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun startLocationUpdates() {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -217,7 +220,3 @@ class TourActivity : AppCompatActivity() {
         handler.removeCallbacksAndMessages(null) // 핸들러 메시지 제거
     }
 }
-
-
-
-

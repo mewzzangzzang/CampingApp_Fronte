@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -38,7 +39,7 @@ class ShopActivity : AppCompatActivity() {
     //    internal lateinit var mLocationRequest: LocationRequest // 위치 정보 요청의 매개변수를 저장하는
     lateinit var mLocationRequest: LocationRequest  // 위치 정보 요청의 매개변수를 저장하는
     private val REQUEST_PERMISSION_LOCATION = 10
-    private var mapX : String = ""
+    private var mapX : String =""
     private var mapY : String=""
     //    private var coords: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +64,18 @@ class ShopActivity : AppCompatActivity() {
             startLocationUpdates()
 
         }
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+    }//oncreate
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
@@ -154,7 +166,6 @@ class ShopActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<ShopList>>, t: Throwable) {
-                Log.d("lsy", "fail")
                 call.cancel()
             }
 
