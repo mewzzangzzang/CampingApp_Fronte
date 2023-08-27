@@ -28,16 +28,32 @@
 
         <activity
             android:name=".NaverMapActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".FesDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".FesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FesActivity" />
+        </activity>
         <activity
             android:name=".FesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ShopDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ShopActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ShopActivity" />
+        </activity>
+
         <activity
             android:name=".ShopActivity"
             android:exported="true" />
@@ -125,10 +141,22 @@
 
         <activity
             android:name=".TourActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name=".TourDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".TourActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".TourActivity" />
+        </activity>
+
         <activity
             android:name=".DoNmDetailActivity"
             android:exported="false" />
@@ -146,7 +174,11 @@
         </activity>
         <activity
             android:name=".AuthActivity"
-            android:exported="true" />
+            android:exported="true" android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true" />

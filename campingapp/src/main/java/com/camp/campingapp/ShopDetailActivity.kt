@@ -78,7 +78,6 @@ class ShopDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 override fun onFailure(call: Call<List<ShopList>>, t: Throwable) {
-                    Log.d("lsy", "fail")
                     call.cancel()
                 }
 

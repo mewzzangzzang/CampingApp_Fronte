@@ -4,6 +4,7 @@ package com.camp.campingapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -220,7 +221,20 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
         }
-    }
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }//oncreate닫음
+
+
+        // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            if (item.itemId == android.R.id.home) {
+                onBackPressed() // 이전 화면으로 돌아가기
+                return true
+            }
+            return super.onOptionsItemSelected(item)
+        }
+
     private fun signOut() {
         // [START auth_sign_out]
         Firebase.auth.signOut()

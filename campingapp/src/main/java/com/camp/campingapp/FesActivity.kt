@@ -3,6 +3,7 @@ package com.camp.campingapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camp.campingapp.databinding.ActivityFesBinding
@@ -15,12 +16,26 @@ import retrofit2.Response
 class FesActivity : AppCompatActivity() {
     lateinit var binding: ActivityFesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivityFesBinding.inflate(layoutInflater)
+        binding = ActivityFesBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         getFesList()
+
+
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+            }
+         return super.onOptionsItemSelected(item)
+        }
     private fun getFesList(){
         val networkService = (applicationContext as MyApplication).networkService
         val fesListCall = networkService.GetFesList()
@@ -31,9 +46,6 @@ class FesActivity : AppCompatActivity() {
                 response: Response<List<FesList>>
             ) {
                 val FesList = response.body()
-//                Log.d("lsy", "실행 여부 확인. userListCall.enqueue")
-//                Log.d("lsy", TourList?.toString())
-//                Log.d("lsy", "url:" + tourListCall.request().url().toString())
 
                 binding.recyclerView.adapter =
                     FesAdapter(this@FesActivity,FesList)
@@ -46,7 +58,6 @@ class FesActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<FesList>>, t: Throwable) {
-                Log.d("lsy", "fail")
                 call.cancel()
             }
 

@@ -7,6 +7,8 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +46,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
 
     lateinit var binding: ActivityMainBinding
+
+    //뒤로가기버튼 2번시 종료
+    private var backPressedTime: Long = 0
+    private val doubleBackPressInterval: Long = 3000 // 3초
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -80,6 +86,8 @@ class MainActivity : AppCompatActivity() {
 //                slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
 //            }
 //        }
+//        뒤로가기버튼활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 캠핑장
         binding.btnmenu1.setOnClickListener {
@@ -130,7 +138,40 @@ class MainActivity : AppCompatActivity() {
         }
 
     }//oncreate
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menr_login, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        로그인버튼
+        when (item.itemId) {
+            R.id.action_login -> {
+                val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+//            뒤로가기
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - backPressedTime < doubleBackPressInterval) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(
+                this,
+                "뒤로 버튼을 한 번 더 누르면 종료됩니다.",
+                Toast.LENGTH_SHORT
+            ).show()
+            backPressedTime = currentTime
+        }
+    }
 
     inner class PanelEventListener : SlidingUpPanelLayout.PanelSlideListener {
         // 패널이 슬라이드 중일 때
@@ -210,7 +251,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<NaverReverseGeocodeResponse>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "API 호출이 실패했습니다.", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@MainActivity, "API 호출이 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
     }

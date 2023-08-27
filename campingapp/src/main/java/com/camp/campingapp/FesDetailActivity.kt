@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.camp.campingapp.R.id.map_view
@@ -64,6 +65,19 @@ class FesDetailActivity : AppCompatActivity(),OnMapReadyCallback{
         mapView = findViewById<View>(map_view) as com.naver.maps.map.MapView
         mapView!!.onCreate(savedInstanceState)
         mapView!!.getMapAsync(this@FesDetailActivity)
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onMapReady(naverMap: NaverMap) {
