@@ -3,8 +3,12 @@ package com.camp.campingapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.camp.campingapp.BoardWrite
+import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.ActivityBoardBinding
 import com.camp.campingapp.model.BoardData
 import com.camp.campingapp.recycler.BoardAdapter
@@ -19,10 +23,65 @@ class Board : AppCompatActivity() {
         setContentView(binding.root)
 
         myCheckPermission(this)
-        setupRecyclerView()
+
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // 검색 레이아웃 기본 가시성 설정
+        binding.searchLayout.visibility = View.VISIBLE
+
+        // Firestore에서 데이터를 가져와서 어댑터의 데이터 갱신 후에 setupRecyclerView() 호출
+        MyApplication.db.collection("Boards")
+            .get()
+            .addOnSuccessListener { result ->
+                val itemList = result.map { document ->
+                    document.toObject(BoardData::class.java).apply {
+                        docId = document.id
+                    }
+                }
+                val adapter = BoardAdapter(this, itemList)
+                binding.boardRecyclerView.adapter = adapter
+
+                setupRecyclerView() // setupRecyclerView() 호출 위치 변경
+            }
+            .addOnFailureListener { exception ->
+                showToast("서버 데이터 획득 실패")
+            }
+
+        binding.searchButton.setOnClickListener {
+            val query = binding.searchEditText.text.toString()
+            (binding.boardRecyclerView.adapter as BoardAdapter).filter(query)
+        }
 
         binding.add.setOnClickListener {
             startActivity(Intent(this, BoardWrite::class.java))
+        }
+
+        // Firestore에서 데이터를 가져와서 어댑터의 데이터 갱신
+        MyApplication.db.collection("Boards")
+            .get()
+            .addOnSuccessListener { result ->
+                val itemList = result.map { document ->
+                    document.toObject(BoardData::class.java).apply {
+                        docId = document.id
+                    }
+                }
+                val adapter = BoardAdapter(this, itemList)
+                binding.boardRecyclerView.adapter = adapter
+            }
+            .addOnFailureListener { exception ->
+                showToast("서버 데이터 획득 실패")
+            }
+    }
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed() // 이전 화면으로 돌아가기
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
