@@ -22,6 +22,9 @@
 
 
         <activity
+            android:name=".PetListActivity"
+            android:exported="true" />
+        <activity
             android:name=".MyPageActivity"
             android:exported="true" />
 

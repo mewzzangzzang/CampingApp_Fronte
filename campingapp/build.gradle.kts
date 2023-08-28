@@ -80,6 +80,9 @@ dependencies {
     // 카드뷰
     implementation ("androidx.cardview:cardview:1.0.0")
 
+    // 바텀 시트
+//    implementation ("com.google.android.material:material:1.5.0-alpha02")
+
     implementation ("com.google.android.libraries.places:places:3.2.0")
     implementation ("com.android.volley:volley:1.2.1")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
