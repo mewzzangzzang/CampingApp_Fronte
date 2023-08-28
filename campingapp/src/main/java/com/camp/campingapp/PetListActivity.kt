@@ -21,6 +21,10 @@ class PetListActivity : AppCompatActivity() {
     private lateinit var button1: Button
     private lateinit var button2: Button
     private lateinit var button3: Button
+    //
+
+    private lateinit var b1_1: Button
+    private lateinit var goList: Button
     private lateinit var contentTextView: TextView
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
@@ -74,7 +78,7 @@ class PetListActivity : AppCompatActivity() {
     }
 
     private fun showBottomSheetDialog() {
-        bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
+        bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout_option1, null)
         bottomSheetDialog = object : BottomSheetDialog(this){
             override fun onStart() {
                 super.onStart()
@@ -87,6 +91,10 @@ class PetListActivity : AppCompatActivity() {
         button1 = bottomSheetView.findViewById(R.id.btn_option1)
         button2 = bottomSheetView.findViewById(R.id.btn_option2)
         button3 = bottomSheetView.findViewById(R.id.btn_option3)
+        //
+        b1_1 = bottomSheetView.findViewById(R.id.b1_1)
+        goList = bottomSheetView.findViewById(R.id.goList)
+
         contentTextView = bottomSheetView.findViewById(R.id.tv_content)
 
         bottomSheetDialog.setOnShowListener {
@@ -100,6 +108,36 @@ class PetListActivity : AppCompatActivity() {
             updateBottomSheetLayout(R.layout.bottom_sheet_layout_option1)
         }
 
+        button2.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option2)
+        }
+
+        button3.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option3)
+        }
+
+        goList.setOnClickListener{
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.show()
+    }
+
+    private fun updateBottomSheetLayout(layoutResId: Int) {
+
+        bottomSheetView = layoutInflater.inflate(layoutResId, null)
+        bottomSheetDialog.setContentView(bottomSheetView)
+
+        // 바뀐 레이아웃에 포함된 뷰들 다시 초기화
+        button1 = bottomSheetView.findViewById(R.id.btn_option1)
+        button2 = bottomSheetView.findViewById(R.id.btn_option2)
+        button3 = bottomSheetView.findViewById(R.id.btn_option3)
+        goList = bottomSheetView.findViewById(R.id.goList)
+        contentTextView = bottomSheetView.findViewById(R.id.tv_content)
+
+        button1.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option1)
+        }
 
         button2.setOnClickListener {
             updateBottomSheetLayout(R.layout.bottom_sheet_layout_option2)
@@ -109,16 +147,10 @@ class PetListActivity : AppCompatActivity() {
             updateBottomSheetLayout(R.layout.bottom_sheet_layout_option3)
         }
 
-        bottomSheetDialog.show()
-    }
+        goList.setOnClickListener{
+            bottomSheetDialog.dismiss()
+        }
 
-    private fun updateBottomSheetLayout(layoutResId: Int) {
-
-        // 바뀐 레이아웃에 포함된 뷰들 다시 초기화
-        button1 = bottomSheetView.findViewById(R.id.btn_option1)
-        button2 = bottomSheetView.findViewById(R.id.btn_option2)
-        button3 = bottomSheetView.findViewById(R.id.btn_option3)
-        contentTextView = bottomSheetView.findViewById(R.id.tv_content)
     }
 
 
