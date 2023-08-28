@@ -22,6 +22,7 @@ class PetListActivity : AppCompatActivity() {
     private lateinit var button2: Button
     private lateinit var button3: Button
     private lateinit var contentTextView: TextView
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
     lateinit var binding: ActivityPetListBinding
 
@@ -88,14 +89,30 @@ class PetListActivity : AppCompatActivity() {
         button3 = bottomSheetView.findViewById(R.id.btn_option3)
         contentTextView = bottomSheetView.findViewById(R.id.tv_content)
 
+        bottomSheetDialog.setOnShowListener {
+            val sheetInternal = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheetBehavior = BottomSheetBehavior.from(sheetInternal!!)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            bottomSheetBehavior.isDraggable = false // 드래그로 바텀 시트를 올릴 수 없도록 설정
+        }
+
+        button1.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option1)
+        }
+
+
+        button2.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option2)
+        }
+
+        button3.setOnClickListener {
+            updateBottomSheetLayout(R.layout.bottom_sheet_layout_option3)
+        }
+
         bottomSheetDialog.show()
     }
 
     private fun updateBottomSheetLayout(layoutResId: Int) {
-        bottomSheetDialog.dismiss() // 기존 다이얼로그를 닫습니다.
-        bottomSheetView = layoutInflater.inflate(layoutResId, null)
-        bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(bottomSheetView)
 
         // 바뀐 레이아웃에 포함된 뷰들 다시 초기화
         button1 = bottomSheetView.findViewById(R.id.btn_option1)
