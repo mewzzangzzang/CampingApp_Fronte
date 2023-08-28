@@ -19,14 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
-
-
         <activity
             android:name=".PetListActivity"
             android:exported="true" />
         <activity
             android:name=".MyPageActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -73,33 +76,64 @@
             android:exported="true" />
         <activity
             android:name=".BoardUpdate"
-            android:exported="true" />
-        <activity
-            android:name=".BoardDetail"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Board">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Board" />
+        </activity>
         <activity
             android:name=".BoardDelete"
             android:exported="true" />
         <activity
+        android:name=".BoardDetail"
+        android:exported="true"
+        android:parentActivityName=".Board">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Board" />
+    </activity>
+
+        <activity
             android:name=".BoardWrite"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Board">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Board" />
+        </activity>
+
         <activity
             android:name=".Board"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name=".ChatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ChatMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ChatMainActivity" />
+        </activity>
         <activity
             android:name=".ChatMainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
         <activity
             android:name=".FacebookLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserUpdateActivity"
             android:exported="false" />
 
         <meta-data
@@ -185,10 +219,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>
