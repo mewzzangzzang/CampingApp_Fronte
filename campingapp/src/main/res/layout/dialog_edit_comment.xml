@@ -1,0 +1,45 @@
+<!-- res/layout/dialog_edit_comment.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="댓글 수정"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:textSize="16sp" />
+
+    <!-- 버튼들을 가로로 나열하는 Horizontal LinearLayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <!-- 확인 버튼 -->
+        <Button
+            android:id="@+id/btnEditCommentConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="확인"
+            android:layout_marginEnd="4dp" />
+
+        <!-- 취소 버튼 -->
+        <Button
+            android:id="@+id/btnEditCommentCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"
+            android:layout_marginStart="4dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,6 +4,7 @@ package com.camp.campingapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 
 class AuthActivity : AppCompatActivity() {
@@ -220,7 +222,20 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
         }
-    }
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }//oncreate닫음
+
+
+        // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            if (item.itemId == android.R.id.home) {
+                onBackPressed() // 이전 화면으로 돌아가기
+                return true
+            }
+            return super.onOptionsItemSelected(item)
+        }
+
     private fun signOut() {
         // [START auth_sign_out]
         Firebase.auth.signOut()
@@ -231,8 +246,10 @@ class AuthActivity : AppCompatActivity() {
 
 
 
-    private fun saveUser(){
+    private fun saveUser() {
+        val uid = MyApplication.auth.currentUser?.uid ?: ""
         val data = mapOf(
+            "uid" to uid,
             "email" to binding.authEmailEditView.text.toString(),
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authUsernameEditView.text.toString(),
@@ -241,12 +258,15 @@ class AuthActivity : AppCompatActivity() {
         )
         MyApplication.db.collection("user")
             .add(data)
-            .addOnFailureListener{
-                Log.d("kkang", "data save error", it)
+            .addOnFailureListener {
+                Log.d("khs", "data save error", it)
             }
     }
-    private fun saveHost(){
+
+    private fun saveHost() {
+        val uid = MyApplication.auth.currentUser?.uid ?: ""
         val data = mapOf(
+            "uid" to uid,
             "email" to binding.authEmailEditView.text.toString(),
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authHostUsernameEditView.text.toString(),
@@ -256,8 +276,24 @@ class AuthActivity : AppCompatActivity() {
         )
         MyApplication.db.collection("host")
             .add(data)
+            .addOnFailureListener {
+                Log.d("khs", "data save error", it)
+            }
+    }
+
+    private fun updateUser(uid: String) {
+        val data = mapOf(
+            "email" to binding.authEmailEditView.text.toString(),
+            "password" to binding.authPasswordEditView.text.toString(),
+            "username" to binding.authUsernameEditView.text.toString(),
+            "address" to binding.authAddressEditView.text.toString(),
+            "tel" to binding.authTelEditView.text.toString()
+        )
+        MyApplication.db.collection("user")
+            .document(uid) // 해당 uid를 가진 문서를 찾음
+            .set(data, SetOptions.merge()) // 데이터 업데이트
             .addOnFailureListener{
-                Log.d("kkang", "data save error", it)
+                Log.d("khs", "data update error", it)
             }
     }
 

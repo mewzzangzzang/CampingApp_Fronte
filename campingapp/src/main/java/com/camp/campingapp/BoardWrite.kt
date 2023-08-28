@@ -9,8 +9,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.camp.campingapp.MyApplication.Companion.db
-import com.camp.campingapp.MyApplication.Companion.storage
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,12 +16,11 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.util.Date
 
-
 class BoardWrite : AppCompatActivity() {
-    lateinit var binding: ActivityWriteBinding
-    lateinit var filePath: String
-    lateinit var db: FirebaseFirestore
-    lateinit var storage: FirebaseStorage
+    private lateinit var binding: ActivityWriteBinding
+    private lateinit var filePath: String
+    private lateinit var db: FirebaseFirestore
+    private lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +30,17 @@ class BoardWrite : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
+        // MyApplication.username을 가져와서 username TextView에 설정
+        val loggedInUsername = MyApplication.userData?.username
+        if (loggedInUsername != null) {
+            binding.username.text = loggedInUsername
+        } else {
+            binding.username.text = "비회원"
+        }
+
         binding.postbtn.setOnClickListener {
             // Save the data including username
-            saveStore()
-            finish()
+            saveBoardData()
         }
 
         binding.upload.setOnClickListener {
@@ -48,71 +52,89 @@ class BoardWrite : AppCompatActivity() {
 
     private val requestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode === android.app.Activity.RESULT_OK) {
-            Glide
-                .with(applicationContext)
-                .load(it.data?.data)
-                .apply(RequestOptions().override(250, 200))
-                .centerCrop()
-                .into(binding.imageView)
-            val cursor = contentResolver.query(
-                it.data?.data as Uri,
-                arrayOf<String>(MediaStore.Images.Media.DATA), null, null, null
-            )
-            cursor?.moveToFirst().let {
-                filePath = cursor?.getString(0) as String
+    ) { result ->
+        if (result.resultCode == android.app.Activity.RESULT_OK) {
+            val selectedImageUri = result.data?.data
+            selectedImageUri?.let {
+                filePath = getRealPathFromUri(it)
+                loadImageToImageView(it)
             }
         }
     }
 
-    private fun saveStore() {
-        // Get the username from your authentication system
-        val username = "User123" // Replace with actual username retrieval
+    private fun getRealPathFromUri(uri: Uri): String {
+        val cursor = contentResolver.query(
+            uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null
+        )
+        cursor?.use {
+            it.moveToFirst()
+            return it.getString(it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+        }
+        return ""
+    }
 
-        val data = mapOf(
+    private fun loadImageToImageView(imageUri: Uri) {
+        Glide.with(applicationContext)
+            .load(imageUri)
+            .apply(RequestOptions().override(250, 200))
+            .centerCrop()
+            .into(binding.imageView)
+    }
+
+    private fun saveBoardData() {
+        val username = MyApplication.userData?.username ?: ""
+
+        val boardData = mapOf(
             "title" to binding.title.text.toString(),
             "content" to binding.addEditView.text.toString(),
             "date" to dateToString(Date()),
-            "username" to username // Add username to data
+            "username" to username
         )
 
         db.collection("Boards")
-            .add(data)
+            .add(boardData)
             .addOnSuccessListener { documentReference ->
                 val docId = documentReference.id
-                uploadImage(docId)
+                uploadImageToStorage(docId)
             }
             .addOnFailureListener {
-                Toast.makeText(this, "error!!", Toast.LENGTH_SHORT).show()
+                showToast("Error saving board data")
             }
     }
-    private fun uploadImage(docId: String) {
+
+    private fun uploadImageToStorage(docId: String) {
         val storageRef = storage.reference
         val imgRef = storageRef.child("images/${docId}.jpg")
-
         val file = Uri.fromFile(File(filePath))
+
         imgRef.putFile(file)
             .addOnSuccessListener {
                 imgRef.downloadUrl.addOnSuccessListener { uri ->
-                    // 업로드된 이미지의 다운로드 URL을 Firestore에 업데이트합니다.
-                    db.collection("Boards").document(docId)
-                        .update("imageUrl", uri.toString())
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "upload ok", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "image URL update fail", Toast.LENGTH_SHORT).show()
-                        }
+                    updateImageUrlInFirestore(docId, uri.toString())
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "upload fail", Toast.LENGTH_SHORT).show()
+                showToast("Image upload failed")
             }
     }
 
+    private fun updateImageUrlInFirestore(docId: String, imageUrl: String) {
+        db.collection("Boards").document(docId)
+            .update("imageUrl", imageUrl)
+            .addOnSuccessListener {
+                showToastAndFinish("Upload successful")
+            }
+            .addOnFailureListener {
+                showToast("Image URL update failed")
+            }
+    }
 
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showToastAndFinish(message: String) {
+        showToast(message)
+        finish()
+    }
 }
-
-
