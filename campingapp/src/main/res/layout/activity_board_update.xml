@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:fillViewport="true">
 
-        <!--콘텐트 전체 리니어-->
+        <!--컨텐츠 전체 리니어-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:background="#eeeeee"
                 android:padding="16dp"
-                android:text="내용입니다." />
+                android:text="내용입니다."/>
 
             <!--전체 컨텐츠 닫는 리니어-->
         </LinearLayout>

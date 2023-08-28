@@ -5,13 +5,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.camp.campingapp.MyApplication.Companion.db
+import com.camp.campingapp.MyApplication.Companion.storage
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -42,6 +46,10 @@ class BoardWrite : AppCompatActivity() {
         binding.postbtn.setOnClickListener {
             // Save the data including username
             saveBoardData()
+            var snackbar = Snackbar.make(binding.postbtn,"글이 작성 되었습니다",Snackbar.LENGTH_SHORT)
+            snackbar.show()
+
+
         }
 
         binding.upload.setOnClickListener {

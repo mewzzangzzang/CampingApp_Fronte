@@ -11,18 +11,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
-
         <!-- 사용자 이름 표시 -->
+
         <TextView
             android:id="@+id/userNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="작성자"
             android:textColor="#333333"
             android:textSize="14sp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
         <!-- 게시글 제목 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
         <TextView
             android:id="@+id/BoardTitle"
             android:layout_width="match_parent"
@@ -30,66 +35,30 @@
             android:text="제목입니다."
             android:textSize="18sp"
             android:textColor="#333333"
-            android:paddingBottom="8dp" />
+            android:padding="8dp" />
 
-        <!-- 작성일입니다 -->
+        <!-- 작성일입니다 작성자 옆으로 이사해야함 -->
+
         <TextView
             android:id="@+id/BoardDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="작성일입니다."
-            android:textSize="14sp"
+            android:paddingBottom="16dp"
+            android:layout_marginStart="180dp"
+            android:padding="8dp"
+            android:text="2023-08-28"
             android:textColor="#666666"
-            android:paddingBottom="16dp" />
+            android:textSize="14sp" />
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/line"
-            android:layout_marginBottom="7dp" />
+            android:src="@drawable/line_bold_gr"
+            android:layout_marginBottom="7dp"/>
 
-        <!-- 수정, 삭제 버튼 리니어 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp">
-
-                <Button
-                    android:id="@+id/BoardModify"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="수정"
-                    android:textColor="#FFFFFF"
-                    android:background="#009688"
-                    android:layout_marginEnd="8dp" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp">
-
-                <Button
-                    android:id="@+id/BoardDelete"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="삭제"
-                    android:textColor="#FFFFFF"
-                    android:background="#009688"
-                    android:layout_marginStart="8dp" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
 
         <!-- 게시글 이미지 -->
         <androidx.cardview.widget.CardView
@@ -105,8 +74,8 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/upload"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
-
+                android:layout_marginBottom="16dp"
+                />
         </androidx.cardview.widget.CardView>
 
         <!-- 작성된 게시글 내용 -->
@@ -128,6 +97,40 @@
 
         </androidx.cardview.widget.CardView>
 
+        <ImageView
+            android:layout_width="377dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/line_bold_gr" />
+
+        <!-- 수정, 삭제 버튼 리니어 -->
+<!--       작성자 옆에 이사-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/BoardModify"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="수정"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#009688"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="8dp"
+                />
+
+            <Button
+                android:id="@+id/BoardDelete"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#009688"
+                android:text="삭제"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
         <!-- 댓글 -->
         <TextView
             android:id="@+id/BoardCommentLabel"
@@ -155,6 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp">
+
                 <LinearLayout
                     android:id="@+id/comment_layout"
                     android:layout_width="match_parent"
@@ -201,11 +205,9 @@
                             android:paddingEnd="16dp" />
 
                     </androidx.cardview.widget.CardView>
-
                 </LinearLayout>
                 <!-- 댓글작성 레이아웃 닫음 -->
             </androidx.cardview.widget.CardView>
-
         </androidx.cardview.widget.CardView>
 
         <!-- 보드 전체 레이아웃 닫아요 -->
