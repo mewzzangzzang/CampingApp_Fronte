@@ -2,6 +2,7 @@ package com.camp.campingapp.retrofit
 
 import com.camp.campingapp.model.FesList
 import com.camp.campingapp.model.NaverReverseGeocodeResponse
+import com.camp.campingapp.model.PetList
 import com.camp.campingapp.model.ShopList
 import com.camp.campingapp.model.TourList
 import com.example.k0327_dum_test.model.campDoNmList
@@ -25,6 +26,12 @@ interface NetworkServiceDoNm {
 
     @GET("fes/fesAllList")
     fun GetFesList(): Call<List<FesList>>
+
+    @GET("camp/campPetSig/{donm}/{sigunguNm}")
+    fun petList(
+        @Path("donm") donm: String,
+        @Path("sigunguNm") sigunguNm: String
+    ): Call<List<PetList>>
 
 
 

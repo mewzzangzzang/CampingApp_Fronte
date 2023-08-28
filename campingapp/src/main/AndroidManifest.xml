@@ -20,8 +20,12 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PetListActivity"
+            android:exported="true" />
+        <activity
             android:name=".MyPageActivity"
             android:exported="true" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -41,9 +45,9 @@
             android:name=".FesActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".ShopDetailActivity"
@@ -53,7 +57,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ShopActivity" />
         </activity>
-
         <activity
             android:name=".ShopActivity"
             android:exported="true" />
@@ -147,16 +150,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".TourDetailActivity"
             android:exported="false"
             android:parentActivityName=".TourActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".TourActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TourActivity" />
         </activity>
-
         <activity
             android:name=".DoNmDetailActivity"
             android:exported="false" />
@@ -174,10 +175,11 @@
         </activity>
         <activity
             android:name=".AuthActivity"
-            android:exported="true" android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".LoginActivity"
