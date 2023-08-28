@@ -16,19 +16,19 @@ import java.text.SimpleDateFormat
 import android.widget.EditText
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 
 class BoardDetail : AppCompatActivity() {
     private lateinit var binding: ActivityBoardDetailBinding
     private lateinit var commentAdapter: CommentAdapter
     private lateinit var docId: String
-    private lateinit var commentList: MutableList<Comment>
-
+    private lateinit var commentList: MutableMap<String, Comment>
     private lateinit var database: DatabaseReference
 
     data class Comment(
-        val comment: String = "",
-        val time: String = "",
-        val username: String = ""
+        var comment: String = "",
+        var time: String = "",
+        var username: String = ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +83,7 @@ class BoardDetail : AppCompatActivity() {
             if (docId.isNotEmpty() && commentText.isNotBlank()) {
                 val commentData = Comment(
                     commentText,
-                    SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
+                    "", // Firebase 서버의 Timestamp 값을 사용하기 때문에 빈 문자열로 설정
                     MyApplication.userData?.username ?: ""
                 )
                 addCommentToDatabase(docId, commentData)
@@ -93,44 +93,46 @@ class BoardDetail : AppCompatActivity() {
     }
 
     private fun addCommentToDatabase(docId: String, comment: Comment) {
-        // 새로운 commentTime 생성
-        val commentTime = database.child("Boards").child(docId).child("Comments").push().key
+        val commentReference = database.child("Boards").child(docId).child("Comments").push()
 
-        // 데이터 추가
-        if (commentTime != null) {
-            database.child("Boards").child(docId).child("Comments").child(commentTime)
-                .setValue(comment)
-                .addOnSuccessListener {
-                    loadComments(docId)
-                }
-                .addOnFailureListener { exception ->
-                    Log.e("BoardDetail", "Error adding comment", exception)
-                }
-        }
+        val commentData = Comment(
+            comment.comment,
+            SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
+//            "", // Firebase 서버의 Timestamp 값을 사용하기 때문에 빈 문자열로 설정
+            MyApplication.userData?.username ?: ""
+        )
+
+        commentReference.setValue(commentData)
+            .addOnSuccessListener {
+                loadComments(docId)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("BoardDetail", "Error adding comment", exception)
+            }
     }
 
     private fun loadComments(docId: String) {
         database.child("Boards").child(docId).child("Comments")
             .get()
             .addOnSuccessListener { snapshot ->
-                val newCommentList = mutableListOf<Comment>()
+                val newCommentList = mutableMapOf<String, Comment>()
                 for (commentSnapshot in snapshot.children) {
                     val comment = commentSnapshot.getValue(Comment::class.java)
                     comment?.let {
-                        newCommentList.add(it)
+                        newCommentList[commentSnapshot.key!!] = it
                     }
                 }
                 commentList = newCommentList
 
                 commentAdapter = CommentAdapter(this, commentList,
-                    onEditClickListener = { position ->
-                        val selectedComment = commentList[position]
-                        showEditCommentDialog(docId, position, selectedComment.comment)
-                    },
-                    onDeleteClickListener = { position ->
-                        val selectedComment = commentList[position]
-                        showDeleteCommentDialog(docId, position)
-                    })
+                    onEditClickListener = { editPosition ->
+                        val selectedComment = commentList.values.elementAt(editPosition)
+                        val commentKey = commentList.keys.elementAt(editPosition)
+                        showEditCommentDialog(docId, commentKey, selectedComment.comment, editPosition)
+                    }
+                ) { deleteCommentKey ->
+                    showDeleteCommentDialog(docId, deleteCommentKey) // Changed parameter name
+                }
 
                 binding.commentRecyclerView.layoutManager = LinearLayoutManager(this)
                 binding.commentRecyclerView.adapter = commentAdapter
@@ -166,7 +168,7 @@ class BoardDetail : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showEditCommentDialog(docId: String, position: Int, comment: String) {
+    private fun showEditCommentDialog(docId: String, commentKey: String, comment: String, position: Int) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_edit_comment, null)
@@ -186,7 +188,7 @@ class BoardDetail : AppCompatActivity() {
             val editedComment = editTextComment.text.toString()
 
             // 수정 로직 구현
-            updateComment(docId, position, editedComment)
+            updateComment(docId, commentKey, editedComment)
 
             // 다이얼로그 닫기
             alertDialog.dismiss()
@@ -202,13 +204,13 @@ class BoardDetail : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun showDeleteCommentDialog(docId: String, position: Int) {
+    private fun showDeleteCommentDialog(docId: String, commentKey: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setTitle("댓글 삭제")
         dialogBuilder.setMessage("이 댓글을 삭제하시겠습니까?")
         dialogBuilder.setPositiveButton("삭제") { _, _ ->
             // 삭제 로직 구현
-            deleteComment(docId, position)
+            deleteComment(docId, commentKey)
         }
         dialogBuilder.setNegativeButton("취소") { _, _ ->
             // 취소 버튼 클릭 시 아무 작업 없음
@@ -217,14 +219,13 @@ class BoardDetail : AppCompatActivity() {
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
     }
-
-    private fun updateComment(docId: String, commentTime: Int, editedComment: String) {
+    private fun updateComment(docId: String, commentKey: String, editedComment: String) {
         val commentData = Comment(
             editedComment,
             SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
             MyApplication.userData?.username ?: ""
         )
-        database.child("Boards").child(docId).child("Comments").child(commentTime.toString())
+        database.child("Boards").child(docId).child("Comments").child(commentKey)
             .setValue(commentData)
             .addOnSuccessListener {
                 loadComments(docId)
@@ -234,8 +235,8 @@ class BoardDetail : AppCompatActivity() {
             }
     }
 
-    private fun deleteComment(docId: String, commentTime: Int) {
-        database.child("Boards").child(docId).child("Comments").child(commentTime.toString())
+    private fun deleteComment(docId: String, commentKey: String) {
+        database.child("Boards").child(docId).child("Comments").child(commentKey)
             .removeValue()
             .addOnSuccessListener {
                 loadComments(docId)

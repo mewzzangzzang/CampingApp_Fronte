@@ -9,9 +9,9 @@ import com.camp.campingapp.databinding.ItemCommentBinding
 
 class CommentAdapter(
     val context: Context,
-    val itemList: MutableList<BoardDetail.Comment>, // Change to MutableList
+    val itemList: MutableMap<String, BoardDetail.Comment>,
     val onEditClickListener: (position: Int) -> Unit,
-    val onDeleteClickListener: (position: Int) -> Unit
+    val onDeleteClickListener: (commentKey: String) -> Unit // Updated parameter name
 ) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,18 +20,19 @@ class CommentAdapter(
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val binding = holder.binding
-        val commentItem = itemList[position]
+        val commentKey = itemList.keys.elementAt(position)
+        val commentItem = itemList[commentKey]
 
-        binding.CommentDate.text = commentItem.time
-        binding.Comment.text = commentItem.comment
-        binding.CommentUsername.text = commentItem.username // Set the username TextView
+        binding.CommentDate.text = commentItem?.time
+        binding.Comment.text = commentItem?.comment
+        binding.CommentUsername.text = commentItem?.username
 
         binding.editButton.setOnClickListener {
-            onEditClickListener(position) // Call the edit click listener
+            onEditClickListener(position)
         }
 
         binding.deleteButton.setOnClickListener {
-            onDeleteClickListener(position) // Call the delete click listener
+            onDeleteClickListener(commentKey) // Call the delete click listener with the commentKey
         }
     }
 
@@ -39,19 +40,19 @@ class CommentAdapter(
         return itemList.size
     }
 
-    private fun deleteComment(position: Int) {
-        itemList.removeAt(position) // Remove the comment from the list
-        notifyItemRemoved(position) // Notify the adapter that an item has been removed
-    }
-
     inner class CommentViewHolder(val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         // ...
 
         init {
             binding.deleteButton.setOnClickListener {
-                onDeleteClickListener(adapterPosition) // Call the delete click listener
-                deleteComment(adapterPosition) // Delete the comment and update RecyclerView
+                onDeleteClickListener(itemList.keys.elementAt(adapterPosition)) // Call the delete click listener with the commentKey
+                deleteComment(itemList.keys.elementAt(adapterPosition)) // Delete the comment and update RecyclerView
             }
         }
+    }
+
+    private fun deleteComment(commentKey: String) {
+        itemList.remove(commentKey) // Remove the comment from the map
+        notifyDataSetChanged() // Notify the adapter that data has changed
     }
 }
