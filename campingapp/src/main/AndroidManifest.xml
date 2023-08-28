@@ -19,9 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".UserUpdateActivity"
-            android:exported="false" />
+
+
         <activity
             android:name=".MyPageActivity"
             android:exported="true" />
@@ -95,6 +94,9 @@
             android:exported="true" />
         <activity
             android:name=".FacebookLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserUpdateActivity"
             android:exported="false" />
 
         <meta-data
