@@ -18,14 +18,14 @@ import com.google.firebase.ktx.Firebase
 
 class MyPageActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
     lateinit var binding: ActivityMyPageBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMyPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
 
         if (MyApplication.checkAuth()) {
@@ -58,13 +58,11 @@ class MyPageActivity : AppCompatActivity() {
         }
 
         binding.deleteButton.setOnClickListener {
-            Delete()
-        // ActionBar에 뒤로가기 버튼 활성화
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
-
-    }//oncreate
+            deleteUser()
+            Toast.makeText(baseContext, "탈퇴 되었습니다",Toast.LENGTH_SHORT ).show()
+            val intent = Intent(this@MyPageActivity, MainActivity::class.java)
+            startActivity(intent)
+        }//oncreate
 
 
 
@@ -74,10 +72,10 @@ class MyPageActivity : AppCompatActivity() {
                 logoutBtn.visibility = View.VISIBLE
             }
         } else if (mode === "logout") {
-
         }
-
     }
+
+
 }
     // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -110,37 +108,36 @@ class MyPageActivity : AppCompatActivity() {
         // [END send_password_reset]
     }
 
-    private fun Delete(){
+    private fun deleteUser(){
         val user = Firebase.auth.currentUser!!
         user.delete()
-            .addOnCompleteListener{ task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(baseContext, "탈퇴 되었습니다 감사합니다", Toast.LENGTH_SHORT).show()
+                    Log.d(TAG, "User account deleted.")
                 }
                 changeVisibility("logout")
-                Toast.makeText(baseContext, "logout", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@MyPageActivity, MainActivity::class.java)
                 startActivity(intent)
             }
     }
 
-    fun getUserProfile() {
-        // [START get_user_profile]
-        val user = Firebase.auth.currentUser
-        user?.let {
-            // Name, email address, and profile photo Url
-            val name = it.displayName
-            val email = it.email
-            val photoUrl = it.photoUrl
-
-            // Check if user's email is verified
-            val emailVerified = it.isEmailVerified
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            val uid = it.uid
-        }
-        // [END get_user_profile]
-    }
+//    fun getUserProfile() {
+//        // [START get_user_profile]
+//        val user = Firebase.auth.currentUser
+//        user?.let {
+//            // Name, email address, and profile photo Url
+//            val name = it.displayName
+//            val email = it.email
+//            val photoUrl = it.photoUrl
+//
+//            // Check if user's email is verified
+//            val emailVerified = it.isEmailVerified
+//
+//            // The user's ID, unique to the Firebase project. Do NOT use this value to
+//            // authenticate with your backend server, if you have one. Use
+//            // FirebaseUser.getIdToken() instead.
+//            val uid = it.uid
+//        }
+//        // [END get_user_profile]
+//    }
 }
