@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -63,23 +62,23 @@
         android:hint="이름"
         android:inputType="text"
         android:visibility="visible" />
-    <EditText
-        android:id="@+id/authHostUsernameEditView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="이름"
-        android:inputType="text"
-        android:visibility="visible" />
+<!--    <EditText-->
+<!--        android:id="@+id/authHostUsernameEditView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:hint="이름"-->
+<!--        android:inputType="text"-->
+<!--        android:visibility="visible" />-->
 
-    <EditText
-        android:id="@+id/authHostCampNameEditView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="캠핑장이름"
-        android:inputType="text"
-        android:visibility="visible" />
+<!--    <EditText-->
+<!--        android:id="@+id/authHostCampNameEditView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:hint="캠핑장이름"-->
+<!--        android:inputType="text"-->
+<!--        android:visibility="visible" />-->
 
 <!--    주소-->
     <EditText
@@ -91,14 +90,14 @@
         android:inputType="text"
         android:visibility="visible" />
 
-    <EditText
-        android:id="@+id/authHostAddressEditView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="캠핑장 주소"
-        android:inputType="text"
-        android:visibility="visible" />
+<!--    <EditText-->
+<!--        android:id="@+id/authHostAddressEditView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:hint="캠핑장 주소"-->
+<!--        android:inputType="text"-->
+<!--        android:visibility="visible" />-->
 
 <!--    전화번호-->
     <EditText
@@ -110,14 +109,14 @@
         android:inputType="text"
         android:visibility="visible" />
 
-    <EditText
-        android:id="@+id/authHostTelEditView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="전화번호"
-        android:inputType="text"
-        android:visibility="visible" />
+<!--    <EditText-->
+<!--        android:id="@+id/authHostTelEditView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:hint="전화번호"-->
+<!--        android:inputType="text"-->
+<!--        android:visibility="visible" />-->
 
     <Button
         android:id="@+id/loginBtn"
@@ -140,26 +139,26 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:visibility="visible" />
-    <Button
-        android:id="@+id/hostSignBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:text="호스트 가입"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
+<!--    <Button-->
+<!--        android:id="@+id/hostSignBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:backgroundTint="#00BCD4"-->
+<!--        android:text="호스트 가입"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="visible" />-->
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignBtn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/googleSignBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:backgroundTint="#00BCD4"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="visible" />-->
 
 
     <TextView
@@ -176,52 +175,51 @@
         android:orientation="horizontal">
 
 
-    <Button
-        android:id="@+id/goSignInBtn"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:visibility="visible"
-        android:backgroundTint="#F44336"
-        android:text="이메일"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        />
-
-    <Button
-        android:id="@+id/goHostSignBtn"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:backgroundTint="#F44336"
-        android:text="호스트"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
-
         <Button
-            android:id="@+id/goGoogleSignInBtn"
-            android:layout_width="90dp"
+            android:id="@+id/goSignInBtn"
+            android:layout_width="334dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:backgroundTint="#F44336"
-            android:text="구글"
+            android:text="이메일"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:visibility="visible" />
 
+<!--    <Button-->
+<!--        android:id="@+id/goHostSignBtn"-->
+<!--        android:layout_width="90dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:backgroundTint="#F44336"-->
+<!--        android:text="호스트"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="visible" />-->
+
+
+<!--        <Button-->
+<!--            android:id="@+id/goGoogleSignInBtn"-->
+<!--            android:layout_width="90dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:backgroundTint="#F44336"-->
+<!--            android:text="구글"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:visibility="visible" />-->
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/authSNS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="구글 계정이나 sns계정이 있으실 경우"/>
+<!--    <TextView-->
+<!--        android:id="@+id/authSNS"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="구글 계정이나 sns계정이 있으실 경우"/>-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -230,26 +228,26 @@
         >
 
 
-        <ImageView
-            android:id="@+id/googleLoginBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="10dp"
+<!--        <ImageView-->
+<!--            android:id="@+id/googleLoginBtn"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginLeft="80dp"-->
+<!--            android:layout_marginTop="10dp"-->
 
-            android:src="@drawable/ic_google_icon"
-            android:visibility="visible" />
+<!--            android:src="@drawable/ic_google_icon"-->
+<!--            android:visibility="visible" />-->
 
-        <ImageView
-            android:id="@+id/facebookLoginBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/facebook_logo_icon"
+<!--        <ImageView-->
+<!--            android:id="@+id/facebookLoginBtn"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginLeft="50dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:src="@drawable/facebook_logo_icon"-->
 
-            android:textStyle="bold"
-            android:visibility="visible" />
+<!--            android:textStyle="bold"-->
+<!--            android:visibility="visible" />-->
 
     </LinearLayout>
 
