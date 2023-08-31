@@ -1,5 +1,6 @@
 package com.camp.campingapp
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.camp.campingapp.BoardWrite
-import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.ActivityBoardBinding
 import com.camp.campingapp.model.BoardData
 import com.camp.campingapp.recycler.BoardAdapter
@@ -16,6 +15,7 @@ import com.camp.campingapp.util.myCheckPermission
 
 class Board : AppCompatActivity() {
     private lateinit var binding: ActivityBoardBinding
+    private val REQUEST_CODE_ADD_BOARD = 123 // 임의의 요청 코드
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,24 +54,8 @@ class Board : AppCompatActivity() {
         }
 
         binding.add.setOnClickListener {
-            startActivity(Intent(this, BoardWrite::class.java))
+            startActivityForResult(Intent(this, BoardWrite::class.java), REQUEST_CODE_ADD_BOARD)
         }
-
-        // Firestore에서 데이터를 가져와서 어댑터의 데이터 갱신
-        MyApplication.db.collection("Boards")
-            .get()
-            .addOnSuccessListener { result ->
-                val itemList = result.map { document ->
-                    document.toObject(BoardData::class.java).apply {
-                        docId = document.id
-                    }
-                }
-                val adapter = BoardAdapter(this, itemList)
-                binding.boardRecyclerView.adapter = adapter
-            }
-            .addOnFailureListener { exception ->
-                showToast("서버 데이터 획득 실패")
-            }
     }
 
     // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
@@ -105,6 +89,28 @@ class Board : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 showToast("서버 데이터 획득 실패")
             }
+    }
+
+    // 결과 코드 처리
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_ADD_BOARD && resultCode == Activity.RESULT_OK) {
+            // 게시글 리스트를 다시 가져와서 어댑터 업데이트
+            MyApplication.db.collection("Boards")
+                .get()
+                .addOnSuccessListener { result ->
+                    val itemList = result.map { document ->
+                        document.toObject(BoardData::class.java).apply {
+                            docId = document.id
+                        }
+                    }
+                    val adapter = binding.boardRecyclerView.adapter as BoardAdapter
+                    adapter.updateData(itemList) // 어댑터의 데이터 갱신
+                }
+                .addOnFailureListener { exception ->
+                    showToast("서버 데이터 획득 실패")
+                }
+        }
     }
 
     private fun showToast(message: String) {

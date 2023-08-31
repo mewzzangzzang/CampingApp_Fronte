@@ -49,6 +49,8 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
         val data = filteredItemList[position]
 
+        Log.d("BoardAdapter", "Binding data at position $position: Title - ${data.title}, Content - ${data.content}")
+
         with(holder.binding) {
             itemTitleView.text = data.title
             itemContentView.text = data.content

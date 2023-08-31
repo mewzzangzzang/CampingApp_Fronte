@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#FAFAFA">
 
@@ -33,25 +33,26 @@
     </LinearLayout>
 
     <!-- 보드 리사이클러 뷰 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/boardRecyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp" />
+        android:padding="8dp" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/boardRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="330dp"
-            android:layout_marginTop="630dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
             android:backgroundTint="#FF6A856B"
-            android:src="@drawable/write_wh"
-            app:maxImageSize="25dp" />
-    </LinearLayout>
-</RelativeLayout>
+            android:src="@drawable/write_wh" />
+
+    </FrameLayout>
+</LinearLayout>
