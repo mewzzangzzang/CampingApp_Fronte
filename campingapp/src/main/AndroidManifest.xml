@@ -20,15 +20,18 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ProfileUpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".PetListActivity"
             android:exported="true" />
         <activity
             android:name=".MyPageActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
 
         <uses-library
@@ -86,14 +89,13 @@
             android:name=".BoardDelete"
             android:exported="true" />
         <activity
-        android:name=".BoardDetail"
-        android:exported="true"
-        android:parentActivityName=".Board">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Board" />
-    </activity>
-
+            android:name=".BoardDetail"
+            android:exported="true"
+            android:parentActivityName=".Board">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Board" />
+        </activity>
         <activity
             android:name=".BoardWrite"
             android:exported="true"
@@ -102,7 +104,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Board" />
         </activity>
-
         <activity
             android:name=".Board"
             android:exported="true"
@@ -111,7 +112,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".ChatActivity"
             android:exported="true"
@@ -128,7 +128,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
