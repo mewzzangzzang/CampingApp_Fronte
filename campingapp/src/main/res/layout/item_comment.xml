@@ -5,13 +5,14 @@
     android:paddingTop="10dp"
     android:paddingRight="10dp"
     android:orientation="horizontal">
-
+<!--  댓글, 날짜, 작성자 레이아웃-->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
 
+<!--  날짜 , 유저네임 레이아웃   -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +22,8 @@
                 android:id="@+id/CommentUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="username"
                 android:textColor="#727272"
                 android:textSize="12sp" />
 
@@ -28,11 +31,13 @@
                 android:id="@+id/CommentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="300dp"
                 android:layout_marginLeft="10dp"
+                android:layout_gravity="right"
                 android:textColor="#727272"
                 android:textSize="12sp"
                 android:text="date" />
-
+<!--날짜 레이아웃 문 닫음-->
         </LinearLayout>
 
         <TextView
@@ -46,44 +51,57 @@
             android:textColor="#212121"
             android:textSize="14sp"
             android:text="content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="end"> <!-- 추가된 부분 -->
-
-        <Button
-            android:id="@+id/editButton"
+<!--댓글, 날짜, 작성자 레이아웃 문닫음-->
+        <!--    버튼레이아웃-->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수정"
-            android:textSize="12sp"
-            android:backgroundTint="#009688"
-            android:textColor="@android:color/white"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="2dp"
-            android:layout_gravity="end" />
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="end"> <!-- 추가된 부분 -->
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="삭제"
-            android:textSize="12sp"
-            android:backgroundTint="#FF5733"
-            android:textColor="@android:color/white"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:layout_gravity="end" />
+<!--            <Button-->
+<!--                android:id="@+id/editButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="수정"-->
+<!--                android:textSize="12sp"-->
+<!--                android:backgroundTint="#009688"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:paddingStart="8dp"-->
+<!--                android:paddingEnd="8dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginEnd="2dp"-->
+<!--                android:layout_gravity="end" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/deleteButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="삭제"-->
+<!--                android:textSize="12sp"-->
+<!--                android:backgroundTint="#FF5733"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:paddingStart="8dp"-->
+<!--                android:paddingEnd="8dp"-->
+<!--                android:layout_gravity="end" />-->
+            <TextView
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="수정"/>
+            <TextView
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="삭제"/>
+
+            <!--        버튼레이아웃 문닫음-->
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
