@@ -143,7 +143,11 @@ class BoardDetail : AppCompatActivity() {
                     onEditClickListener = { editPosition ->
                         val selectedComment = commentList.values.elementAt(editPosition)
                         val commentKey = commentList.keys.elementAt(editPosition)
-                        showEditCommentDialog(docId, commentKey, selectedComment.comment, editPosition)
+                        if (selectedComment.username == MyApplication.userData?.username) {
+                            showEditCommentDialog(docId, commentKey, selectedComment.comment, editPosition)
+                        } else {
+                            showToast("자신이 작성한 댓글만 수정할 수 있습니다.")
+                        }
                     }
                 ) { deleteCommentKey ->
                     showDeleteCommentDialog(docId, deleteCommentKey) // Changed parameter name
