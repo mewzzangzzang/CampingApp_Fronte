@@ -254,10 +254,12 @@ class AuthActivity : AppCompatActivity() {
             "password" to binding.authPasswordEditView.text.toString(),
             "username" to binding.authUsernameEditView.text.toString(),
             "address" to binding.authAddressEditView.text.toString(),
-            "tel" to binding.authTelEditView.text.toString()
+            "tel" to binding.authTelEditView.text.toString(),
+            "photo" to binding.authPhotoView.toString()
         )
         MyApplication.db.collection("user")
-            .add(data)
+            .document(uid).set(data)
+            .addOnSuccessListener { Log.d("khs", "add complete!!!!!!!") }
             .addOnFailureListener {
                 Log.d("khs", "data save error", it)
             }

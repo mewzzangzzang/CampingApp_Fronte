@@ -19,6 +19,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />
 
+    <ImageView
+        android:id="@+id/authPhotoView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="97dp"
+        android:src="@drawable/line_bold_gr"
+        app:layout_constraintBottom_toTopOf="@+id/et_registration_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="match_parent"

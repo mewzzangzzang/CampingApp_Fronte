@@ -46,6 +46,10 @@ class MyPageActivity : AppCompatActivity() {
 //        binding.userNameView.text = MyApplication.userData?.username ?: "Guest"
         binding.emailView.text=MyApplication.email
 
+        /*binding.profilechange.setOnClickListener {
+            val intent = Intent(this@MyPageActivity, ProfileUpdateActivity::class.java)
+            startActivity(intent)
+        }*/
 
         binding.updatePasswordBtn.setOnClickListener{
             var editTextNewPassword = EditText(this)
@@ -71,6 +75,7 @@ class MyPageActivity : AppCompatActivity() {
                 show()
             }
         }
+
 
         binding.deleteButton.setOnClickListener {
             AlertDialog.Builder(this).run{
