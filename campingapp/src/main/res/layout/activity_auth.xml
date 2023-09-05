@@ -25,7 +25,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="97dp"
-        android:src="@drawable/line_bold_gr"
+        android:src="@drawable/img"
         app:layout_constraintBottom_toTopOf="@+id/et_registration_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

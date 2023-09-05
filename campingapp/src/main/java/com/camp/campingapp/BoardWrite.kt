@@ -106,7 +106,6 @@ class BoardWrite : AppCompatActivity() {
             "date" to dateToString(Date()),
             "username" to username
         )
-
         db.collection("Boards")
             .add(boardData)
             .addOnSuccessListener { documentReference ->
