@@ -121,6 +121,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         }
+
+        binding.btnWeather.setOnClickListener {
+            val intent = Intent(this@MainActivity, WeatherActivity::class.java)
+            startActivity(intent)
+        }
 //        축제
         binding.btnmenu5.setOnClickListener {
             val intent = Intent(this@MainActivity, FesActivity::class.java)

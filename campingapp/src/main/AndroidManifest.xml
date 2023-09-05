@@ -107,6 +107,9 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".WeatherActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.firebase.message.default_notification_icon"
