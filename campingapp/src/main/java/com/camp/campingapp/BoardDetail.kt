@@ -1,28 +1,26 @@
 package com.camp.campingapp
 
-import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.camp.campingapp.databinding.ActivityBoardDetailBinding
 import com.camp.campingapp.recycler.CommentAdapter
-import java.text.SimpleDateFormat
-import android.widget.EditText
-import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-//import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class BoardDetail : AppCompatActivity() {
     private lateinit var binding: ActivityBoardDetailBinding
@@ -30,7 +28,7 @@ class BoardDetail : AppCompatActivity() {
     private lateinit var docId: String
     private lateinit var commentList: MutableMap<String, Comment>
     private lateinit var database: DatabaseReference
-    private lateinit var firestore: FirebaseFirestore // Firestore 레퍼런스 추가
+    private lateinit var firestore: FirebaseFirestore
 
     data class Comment(
         var comment: String = "",
@@ -39,7 +37,7 @@ class BoardDetail : AppCompatActivity() {
     )
 
     companion object {
-        const val DELETE_REQUEST_CODE = 123 // Define a request code
+        const val DELETE_REQUEST_CODE = 123
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,18 +45,31 @@ class BoardDetail : AppCompatActivity() {
         binding = ActivityBoardDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 게시글 데이터 및 작성자 정보 가져오기
         docId = intent.getStringExtra("DocId") ?: ""
-        val title = intent.getStringExtra("BoardTitle")
-        val content = intent.getStringExtra("BoardContent")
-        val date = intent.getStringExtra("BoardDate")
+        val title = intent.getStringExtra("BoardTitle") ?: ""
+        val content = intent.getStringExtra("BoardContent") ?: ""
+        val date = intent.getStringExtra("BoardDate") ?: ""
+        val authorUid = intent.getStringExtra("AuthorUid") ?: ""
+        val username = intent.getStringExtra("Username") ?: "" // 이 부분 추가
 
-        firestore = FirebaseFirestore.getInstance() // Firestore 레퍼런스 초기화
-
+        firestore = FirebaseFirestore.getInstance()
         binding.BoardTitle.text = title
         binding.BoardDate.text = date
         binding.BoardContent.text = content
 
-        binding.userNameTextView.text = MyApplication.userData?.username ?: "Guest"
+        // 현재 사용자 정보 가져오기
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = currentUser?.uid
+
+        // 작성자 정보와 현재 사용자 UID 비교하여 수정 및 삭제 버튼 표시 여부 결정
+        if (currentUserUid == authorUid) {
+            binding.BoardModify.visibility = View.VISIBLE
+            binding.BoardDelete.visibility = View.VISIBLE
+        } else {
+            binding.BoardModify.visibility = View.GONE
+            binding.BoardDelete.visibility = View.GONE
+        }
 
         database = FirebaseDatabase.getInstance().reference
 
@@ -108,6 +119,7 @@ class BoardDetail : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    // 뒤로 가기 버튼 클릭 시 액티비티 종료
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             onBackPressed()
@@ -121,7 +133,7 @@ class BoardDetail : AppCompatActivity() {
     }
 
     private fun deleteBoard(docId: String) {
-        val docRef = firestore.collection("Boards").document(docId) // Firestore 문서 레퍼런스 가져오기
+        val docRef = firestore.collection("Boards").document(docId)
 
         docRef.get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
@@ -129,9 +141,6 @@ class BoardDetail : AppCompatActivity() {
                     .addOnSuccessListener {
                         Log.d("BoardDetail", "Success deleting document: $docId")
                         showToast("게시글이 삭제되었습니다.")
-                        // 원하는 동작 수행 (예: 업데이트 UI 또는 리스트 갱신)
-
-                        // Board 액티비티로 돌아가기
                         val intent = Intent(this, Board::class.java)
                         startActivity(intent)
                         finish()
@@ -139,7 +148,6 @@ class BoardDetail : AppCompatActivity() {
                     .addOnFailureListener { exception ->
                         Log.e("BoardDetail", "Error deleting document: $docId", exception)
                         showToast("게시글 삭제 실패")
-                        // 원하는 동작 수행
                     }
             } else {
                 showToast("해당 게시글이 이미 삭제되었습니다.")
@@ -154,8 +162,8 @@ class BoardDetail : AppCompatActivity() {
 
         val commentData = Comment(
             comment.comment,
-            SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
-            MyApplication.userData?.username ?: ""
+            SimpleDateFormat("yyyy-MM-dd HH:mm").format(Date()),
+            comment.username
         )
 
         commentReference.setValue(commentData)
@@ -244,7 +252,7 @@ class BoardDetail : AppCompatActivity() {
     private fun updateComment(docId: String, commentKey: String, editedComment: String) {
         val commentData = Comment(
             editedComment,
-            SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
+            SimpleDateFormat("yyyy-MM-dd HH:mm").format(Date()),
             MyApplication.userData?.username ?: ""
         )
         database.child("Boards").child(docId).child("Comments").child(commentKey)
@@ -267,6 +275,4 @@ class BoardDetail : AppCompatActivity() {
                 Log.e("BoardDetail", "Error deleting comment", exception)
             }
     }
-
-
 }

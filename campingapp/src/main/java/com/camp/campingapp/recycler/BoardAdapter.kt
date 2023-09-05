@@ -49,13 +49,16 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
         val data = filteredItemList[position]
 
-        Log.d("BoardAdapter", "Binding data at position $position: Title - ${data.title}, Content - ${data.content}")
+        Log.d(
+            "BoardAdapter",
+            "Binding data at position $position: Title - ${data.title}, Content - ${data.content}"
+        )
 
         with(holder.binding) {
             itemTitleView.text = data.title
             itemContentView.text = data.content
             itemDateView.text = data.date
-            itemUsernameView.text = data.username
+            itemUsernameView.text = data.username // 이 부분 수정
 
             val imageUrl = data.imageUrl
             if (imageUrl != null) {
@@ -72,6 +75,7 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
                 putExtra("BoardContent", data.content)
                 putExtra("BoardDate", data.date)
                 putExtra("Comment", data.comment)
+                putExtra("Username", data.username)
             }
             context.startActivity(intent)
         }

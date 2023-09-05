@@ -7,5 +7,6 @@ class BoardData {
     var date: String? = null
     var comment: String? = null
     var imageUrl: String? = null
-    var username: String? = null // Add this line for username
+    var username1: String? = null // Add this line for username
+    val username: String? = null // 게시글 작성 시점의 작성자 username
 }
