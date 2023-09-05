@@ -107,7 +107,6 @@ class BoardWrite : AppCompatActivity() {
             "username" to username,
             "uid" to currentUserUid
         )
-
         db.collection("Boards")
             .add(boardData)
             .addOnSuccessListener { documentReference ->

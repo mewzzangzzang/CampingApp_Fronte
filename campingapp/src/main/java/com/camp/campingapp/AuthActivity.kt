@@ -1,18 +1,23 @@
 package com.camp.campingapp
 
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.camp.campingapp.MyApplication.Companion.rdb
 import com.camp.campingapp.databinding.ActivityAuthBinding
 import com.camp.campingapp.model.User
-import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -22,12 +27,20 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
+import java.text.SimpleDateFormat
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var filePath: String
+    private lateinit var db: FirebaseFirestore
+    private lateinit var storage: FirebaseStorage
     lateinit var binding: ActivityAuthBinding
+    private lateinit var requestLauncher: ActivityResultLauncher<Intent>
 
 //    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +48,8 @@ class AuthActivity : AppCompatActivity() {
         binding= ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        db = FirebaseFirestore.getInstance()
+         storage = FirebaseStorage.getInstance()
         auth= Firebase.auth
 
 
@@ -54,33 +68,54 @@ class AuthActivity : AppCompatActivity() {
         }
 
         //인텐트로 후처리하는 코드
-        val requestLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult())
-        {
-            //구글 로그인 결과 처리...........................
-            //it.data구글로 인증된 정보가 들어있음
-            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            try {
-                val account = task.getResult(ApiException::class.java)!!
-                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                //인증객체,인증수단(등록된 이메일,구글인증)
-                MyApplication.auth.signInWithCredential(credential)
-                    //구글 인증으로 성공 후 실행할 로직,
-                    .addOnCompleteListener(this){ task ->
-                        if(task.isSuccessful){
+//        val requestLauncher = registerForActivityResult(
+//            ActivityResultContracts.StartActivityForResult())
+//        {
+//            //구글 로그인 결과 처리...........................
+//            //it.data구글로 인증된 정보가 들어있음
+//            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+//            try {
+//                val account = task.getResult(ApiException::class.java)!!
+//                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+//                //인증객체,인증수단(등록된 이메일,구글인증)
+//                MyApplication.auth.signInWithCredential(credential)
+//                    //구글 인증으로 성공 후 실행할 로직,
+//                    .addOnCompleteListener(this){ task ->
+//                        if(task.isSuccessful){
+//
+//                            //구글인증으로 된 이메일의 현재앱의 로그인된 email 재할당하는 부분
+//                            MyApplication.email = account.email
+//                            //changeVisibility각모드마다 보여주는 뷰가 다름
+//
+//
+//                            changeVisibility("login")
+//                        }else {
+//                            changeVisibility("logout")
+//                        }
+//                    }
+//            }catch (e: ApiException){
+//                changeVisibility("logout")
+//            }
+//        }
 
-                            //구글인증으로 된 이메일의 현재앱의 로그인된 email 재할당하는 부분
-                            MyApplication.email = account.email
-                            //changeVisibility각모드마다 보여주는 뷰가 다름
+        binding.authPhotoView.setOnClickListener{
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                "image/*")
 
+            requestLauncher.launch(intent)
+        }
 
-                            changeVisibility("login")
-                        }else {
-                            changeVisibility("logout")
-                        }
-                    }
-            }catch (e: ApiException){
-                changeVisibility("logout")
+        requestLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                selectedImageUri?.let {
+                    filePath = getRealPathFromUri(it)
+                    loadImageToImageView(it)
+                }
             }
         }
 
@@ -222,6 +257,11 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
         }
+
+
+
+
+
         // ActionBar에 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }//oncreate닫음
@@ -236,15 +276,64 @@ class AuthActivity : AppCompatActivity() {
             return super.onOptionsItemSelected(item)
         }
 
+    private fun getRealPathFromUri(uri: Uri): String {
+        val cursor = contentResolver.query(
+            uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null
+        )
+        cursor?.use {
+            it.moveToFirst()
+            return it.getString(it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+        }
+        return ""
+    }
+    private fun loadImageToImageView(imageUri: Uri) {
+        Glide.with(applicationContext)
+            .load(imageUri)
+            .apply(RequestOptions().override(250, 200))
+            .centerCrop()
+            .into(binding.authPhotoView)
+    }
+
     private fun signOut() {
         // [START auth_sign_out]
         Firebase.auth.signOut()
         // [END auth_sign_out]
     }
 
+    private fun uploadImage(docId: String, imageUrl: String){
+        db.collection("user").document(docId)
+            .update("imageUrl", imageUrl)
+            .addOnSuccessListener {
+                Toast.makeText(this, "save ok..", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "save fail..", Toast.LENGTH_SHORT).show()
+            }
 
-
-
+    }
+    private fun ImageInFirestore(docId: String) {
+        val storageRef = storage.reference
+        val imgRef = storageRef.child("images/${docId}.jpg")
+        val file = Uri.fromFile(File(filePath))
+        imgRef.putFile(file)
+            .addOnSuccessListener {
+                imgRef.downloadUrl.addOnSuccessListener { uri ->
+                    uploadImage(docId, uri.toString())
+                }
+            }
+            .addOnFailureListener {
+                Log.d("khs", "data save error", it)
+            }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+    private fun showToastAndFinish(message: String) {
+        showToast(message)
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
 
     private fun saveUser() {
         val uid = MyApplication.auth.currentUser?.uid ?: ""
@@ -255,11 +344,12 @@ class AuthActivity : AppCompatActivity() {
             "username" to binding.authUsernameEditView.text.toString(),
             "address" to binding.authAddressEditView.text.toString(),
             "tel" to binding.authTelEditView.text.toString(),
-            "photo" to binding.authPhotoView.toString()
         )
-        MyApplication.db.collection("user")
+        db.collection("user")
             .document(uid).set(data)
-            .addOnSuccessListener { Log.d("khs", "add complete!!!!!!!") }
+            .addOnSuccessListener { uri->
+                ImageInFirestore(uid)
+            }
             .addOnFailureListener {
                 Log.d("khs", "data save error", it)
             }
@@ -348,6 +438,7 @@ class AuthActivity : AppCompatActivity() {
                 signBtn.visibility = View.GONE
                 authTelEditView.visibility=View.GONE
                 loginBtn.visibility = View.VISIBLE
+                authPhotoView.visibility=View.GONE
 //              authTypeEditView.visibility = View.GONE
 //                facebookLoginBtn.visibility=View.VISIBLE
 //                goHostSignBtn.visibility=View.VISIBLE
@@ -374,6 +465,7 @@ class AuthActivity : AppCompatActivity() {
                 authPasswordEditView.visibility = View.VISIBLE
                 authAddressEditView.visibility=View.VISIBLE
                 authUsernameEditView.visibility=View.VISIBLE
+                authPhotoView.visibility=View.VISIBLE
 //                authHostUsernameEditView.visibility=View.GONE
 //                authHostTelEditView.visibility=View.GONE
 //                authHostAddressEditView.visibility=View.GONE
