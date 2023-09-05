@@ -31,6 +31,21 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+    }//oncreate
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        startActivity(Intent(this, AuthActivity::class.java))
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStart() {
@@ -51,10 +66,10 @@ class LoginActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, AuthActivity::class.java))
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        startActivity(Intent(this, AuthActivity::class.java))
+//        return super.onOptionsItemSelected(item)
+//    }
 
     private fun makeRecyclerView(){
         MyApplication.db.collection("hostList")

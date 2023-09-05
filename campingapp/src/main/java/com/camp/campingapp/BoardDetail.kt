@@ -1,12 +1,13 @@
 package com.camp.campingapp
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,9 +15,14 @@ import com.camp.campingapp.databinding.ActivityBoardDetailBinding
 import com.camp.campingapp.recycler.CommentAdapter
 import java.text.SimpleDateFormat
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ServerValue
+import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class BoardDetail : AppCompatActivity() {
     private lateinit var binding: ActivityBoardDetailBinding
@@ -24,12 +30,17 @@ class BoardDetail : AppCompatActivity() {
     private lateinit var docId: String
     private lateinit var commentList: MutableMap<String, Comment>
     private lateinit var database: DatabaseReference
+    private lateinit var firestore: FirebaseFirestore // Firestore 레퍼런스 추가
 
     data class Comment(
         var comment: String = "",
         var time: String = "",
         var username: String = ""
     )
+
+    companion object {
+        const val DELETE_REQUEST_CODE = 123 // Define a request code
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +51,8 @@ class BoardDetail : AppCompatActivity() {
         val title = intent.getStringExtra("BoardTitle")
         val content = intent.getStringExtra("BoardContent")
         val date = intent.getStringExtra("BoardDate")
+
+        firestore = FirebaseFirestore.getInstance() // Firestore 레퍼런스 초기화
 
         binding.BoardTitle.text = title
         binding.BoardDate.text = date
@@ -54,18 +67,19 @@ class BoardDetail : AppCompatActivity() {
         }
 
         binding.BoardModify.setOnClickListener {
-            val intent = Intent(this, BoardUpdate::class.java)
-            intent.putExtra("DocId", docId)
-            intent.putExtra("BoardTitle", title)
-            intent.putExtra("BoardContent", content)
-            intent.putExtra("BoardDate", date)
+            val intent = Intent(this, BoardUpdate::class.java).apply {
+                putExtra("DocId", docId)
+                putExtra("BoardTitle", title)
+                putExtra("BoardContent", content)
+                putExtra("BoardDate", date)
+            }
             startActivity(intent)
             finish()
         }
 
         binding.BoardDelete.setOnClickListener {
             if (docId.isNotEmpty()) {
-                deleteBoardAndNavigate(docId)
+                deleteBoard(docId)
             }
         }
 
@@ -83,12 +97,55 @@ class BoardDetail : AppCompatActivity() {
             if (docId.isNotEmpty() && commentText.isNotBlank()) {
                 val commentData = Comment(
                     commentText,
-                    "", // Firebase 서버의 Timestamp 값을 사용하기 때문에 빈 문자열로 설정
+                    "",
                     MyApplication.userData?.username ?: ""
                 )
                 addCommentToDatabase(docId, commentData)
                 binding.BoardComment.text.clear()
             }
+        }
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun deleteBoard(docId: String) {
+        val docRef = firestore.collection("Boards").document(docId) // Firestore 문서 레퍼런스 가져오기
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                docRef.delete()
+                    .addOnSuccessListener {
+                        Log.d("BoardDetail", "Success deleting document: $docId")
+                        showToast("게시글이 삭제되었습니다.")
+                        // 원하는 동작 수행 (예: 업데이트 UI 또는 리스트 갱신)
+
+                        // Board 액티비티로 돌아가기
+                        val intent = Intent(this, Board::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.e("BoardDetail", "Error deleting document: $docId", exception)
+                        showToast("게시글 삭제 실패")
+                        // 원하는 동작 수행
+                    }
+            } else {
+                showToast("해당 게시글이 이미 삭제되었습니다.")
+            }
+        }.addOnFailureListener { exception ->
+            Log.e("BoardDetail", "Error checking document existence: $docId", exception)
         }
     }
 
@@ -98,7 +155,6 @@ class BoardDetail : AppCompatActivity() {
         val commentData = Comment(
             comment.comment,
             SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis()),
-//            "", // Firebase 서버의 Timestamp 값을 사용하기 때문에 빈 문자열로 설정
             MyApplication.userData?.username ?: ""
         )
 
@@ -128,10 +184,14 @@ class BoardDetail : AppCompatActivity() {
                     onEditClickListener = { editPosition ->
                         val selectedComment = commentList.values.elementAt(editPosition)
                         val commentKey = commentList.keys.elementAt(editPosition)
-                        showEditCommentDialog(docId, commentKey, selectedComment.comment, editPosition)
+                        if (selectedComment.username == MyApplication.userData?.username) {
+                            showEditCommentDialog(docId, commentKey, selectedComment.comment, editPosition)
+                        } else {
+                            showToast("자신이 작성한 댓글만 수정할 수 있습니다.")
+                        }
                     }
                 ) { deleteCommentKey ->
-                    showDeleteCommentDialog(docId, deleteCommentKey) // Changed parameter name
+                    showDeleteCommentDialog(docId, deleteCommentKey)
                 }
 
                 binding.commentRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -144,30 +204,6 @@ class BoardDetail : AppCompatActivity() {
             }
     }
 
-    private fun deleteBoardAndNavigate(docId: String) {
-        database.child("Boards").child(docId)
-            .removeValue()
-            .addOnSuccessListener {
-                showToastAndNavigate("게시글 삭제 완료", Board::class.java)
-            }
-            .addOnFailureListener { exception ->
-                Log.e("BoardDetail", "Error deleting board", exception)
-                showToast("게시글 삭제 실패")
-            }
-    }
-
-    private fun showToastAndNavigate(message: String, destination: Class<*>) {
-        showToast(message)
-        val intent = Intent(this, destination)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun showEditCommentDialog(docId: String, commentKey: String, comment: String, position: Int) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -175,32 +211,20 @@ class BoardDetail : AppCompatActivity() {
         dialogBuilder.setView(dialogView)
 
         val editTextComment = dialogView.findViewById<EditText>(R.id.editTextComment)
-
-        // 기존 댓글 내용을 EditText에 설정
         editTextComment.setText(comment)
 
-        // 다이얼로그 생성
         val alertDialog = dialogBuilder.create()
 
-        // "확인" 버튼 클릭 리스너
         dialogView.findViewById<Button>(R.id.btnEditCommentConfirm).setOnClickListener {
-            // 수정한 댓글 내용을 가져와서 처리하는 로직 추가
             val editedComment = editTextComment.text.toString()
-
-            // 수정 로직 구현
             updateComment(docId, commentKey, editedComment)
-
-            // 다이얼로그 닫기
             alertDialog.dismiss()
         }
 
-        // "취소" 버튼 클릭 리스너
         dialogView.findViewById<Button>(R.id.btnEditCommentCancel).setOnClickListener {
-            // 다이얼로그 닫기
             alertDialog.dismiss()
         }
 
-        // 다이얼로그 보이기
         alertDialog.show()
     }
 
@@ -209,16 +233,14 @@ class BoardDetail : AppCompatActivity() {
         dialogBuilder.setTitle("댓글 삭제")
         dialogBuilder.setMessage("이 댓글을 삭제하시겠습니까?")
         dialogBuilder.setPositiveButton("삭제") { _, _ ->
-            // 삭제 로직 구현
             deleteComment(docId, commentKey)
         }
-        dialogBuilder.setNegativeButton("취소") { _, _ ->
-            // 취소 버튼 클릭 시 아무 작업 없음
-        }
+        dialogBuilder.setNegativeButton("취소") { _, _ -> }
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
     }
+
     private fun updateComment(docId: String, commentKey: String, editedComment: String) {
         val commentData = Comment(
             editedComment,
@@ -245,4 +267,6 @@ class BoardDetail : AppCompatActivity() {
                 Log.e("BoardDetail", "Error deleting comment", exception)
             }
     }
+
+
 }

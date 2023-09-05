@@ -1,10 +1,13 @@
 package com.camp.campingapp
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -21,6 +24,11 @@ class BoardWrite : AppCompatActivity() {
     private lateinit var filePath: String
     private lateinit var db: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
+    private lateinit var requestLauncher: ActivityResultLauncher<Intent>
+
+    companion object {
+        const val REQUEST_CODE_ADD_BOARD = 123 // 임의의 요청 코드
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +40,7 @@ class BoardWrite : AppCompatActivity() {
 
         // MyApplication.username을 가져와서 username TextView에 설정
         val loggedInUsername = MyApplication.userData?.username
-        if (loggedInUsername != null) {
-            binding.username.text = loggedInUsername
-        } else {
-            binding.username.text = "비회원"
-        }
+        binding.username.text = loggedInUsername ?: "비회원"
 
         binding.postbtn.setOnClickListener {
             // Save the data including username
@@ -48,18 +52,30 @@ class BoardWrite : AppCompatActivity() {
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
         }
-    }
 
-    private val requestLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == android.app.Activity.RESULT_OK) {
-            val selectedImageUri = result.data?.data
-            selectedImageUri?.let {
-                filePath = getRealPathFromUri(it)
-                loadImageToImageView(it)
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        requestLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                selectedImageUri?.let {
+                    filePath = getRealPathFromUri(it)
+                    loadImageToImageView(it)
+                }
             }
         }
+    }
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getRealPathFromUri(uri: Uri): String {
@@ -135,6 +151,7 @@ class BoardWrite : AppCompatActivity() {
 
     private fun showToastAndFinish(message: String) {
         showToast(message)
+        setResult(Activity.RESULT_OK)
         finish()
     }
 }

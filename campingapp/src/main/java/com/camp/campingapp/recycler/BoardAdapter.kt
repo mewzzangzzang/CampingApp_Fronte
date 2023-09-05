@@ -16,10 +16,26 @@ class BoardViewHolder(val binding: BoardItemBinding) : RecyclerView.ViewHolder(b
 class BoardAdapter(private val context: Context, private var itemList: List<BoardData>) :
     RecyclerView.Adapter<BoardViewHolder>() {
 
+    private var filteredItemList: List<BoardData> = itemList // 필터링된 아이템 목록
+
+    // 필터링된 목록을 업데이트하는 메서드 추가
+    fun filter(query: String) {
+        filteredItemList = if (query.isEmpty()) {
+            itemList // 검색어가 비어있을 때는 전체 목록 보여줌
+        } else {
+            itemList.filter { data ->
+                data.title?.contains(query, ignoreCase = true) == true ||
+                        data.content?.contains(query, ignoreCase = true) == true
+            }
+        }
+        notifyDataSetChanged()
+    }
+
+
     // updateData 메서드 추가
     fun updateData(newItemList: List<BoardData>) {
         itemList = newItemList
-        notifyDataSetChanged()
+        filter("") // 초기화 할 때 필터링 없이 모든 아이템을 보여줌
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
@@ -28,10 +44,12 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
         return BoardViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = itemList.size
+    override fun getItemCount(): Int = filteredItemList.size
 
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
-        val data = itemList[position]
+        val data = filteredItemList[position]
+
+        Log.d("BoardAdapter", "Binding data at position $position: Title - ${data.title}, Content - ${data.content}")
 
         with(holder.binding) {
             itemTitleView.text = data.title

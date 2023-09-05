@@ -6,24 +6,55 @@
     android:orientation="vertical"
     android:background="#FAFAFA">
 
-<!--보드 리사이클러 뷰-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/boardRecyclerView"
+    <!-- 검색 창 -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="검색어를 입력하세요"
+            android:padding="8dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+    <!-- 보드 리사이클러 뷰 -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp"/>
+        android:padding="8dp" >
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="#009688"
-        android:text="새 글 작성하기"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:paddingVertical="12dp"
-        android:gravity="center"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/boardRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="#FF6A856B"
+            android:src="@drawable/write_wh"
+            android:contentDescription="게시글 추가하기" />
+
+    </FrameLayout>
 
 </LinearLayout>

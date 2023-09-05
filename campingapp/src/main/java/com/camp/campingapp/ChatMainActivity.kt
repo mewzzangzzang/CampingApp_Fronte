@@ -58,6 +58,25 @@ class ChatMainActivity : AppCompatActivity() {
                 // 실패 시 실행
             }
         })
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+    }//oncreate
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        } else if (item.itemId == R.id.log_out) {
+            auth.signOut()
+            startActivity(Intent(this@ChatMainActivity, LoginActivity::class.java))
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,13 +84,13 @@ class ChatMainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.log_out) {
-            auth.signOut()
-            startActivity(Intent(this@ChatMainActivity, LoginActivity::class.java))
-            finish()
-            return true
-        }
-        return true
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if (item.itemId == R.id.log_out) {
+//            auth.signOut()
+//            startActivity(Intent(this@ChatMainActivity, LoginActivity::class.java))
+//            finish()
+//            return true
+//        }
+//        return true
+//    }
 }
