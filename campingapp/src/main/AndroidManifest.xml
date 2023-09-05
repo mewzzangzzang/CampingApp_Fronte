@@ -20,6 +20,9 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PetListLocationActivity"
+            android:exported="true" />
+        <activity
             android:name=".PetListActivity"
             android:exported="true" />
         <activity
@@ -125,7 +128,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
