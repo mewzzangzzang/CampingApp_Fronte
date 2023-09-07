@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FFF">
+    android:background="#FFF"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,12 +20,16 @@
                 android:layout_height="wrap_content"
                 android:text="사진 업로드"
                 android:textColor="#FFF"
+                android:layout_marginStart="280dp"
+                android:layout_marginTop="220dp"
                 />
+<!--            대충이미지 수정행야함-->
 
             <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="280dp"
+            android:src="@drawable/camera"
             android:scaleType="center"
             android:layout_marginBottom="16dp" />
         </RelativeLayout>
@@ -60,7 +65,7 @@
             android:textColor="#333"
             android:layout_marginBottom="16dp" />
 
-<!--        edittext 있을때만 버튼 활성화-->
+<!--        edittext 제목이 있을때만 버튼 활성화-->
 
         <Button
             android:id="@+id/postbtn"
@@ -68,7 +73,7 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:text="게시글 등록"
-            android:background="#808080"
+            android:backgroundTint="#6A856B"
             android:textColor="#FFF"
             android:layout_marginBottom="16dp" />
     </LinearLayout>

@@ -5,85 +5,87 @@
     android:paddingTop="10dp"
     android:paddingRight="10dp"
     android:orientation="horizontal">
-
+<!--전체 호라이즌-->
+<!--    콘텐츠 버티컬-->
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginStart="10dp"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+<!--날짜. 이름 버티컬 리니어-->
+        <TextView
+            android:id="@+id/CommentUsername"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="name"
+            android:textColor="#727272"
+            android:layout_marginStart="10dp"
+            android:gravity="left"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/CommentUsername"
-                android:layout_width="wrap_content"
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#727272"
-                android:textSize="12sp" />
+                android:orientation="horizontal">
+                <!-- 추가된 부분  두번째 줄 호라이즌 리니어-->
 
-            <TextView
-                android:id="@+id/CommentDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="#727272"
-                android:textSize="12sp"
-                android:text="date" />
+                <TextView
+                    android:id="@+id/CommentDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#727272"
+                    android:textSize="12sp"
+                    android:gravity="right"
+                    android:text="2023-07-08 10:40" />
 
-        </LinearLayout>
 
+
+<!--                수정,삭제버튼 리니어-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+
+                <TextView
+                    android:id="@+id/editButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="수정"
+                    android:textSize="12sp"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginEnd="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"
+
+                        />
+
+                <TextView
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="삭제"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="5dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
         <TextView
             android:id="@+id/Comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="15dp"
             android:lineSpacingExtra="2dp"
-            android:paddingLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textColor="#212121"
             android:textSize="14sp"
-            android:text="content" />
+            android:text="contentntmtntnntt" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="end"> <!-- 추가된 부분 -->
-
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="수정"
-            android:textSize="12sp"
-            android:backgroundTint="#009688"
-            android:textColor="@android:color/white"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="2dp"
-            android:layout_gravity="end" />
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="삭제"
-            android:textSize="12sp"
-            android:backgroundTint="#FF5733"
-            android:textColor="@android:color/white"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:layout_gravity="end" />
-
-    </LinearLayout>
-
-
 </LinearLayout>

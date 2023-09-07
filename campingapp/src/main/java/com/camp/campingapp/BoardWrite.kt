@@ -2,6 +2,7 @@ package com.camp.campingapp
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -42,7 +43,6 @@ class BoardWrite : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
-
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
         Log.d("BoardWrite", "현재UID: $currentUserUid")
 
@@ -81,17 +81,22 @@ class BoardWrite : AppCompatActivity() {
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //텍스트 입력 전
+
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //텍스트 입력 중
                 if(binding.title.length() < 1) { // 제목이 1글자이상
                     binding.postbtn.isClickable = false // 버튼 클릭할수 없게
                     binding.postbtn.isEnabled = false // 버튼 비활성화
+
                 } else {
                     binding.postbtn.isClickable = true // 버튼 클릭할수 있게
                     binding.postbtn.isEnabled = true // 버튼 활성화
+                    binding.postbtn.setBackgroundColor(Color.GREEN)
                 }
             }
+
+
         })
     }//oncreate
 
