@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.camp.campingapp.R
+import com.camp.campingapp.WeatherActivity
 import com.camp.campingapp.model.ModelWeather
 
 
 class WeatherAdapter (var items : Array<ModelWeather>) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
-    // 뷰 홀더 만들어서 반환, 뷰릐 레이아웃은 list_item_weather.xml
+    // 뷰 홀더 만들어서 반환,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherAdapter.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_weather, parent, false)
         return ViewHolder(itemView)
@@ -43,11 +45,17 @@ class WeatherAdapter (var items : Array<ModelWeather>) : RecyclerView.Adapter<We
             tvRecommends.text = getRecommends(item.temp.toInt())
         }
     }
+//    이미지로 불러오게
+//    수정해야할듯
 
     // 강수 형태
     fun getRainType(rainType : String) : String {
         return when(rainType) {
             "0" -> "없음"
+//             비 이미지를 로드하고싶음
+//                     Glide.with(context)
+//                    .load(R.drawable.back
+//
             "1" -> "비"
             "2" -> "비/눈"
             "3" -> "눈"

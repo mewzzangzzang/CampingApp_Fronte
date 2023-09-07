@@ -13,39 +13,28 @@
         android:layout_weight="1"
         android:fillViewport="true">
 
-        <!--콘텐트 전체 리니어-->
+        <!--콘텐츠 전체 리니어-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <!-- 제목-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="제목" />
 
                 <EditText
                     android:id="@+id/regTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#eeeeee"
+                    android:background="#00FF0000"
                     android:padding="16dp"
                     android:text="제목입니다." />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/userNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="name"
+                android:layout_marginStart="10dp"
                 android:textColor="#333333"
                 android:textSize="14sp"
                 android:layout_marginBottom="8dp"/>
@@ -57,19 +46,12 @@
 
                 <!--작성일-->
                 <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="작성일" />
-
-                <TextView
                     android:id="@+id/BoardDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#eeeeee"
                     android:padding="16dp"
-                    android:text="작성일입니다."/>
+                    android:text="2023-07-08."/>
 
 
 
@@ -80,14 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <Button
+                <TextView
                     android:id="@+id/BoardModify"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="수정" />
 
-                <Button
+                <TextView
                     android:id="@+id/BoardCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,7 +82,7 @@
                 android:id="@+id/regContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#eeeeee"
+                android:background="#00FF0000"
                 android:padding="16dp"
                 android:text="내용입니다." />
 

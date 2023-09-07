@@ -9,22 +9,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진 업로드"
+                android:textColor="#FFF"
+                />
+
+            <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:src="@drawable/upload"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             android:layout_marginBottom="16dp" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="name"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingStart="16dp"
-            android:layout_marginBottom="8dp" />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/title"
@@ -35,15 +47,6 @@
             android:background="#FFF"
             android:hint="제목을 입력하세요."
             android:padding="16dp" />
-
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="사진 업로드"
-            android:background="#009688"
-            android:textColor="#FFF"
-            android:layout_marginBottom="16dp" />
 
         <EditText
             android:id="@+id/addEditView"
@@ -57,14 +60,16 @@
             android:textColor="#333"
             android:layout_marginBottom="16dp" />
 
+<!--        edittext 있을때만 버튼 활성화-->
+
         <Button
             android:id="@+id/postbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="게시글 등록"
-            android:background="#009688"
+            android:background="#808080"
             android:textColor="#FFF"
             android:layout_marginBottom="16dp" />
-
     </LinearLayout>
 </ScrollView>

@@ -30,7 +30,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
+<!--날씨 액티비티 실행테스트 트리거-->
     <TextView
         android:id="@+id/btnWeather"
         android:layout_width="wrap_content"
@@ -69,7 +69,6 @@
 
 
         <!--   버튼 영역     -->
-
 
         <androidx.cardview.widget.CardView
             android:layout_gravity="center"
@@ -114,6 +113,7 @@
                     android:layout_gravity="left"
                     android:layout_margin="5dp"
                     android:src="@drawable/line" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -328,9 +328,6 @@
                     android:src="@drawable/free" />
 
             </LinearLayout>
-
-
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 <!--        전체 카드뷰 닫아용-->

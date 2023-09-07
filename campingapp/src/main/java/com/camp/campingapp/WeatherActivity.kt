@@ -7,11 +7,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.camp.campingapp.databinding.ActivityWeatherBinding
 import com.camp.campingapp.model.ModelWeather
 import com.camp.campingapp.retrofit.ApiObject
 import com.camp.campingapp.retrofit.ITEM
 import com.camp.campingapp.retrofit.WEATHER
 import com.camp.campingapp.recycler.WeatherAdapter
+import com.google.android.gms.location.FusedLocationProviderClient
 import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -20,7 +22,7 @@ import java.util.Locale
 
 
 class WeatherActivity : AppCompatActivity() {
-//    lateinit var binding: ActivityWeatherBinding
+//   lateinit var binding: ActivityWeatherBinding
 //    private var mFusedLocationProviderClient: FusedLocationProviderClient? =
 //        null //현재 위치를 가져오기 위한 변수
 //    lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
@@ -181,6 +183,7 @@ class WeatherActivity : AppCompatActivity() {
 //        }
 //    }
 //}
+    val currentTime : Long = System.currentTimeMillis() // ms로 반환
 
     lateinit var weatherRecyclerView : RecyclerView
 
@@ -192,6 +195,7 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
+
 
         val tvDate = findViewById<TextView>(R.id.tvDate)                                // 오늘 날짜 텍스트뷰
         weatherRecyclerView = findViewById<RecyclerView>(R.id.weatherRecyclerView)  // 날씨 리사이클러 뷰
@@ -209,6 +213,7 @@ class WeatherActivity : AppCompatActivity() {
         // <새로고침> 버튼 누를 때 날씨 정보 다시 가져오기
         btnRefresh.setOnClickListener {
             setWeather(nx, ny)
+
         }
     }
 
@@ -265,7 +270,7 @@ class WeatherActivity : AppCompatActivity() {
                     weatherRecyclerView.adapter = WeatherAdapter(weatherArr)
 
                     // 토스트 띄우기
-                    Toast.makeText(applicationContext, it[0].fcstDate + ", " + it[0].fcstTime + "의 날씨 정보입니다.", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(applicationContext, it[0].fcstDate + ", " + it[0].fcstTime + "의 날씨 정보입니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
