@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.camp.campingapp.MyApplication
@@ -31,6 +32,7 @@ class BoardWrite : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
     private lateinit var requestLauncher: ActivityResultLauncher<Intent>
+    val customColor = Color.parseColor("#6A856B")
 
     companion object {
         const val REQUEST_CODE_ADD_BOARD = 123
@@ -49,8 +51,17 @@ class BoardWrite : AppCompatActivity() {
         val loggedInUsername = MyApplication.userData?.username
         binding.username.text = loggedInUsername ?: "Guest"
 
+//        binding.postbtn.setOnClickListener {
+//            saveBoardData(currentUserUid)
+//        }
         binding.postbtn.setOnClickListener {
-            saveBoardData(currentUserUid)
+            if (binding.postbtn.isEnabled) {
+                if (binding.title.text.isEmpty()) {
+                    showToast("텍스트를 입력하세요.")
+                } else {
+//                    saveBoardData(currentUserUid)
+                }
+            }
         }
 
         binding.upload.setOnClickListener {
@@ -58,7 +69,6 @@ class BoardWrite : AppCompatActivity() {
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
         }
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         requestLauncher = registerForActivityResult(
@@ -77,22 +87,22 @@ class BoardWrite : AppCompatActivity() {
         binding.title.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 //텍스트를 입력 후
-
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //텍스트 입력 전
-
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //텍스트 입력 중
                 if(binding.title.length() < 1) { // 제목이 1글자이상
                     binding.postbtn.isClickable = false // 버튼 클릭할수 없게
                     binding.postbtn.isEnabled = false // 버튼 비활성화
+                    showToast("제목을 입력해주세요")
 
                 } else {
                     binding.postbtn.isClickable = true // 버튼 클릭할수 있게
                     binding.postbtn.isEnabled = true // 버튼 활성화
-                    binding.postbtn.setBackgroundColor(Color.GREEN)
+                    binding.postbtn.setBackgroundColor(customColor)
+
                 }
             }
 

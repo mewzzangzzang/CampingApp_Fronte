@@ -73,7 +73,6 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:text="게시글 등록"
-            android:backgroundTint="#6A856B"
             android:textColor="#FFF"
             android:layout_marginBottom="16dp" />
     </LinearLayout>
