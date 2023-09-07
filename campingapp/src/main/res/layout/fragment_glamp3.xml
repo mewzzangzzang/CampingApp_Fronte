@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".petFragment.PetFragment6">
-
-<!--  서울  -->
+    tools:context=".glampingFragment.GlampFragment3">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -30,28 +28,28 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/button6_1"
+                        android:id="@+id/button3_1"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="강동구" />
+                        android:text="거제시" />
 
                     <Button
-                        android:id="@+id/button6_2"
+                        android:id="@+id/button3_2"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="강북구" />
+                        android:text="거창군" />
 
                     <Button
-                        android:id="@+id/button6_3"
+                        android:id="@+id/button3_3"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="관악구" />
+                        android:text="고성군" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -63,28 +61,28 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/button6_4"
+                        android:id="@+id/button3_4"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="구로구" />
+                        android:text="고흥군" />
 
                     <Button
-                        android:id="@+id/button6_5"
+                        android:id="@+id/button3_5"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="노원구" />
+                        android:text="김해시" />
 
                     <Button
-                        android:id="@+id/button6_6"
+                        android:id="@+id/button3_6"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="도봉구" />
+                        android:text="남해군" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -96,28 +94,28 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/button6_7"
+                        android:id="@+id/button3_7"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="마포구" />
+                        android:text="밀양시" />
 
                     <Button
-                        android:id="@+id/button6_8"
+                        android:id="@+id/button3_8"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="서초구" />
+                        android:text="사천시" />
 
                     <Button
-                        android:id="@+id/button6_9"
+                        android:id="@+id/button3_9"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="성동구" />
+                        android:text="산청군" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,28 +127,28 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/button6_10"
+                        android:id="@+id/button3_10"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="성북구" />
+                        android:text="양산시" />
 
                     <Button
-                        android:id="@+id/button6_11"
+                        android:id="@+id/button3_11"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="은평구" />
+                        android:text="의령군" />
 
                     <Button
-                        android:id="@+id/button6_12"
+                        android:id="@+id/button3_12"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="종로구" />
+                        android:text="진주시" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,17 +160,83 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/button6_13"
+                        android:id="@+id/button3_13"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="중랑구" />
+                        android:text="창녕군" />
 
+                    <Button
+                        android:id="@+id/button3_14"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="창원시" />
+
+                    <Button
+                        android:id="@+id/button3_15"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="통영시" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp">
+
+                    <Button
+                        android:id="@+id/button3_16"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="하동군" />
+
+                    <Button
+                        android:id="@+id/button3_17"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="함안군" />
+
+                    <Button
+                        android:id="@+id/button3_18"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="함양군" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp">
+
+                    <Button
+                        android:id="@+id/button3_19"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/button1"
+                        android:text="합천군" />
 
                 </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
+
 </FrameLayout>

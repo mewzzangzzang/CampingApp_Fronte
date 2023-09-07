@@ -19,11 +19,6 @@ class CampDoNmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        binding.goHome.setOnClickListener {
-//            val intent = Intent(this@CampDoNmActivity, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-
         binding.recyclerView.setOnClickListener {
         }
         // 슬라이딩 패널 ==============================================================================
