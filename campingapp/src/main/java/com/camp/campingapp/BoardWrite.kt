@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -41,6 +42,7 @@ class BoardWrite : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
 
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        Log.d("BoardWrite", "현재UID: $currentUserUid")
 
         val loggedInUsername = MyApplication.userData?.username
         binding.username.text = loggedInUsername ?: "Guest"
@@ -105,7 +107,7 @@ class BoardWrite : AppCompatActivity() {
             "content" to binding.addEditView.text.toString(),
             "date" to dateToString(Date()),
             "username" to username,
-            "uid" to currentUserUid
+            "uid" to currentUserUid // 현재 사용자의 UID 추가
         )
         db.collection("Boards")
             .add(boardData)

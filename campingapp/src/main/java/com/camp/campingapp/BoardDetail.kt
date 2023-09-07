@@ -51,19 +51,31 @@ class BoardDetail : AppCompatActivity() {
         val content = intent.getStringExtra("BoardContent") ?: ""
         val date = intent.getStringExtra("BoardDate") ?: ""
         val authorUid = intent.getStringExtra("AuthorUid") ?: ""
-        val username = intent.getStringExtra("Username") ?: "" // 이 부분 추가
+        val username = intent.getStringExtra("Username") ?: ""
 
         firestore = FirebaseFirestore.getInstance()
         binding.BoardTitle.text = title
         binding.BoardDate.text = date
         binding.BoardContent.text = content
+        binding.userNameTextView.text = username
 
         // 현재 사용자 정보 가져오기
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserUid = currentUser?.uid
 
+        if (currentUser != null) {
+            // 사용자가 로그인한 경우, currentUserUid에 사용자 UID가 할당됩니다.
+            Log.d("BoardDetail", "사용자가 로그인 중입니다. currentUserUid: $currentUserUid")
+        } else {
+            // 사용자가 로그인하지 않은 경우, currentUserUid는 null입니다.
+            Log.d("BoardDetail", "사용자가 로그인하지 않았습니다.")
+        }
+
+        Log.d("BoardDetail", "현재 사용자 UID: $currentUserUid, 게시글 작성자 UID: $authorUid")
+
         // 작성자 정보와 현재 사용자 UID 비교하여 수정 및 삭제 버튼 표시 여부 결정
         if (currentUserUid == authorUid) {
+            Log.d("BoardDetail", "현재UID: $currentUserUid, 작성 ㅕㅑㅇ: $authorUid")
             binding.BoardModify.visibility = View.VISIBLE
             binding.BoardDelete.visibility = View.VISIBLE
         } else {
@@ -83,6 +95,7 @@ class BoardDetail : AppCompatActivity() {
                 putExtra("BoardTitle", title)
                 putExtra("BoardContent", content)
                 putExtra("BoardDate", date)
+                putExtra("Username", username)
             }
             startActivity(intent)
             finish()
