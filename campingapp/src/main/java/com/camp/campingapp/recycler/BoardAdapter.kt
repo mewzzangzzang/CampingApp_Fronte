@@ -2,7 +2,6 @@ package com.camp.campingapp.recycler
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,6 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
         notifyDataSetChanged()
     }
 
-
     // updateData 메서드 추가
     fun updateData(newItemList: List<BoardData>) {
         itemList = newItemList
@@ -49,13 +47,11 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
     override fun onBindViewHolder(holder: BoardViewHolder, position: Int) {
         val data = filteredItemList[position]
 
-        Log.d("BoardAdapter", "Binding data at position $position: Title - ${data.title}, Content - ${data.content}")
-
         with(holder.binding) {
             itemTitleView.text = data.title
             itemContentView.text = data.content
             itemDateView.text = data.date
-            itemUsernameView.text = data.username
+            itemUsernameView.text = data.username // 게시글 작성자의 이름 표시
 
             val imageUrl = data.imageUrl
             if (imageUrl != null) {
@@ -71,7 +67,8 @@ class BoardAdapter(private val context: Context, private var itemList: List<Boar
                 putExtra("BoardTitle", data.title)
                 putExtra("BoardContent", data.content)
                 putExtra("BoardDate", data.date)
-                putExtra("Comment", data.comment)
+                putExtra("AuthorUid", data.uid) // 게시글 작성자의 UID 전달
+                putExtra("Username", data.username)
             }
             context.startActivity(intent)
         }
