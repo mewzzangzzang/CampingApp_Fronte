@@ -20,6 +20,12 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CommLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CampCommActivity"
+            android:exported="true" />
+        <activity
             android:name=".GlampingLocationActivity"
             android:exported="false" />
         <activity
