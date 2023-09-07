@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".petFragment.PetFragment6">
-
-<!--  서울  -->
+    tools:context=".glampingFragment.GlampFragment6">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -175,4 +173,5 @@
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
+
 </FrameLayout>

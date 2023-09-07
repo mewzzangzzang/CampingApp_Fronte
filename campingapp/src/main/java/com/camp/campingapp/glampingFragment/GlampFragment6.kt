@@ -1,4 +1,4 @@
-package com.camp.campingapp.petFragment
+package com.camp.campingapp.glampingFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,17 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.camp.campingapp.PetListActivity
+import com.camp.campingapp.CampGlampingActivity
 import com.camp.campingapp.R
 
-
-class PetFragment6 : Fragment() {
-
+class GlampFragment6 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_pet6, container, false)
+        val view = inflater.inflate(R.layout.fragment_glamp6, container, false)
         var donm = "6"
         var sigunguNm: String
 
@@ -26,7 +24,7 @@ class PetFragment6 : Fragment() {
         button1.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "강동구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -36,7 +34,7 @@ class PetFragment6 : Fragment() {
         button2.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "강북구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -46,7 +44,7 @@ class PetFragment6 : Fragment() {
         button3.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "관악구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -56,7 +54,7 @@ class PetFragment6 : Fragment() {
         button4.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "구로구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -66,7 +64,7 @@ class PetFragment6 : Fragment() {
         button5.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "노원구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -76,7 +74,7 @@ class PetFragment6 : Fragment() {
         button6.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "도봉구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -86,7 +84,7 @@ class PetFragment6 : Fragment() {
         button7.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "마포구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -96,7 +94,7 @@ class PetFragment6 : Fragment() {
         button8.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "서초구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -106,7 +104,7 @@ class PetFragment6 : Fragment() {
         button9.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "성동구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -116,7 +114,7 @@ class PetFragment6 : Fragment() {
         button10.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "성북구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -126,7 +124,7 @@ class PetFragment6 : Fragment() {
         button11.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "은평구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -136,7 +134,7 @@ class PetFragment6 : Fragment() {
         button12.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "종로구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -146,7 +144,7 @@ class PetFragment6 : Fragment() {
         button13.setOnClickListener {
             Log.d("dum", "click")
             sigunguNm = "중랑구"
-            val intent = Intent(activity, PetListActivity::class.java)
+            val intent = Intent(activity, CampGlampingActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -154,5 +152,4 @@ class PetFragment6 : Fragment() {
 
         return view
     }
-
 }
