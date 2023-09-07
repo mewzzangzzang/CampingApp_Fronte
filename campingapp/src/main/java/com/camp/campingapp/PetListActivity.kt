@@ -27,12 +27,14 @@ class PetListActivity : AppCompatActivity() {
 
         val donm = intent.getStringExtra("donm")
         val sigunguNm = intent.getStringExtra("sigunguNm")
-        Log.d("dum", "인탠트로 받아온 값: getPetList called with donm: $donm, sigunguNm: $sigunguNm")
         if (donm != null && sigunguNm != null) {
             getPetList(donm, sigunguNm)
+            binding.where.text = sigunguNm
         } else {
-            getPetList("1", "고성군")
+            getPetList("1", "강릉시")
+            binding.where.text = "강릉시"
         }
+
 
         binding.location.setOnClickListener {
             val intent = Intent(this@PetListActivity, PetListLocationActivity::class.java)
@@ -44,7 +46,6 @@ class PetListActivity : AppCompatActivity() {
 
     fun getPetList(donm: String, sigunguNm: String) {
 
-        Log.d("dum", "getPetList called with donm: $donm, sigunguNm: $sigunguNm")
         var donm: String = donm
         var sigunguNm: String = sigunguNm
         val networkService = (applicationContext as MyApplication).networkService
