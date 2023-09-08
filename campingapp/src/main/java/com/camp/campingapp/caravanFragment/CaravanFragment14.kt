@@ -1,4 +1,4 @@
-package com.camp.campingapp.commFragment
+package com.camp.campingapp.caravanFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,16 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.camp.campingapp.CampCommActivity
+import com.camp.campingapp.CaravanActivity
 import com.camp.campingapp.R
 
-class CommFragment14 : Fragment() {
+class CaravanFragment14 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_comm14, container, false)
+    ):View? {
+        val view = inflater.inflate(R.layout.fragment_caravan14, container, false)
         var donm = "14"
         var sigunguNm: String
 
@@ -26,7 +26,7 @@ class CommFragment14 : Fragment() {
             Log.d("dum", "click")
 
             sigunguNm = "금남면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            val intent = Intent(activity, CaravanActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -37,7 +37,7 @@ class CommFragment14 : Fragment() {
             Log.d("dum", "click")
 
             sigunguNm = "세종시"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            val intent = Intent(activity, CaravanActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -48,7 +48,7 @@ class CommFragment14 : Fragment() {
             Log.d("dum", "click")
 
             sigunguNm = "연서면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            val intent = Intent(activity, CaravanActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -59,7 +59,7 @@ class CommFragment14 : Fragment() {
             Log.d("dum", "click")
 
             sigunguNm = "전동면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            val intent = Intent(activity, CaravanActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
@@ -67,5 +67,4 @@ class CommFragment14 : Fragment() {
 
         return view
     }
-
 }
