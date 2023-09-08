@@ -68,7 +68,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="7dp"
                         android:background="@drawable/button1"
-                        android:text="구로시" />
+                        android:text="구로구" />
 
                     <Button
                         android:id="@+id/button6_5"

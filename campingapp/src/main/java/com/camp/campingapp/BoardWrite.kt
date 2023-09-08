@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -12,8 +13,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.camp.campingapp.MyApplication
 import com.camp.campingapp.databinding.ActivityWriteBinding
 import com.camp.campingapp.util.dateToString
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -27,7 +30,7 @@ class BoardWrite : AppCompatActivity() {
     private lateinit var requestLauncher: ActivityResultLauncher<Intent>
 
     companion object {
-        const val REQUEST_CODE_ADD_BOARD = 123 // 임의의 요청 코드
+        const val REQUEST_CODE_ADD_BOARD = 123
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,13 +41,14 @@ class BoardWrite : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
-        // MyApplication.username을 가져와서 username TextView에 설정
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        Log.d("BoardWrite", "현재UID: $currentUserUid")
+
         val loggedInUsername = MyApplication.userData?.username
-        binding.username.text = loggedInUsername ?: "비회원"
+        binding.username.text = loggedInUsername ?: "Guest"
 
         binding.postbtn.setOnClickListener {
-            // Save the data including username
-            saveBoardData()
+            saveBoardData(currentUserUid)
         }
 
         binding.upload.setOnClickListener {
@@ -53,7 +57,6 @@ class BoardWrite : AppCompatActivity() {
             requestLauncher.launch(intent)
         }
 
-        // ActionBar에 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         requestLauncher = registerForActivityResult(
@@ -69,10 +72,9 @@ class BoardWrite : AppCompatActivity() {
         }
     }
 
-    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            onBackPressed() // 이전 화면으로 돌아가기
+            onBackPressed()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -97,14 +99,15 @@ class BoardWrite : AppCompatActivity() {
             .into(binding.imageView)
     }
 
-    private fun saveBoardData() {
+    private fun saveBoardData(currentUserUid: String?) {
         val username = MyApplication.userData?.username ?: ""
 
         val boardData = mapOf(
             "title" to binding.title.text.toString(),
             "content" to binding.addEditView.text.toString(),
             "date" to dateToString(Date()),
-            "username" to username
+            "username" to username,
+            "uid" to currentUserUid // 현재 사용자의 UID 추가
         )
         db.collection("Boards")
             .add(boardData)

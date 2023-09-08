@@ -55,7 +55,7 @@ class PetFragment6 : Fragment() {
         val button4: Button = view.findViewById(R.id.button6_4)
         button4.setOnClickListener {
             Log.d("dum", "click")
-            sigunguNm = "구로시"
+            sigunguNm = "구로구"
             val intent = Intent(activity, PetListActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)

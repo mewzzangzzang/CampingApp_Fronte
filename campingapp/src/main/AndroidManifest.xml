@@ -20,6 +20,30 @@
         android:theme="@style/Theme.CampingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CaravanLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CaravanActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CarCampLocationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CampCarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CommLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CampCommActivity"
+            android:exported="true" />
+        <activity
+            android:name=".GlampingLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CampGlampingActivity"
+            android:exported="true" />
+        <activity
             android:name=".PetListLocationActivity"
             android:exported="true" />
         <activity
