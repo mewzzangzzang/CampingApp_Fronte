@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import com.camp.campingapp.MyApplication.Companion.auth
 import com.camp.campingapp.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -169,16 +170,14 @@ class MyPageActivity : AppCompatActivity() {
         }
     }
 
+
     private  fun logoutUser(){
         //로그아웃...........
-        MyApplication.auth.signOut()
+        Firebase.auth.signOut()
+//        MyApplication.auth.signOut()
         MyApplication.email = null
         //이메일 널로 할당
-        Toast.makeText(
-            baseContext, "로그아웃 되었습니다",
-            Toast.LENGTH_SHORT
-        ).show()
-//            changeVisibility("logout")
+        Toast.makeText(baseContext, "로그아웃 되었습니다",Toast.LENGTH_SHORT).show()
         val intent = Intent(this@MyPageActivity, MainActivity::class.java)
         startActivity(intent)
     }

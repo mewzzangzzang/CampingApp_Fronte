@@ -1,4 +1,4 @@
-package com.camp.campingapp.commFragment
+package com.camp.campingapp.carCampFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,62 +8,63 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.camp.campingapp.CampCommActivity
+import com.camp.campingapp.CampCarActivity
 import com.camp.campingapp.R
 
-class CommFragment14 : Fragment() {
+class CarCampFragment17 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_comm14, container, false)
-        var donm = "14"
+        val view = inflater.inflate(R.layout.fragment_car_camp17, container, false)
+        var donm = "17"
         var sigunguNm: String
 
-        val button1: Button = view.findViewById(R.id.button14_1)
+        val button1: Button = view.findViewById(R.id.button17_1)
         button1.setOnClickListener {
             Log.d("dum", "click")
 
-            sigunguNm = "금남면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            sigunguNm = "동구"
+            val intent = Intent(activity, CampCarActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
         }
 
-        val button2: Button = view.findViewById(R.id.button14_2)
+        val button2: Button = view.findViewById(R.id.button17_2)
         button2.setOnClickListener {
             Log.d("dum", "click")
 
-            sigunguNm = "세종시"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            sigunguNm = "북구"
+            val intent = Intent(activity, CampCarActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
         }
 
-        val button3: Button = view.findViewById(R.id.button14_3)
+        val button3: Button = view.findViewById(R.id.button17_3)
         button3.setOnClickListener {
             Log.d("dum", "click")
 
-            sigunguNm = "연서면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            sigunguNm = "울주군"
+            val intent = Intent(activity, CampCarActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
         }
 
-        val button4: Button = view.findViewById(R.id.button14_4)
+        val button4: Button = view.findViewById(R.id.button17_4)
         button4.setOnClickListener {
             Log.d("dum", "click")
 
-            sigunguNm = "전동면"
-            val intent = Intent(activity, CampCommActivity::class.java)
+            sigunguNm = "중구"
+            val intent = Intent(activity, CampCarActivity::class.java)
             intent.putExtra("donm", donm)
             intent.putExtra("sigunguNm", sigunguNm)
             startActivity(intent)
         }
+
 
         return view
     }

@@ -6,23 +6,24 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.camp.campingapp.databinding.ActivityCampCommBinding
+import com.camp.campingapp.databinding.ActivityCaravanBinding
 import com.camp.campingapp.model.GlampList
-import com.camp.campingapp.recycler.CommListAdapter
+import com.camp.campingapp.recycler.CaravanListAdapter
+import com.camp.campingapp.recycler.GlampingListAdapter
 import retrofit2.Response
 
-class CampCommActivity : AppCompatActivity() {
+class CaravanActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityCampCommBinding
+    private lateinit var binding : ActivityCaravanBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityCampCommBinding.inflate(layoutInflater)
+        binding = ActivityCaravanBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.CommRecyclerView.setOnClickListener{
+        binding.CaravanRecyclerView.setOnClickListener{
         }
 
-        val induty = "2"
+        val induty = "4"
         val donm = intent.getStringExtra("donm")
         val sigunguNm = intent.getStringExtra("sigunguNm")
 
@@ -35,7 +36,7 @@ class CampCommActivity : AppCompatActivity() {
         }
 
         binding.location.setOnClickListener {
-            val intent = Intent(this@CampCommActivity, CommLocationActivity::class.java)
+            val intent = Intent(this@CaravanActivity, CaravanLocationActivity::class.java)
             startActivity(intent)
         }
 
@@ -61,11 +62,11 @@ class CampCommActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val glampList = response.body()
 
-                    binding.CommRecyclerView.adapter =
-                        CommListAdapter(this@CampCommActivity, glampList)
+                    binding.CaravanRecyclerView.adapter =
+                        CaravanListAdapter(this@CaravanActivity, glampList)
 
-                    binding.CommRecyclerView.addItemDecoration(
-                        DividerItemDecoration(this@CampCommActivity, LinearLayoutManager.VERTICAL)
+                    binding.CaravanRecyclerView.addItemDecoration(
+                        DividerItemDecoration(this@CaravanActivity, LinearLayoutManager.VERTICAL)
                     )
                 } else {
                     Log.e("dum", "Response not successful: ${response.code()}")
