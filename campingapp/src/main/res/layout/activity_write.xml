@@ -16,7 +16,7 @@
 
             <Button
                 android:id="@+id/upload"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="사진 업로드"
                 android:textColor="#FFF"
@@ -53,19 +53,19 @@
             android:hint="제목을 입력하세요."
             android:padding="16dp" />
 
+        <!--        edittext 제목이 있을때만 버튼 활성화-->
+
         <EditText
             android:id="@+id/addEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="#FFF"
             android:hint="내용을 입력하세요."
             android:padding="16dp"
             android:scrollbars="vertical"
-            android:textSize="16sp"
             android:textColor="#333"
-            android:layout_marginBottom="16dp" />
-
-<!--        edittext 제목이 있을때만 버튼 활성화-->
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/postbtn"

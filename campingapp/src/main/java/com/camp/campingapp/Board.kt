@@ -14,6 +14,7 @@ import com.camp.campingapp.recycler.BoardAdapter
 import com.camp.campingapp.util.myCheckPermission
 
 class Board : AppCompatActivity() {
+
     private lateinit var binding: ActivityBoardBinding
     private val REQUEST_CODE_ADD_BOARD = 123 // 임의의 요청 코드
 
