@@ -38,14 +38,14 @@
 
 <!--                />-->
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userImageView"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginStart="140dp"
-                android:src="@drawable/img"
-                app:civ_border_color="#00FF0000"
-                app:civ_border_width="2dp" />
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/userImageView"-->
+<!--                android:layout_width="96dp"-->
+<!--                android:layout_height="96dp"-->
+<!--                android:layout_marginStart="140dp"-->
+<!--                android:src="@drawable/img"-->
+<!--                app:civ_border_color="#00FF0000"-->
+<!--                app:civ_border_width="2dp" />-->
 
             <TextView
                 android:id="@+id/emailView"
