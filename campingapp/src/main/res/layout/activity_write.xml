@@ -2,29 +2,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FFF">
+    android:background="#FFF"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="사진 업로드"
+                android:textColor="#FFF"
+                android:layout_marginStart="280dp"
+                android:layout_marginTop="220dp"
+                />
+<!--            대충이미지 수정행야함-->
+
+            <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:src="@drawable/upload"
-            android:scaleType="centerCrop"
+            android:src="@drawable/camera"
+            android:scaleType="center"
             android:layout_marginBottom="16dp" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="name"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingStart="16dp"
-            android:layout_marginBottom="8dp" />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/title"
@@ -36,35 +53,27 @@
             android:hint="제목을 입력하세요."
             android:padding="16dp" />
 
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="사진 업로드"
-            android:background="#009688"
-            android:textColor="#FFF"
-            android:layout_marginBottom="16dp" />
+        <!--        edittext 제목이 있을때만 버튼 활성화-->
 
         <EditText
             android:id="@+id/addEditView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="#FFF"
             android:hint="내용을 입력하세요."
             android:padding="16dp"
             android:scrollbars="vertical"
-            android:textSize="16sp"
             android:textColor="#333"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/postbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="게시글 등록"
-            android:background="#009688"
             android:textColor="#FFF"
             android:layout_marginBottom="16dp" />
-
     </LinearLayout>
 </ScrollView>

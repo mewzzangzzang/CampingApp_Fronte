@@ -131,6 +131,14 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".WeatherActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.firebase.message.default_notification_icon"
@@ -193,6 +201,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TourActivity" />
         </activity>
+
         <activity
             android:name=".DoNmDetailActivity"
             android:exported="false" />
