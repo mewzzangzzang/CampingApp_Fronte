@@ -36,6 +36,7 @@ import java.util.Locale
 //    val currentTime: Long = System.currentTimeMillis() // ms로 반환
 //
 //    lateinit var weatherRecyclerView: RecyclerView
+
 //    val binding = ActivityWeatherBinding.inflate(layoutInflater)
 //    private var base_date = "20230910"  // 발표 일자
 //    private var base_time = "0600"      // 발표 시각

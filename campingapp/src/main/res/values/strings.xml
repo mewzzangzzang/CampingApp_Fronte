@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">캠핑콕</string>
-    <string name="facebook_app_id">985778275960573</string>
 
+    <string name="facebook_app_id">985778275960573</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">f72386f500e5c0b27ee9d0c13a28e1b5</string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -15,11 +15,11 @@ fun myCheckPermission(activity: AppCompatActivity) {
     val requestPermissionLauncher = activity.registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) {
-//        if (it) {
-//            Toast.makeText(activity, "권한 승인", Toast.LENGTH_SHORT).show()
-//        } else {
-//            Toast.makeText(activity, "권한 거부", Toast.LENGTH_SHORT).show()
-//        }
+        if (it) {
+            Toast.makeText(activity, "권한 승인", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "권한 거부", Toast.LENGTH_SHORT).show()
+        }
     }
 
     if (ContextCompat.checkSelfPermission(
