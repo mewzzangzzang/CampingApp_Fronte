@@ -90,15 +90,46 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 캠핑장
-        binding.btnmenu1.setOnClickListener {
-            val intent = Intent(this@MainActivity, CampDoNmActivity::class.java)
+//        binding.btnmenu1.setOnClickListener {
+//            val intent = Intent(this@MainActivity, CampDoNmActivity::class.java)
+//            startActivity(intent)
+//        }
+//        // 예약
+//        binding.btnmenu2.setOnClickListener {
+//            val intent = Intent(this@MainActivity, HostListActivity::class.java)
+//            startActivity(intent)
+//        }
+
+        // 일반야영장
+        binding.commCamp.setOnClickListener{
+            val intent = Intent(this@MainActivity, CampCommActivity::class.java)
             startActivity(intent)
         }
-        // 예약
-        binding.btnmenu2.setOnClickListener {
-            val intent = Intent(this@MainActivity, HostListActivity::class.java)
+
+        // 글램핑
+        binding.glamping.setOnClickListener{
+            val intent = Intent(this@MainActivity, CampGlampingActivity::class.java)
             startActivity(intent)
         }
+
+        // 카라반
+        binding.caravan.setOnClickListener{
+            val intent = Intent(this@MainActivity, CaravanActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 자동차야영장
+        binding.carCamp.setOnClickListener{
+            val intent = Intent(this@MainActivity, CampCarActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 애완견 가능
+        binding.petCamp.setOnClickListener{
+            val intent = Intent(this@MainActivity, PetListActivity::class.java)
+            startActivity(intent)
+        }
+
         // 관광지
         binding.btnmenu3.setOnClickListener {
             val intent = Intent(this@MainActivity, Board::class.java)

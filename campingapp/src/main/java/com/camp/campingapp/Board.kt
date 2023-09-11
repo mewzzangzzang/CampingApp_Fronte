@@ -23,7 +23,7 @@ class Board : AppCompatActivity() {
         binding = ActivityBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        myCheckPermission(this)
+//        myCheckPermission(this)
 
         // ActionBar에 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
