@@ -3,6 +3,7 @@ package com.camp.campingapp.recycler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,37 +30,45 @@ class WeatherAdapter (var items : Array<ModelWeather>) : RecyclerView.Adapter<We
 
     // 뷰 홀더 설정
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+//         이미지 아이콘
+        val ivRainType = itemView.findViewById<ImageView>(R.id.ivRainType)
         fun setItem(item : ModelWeather) {
             val tvTime = itemView.findViewById<TextView>(R.id.tvTime)           // 시각
-            val tvRainType = itemView.findViewById<TextView>(R.id.tvRainType)   // 강수 형태
+//            val tvRainType = itemView.findViewById<TextView>(R.id.tvRainType)   // 강수 형태
             val tvHumidity = itemView.findViewById<TextView>(R.id.tvHumidity)   // 습도
             val tvSky = itemView.findViewById<TextView>(R.id.tvSky)             // 하늘 상태
             val tvTemp = itemView.findViewById<TextView>(R.id.tvTemp)           // 온도
             val tvRecommends = itemView.findViewById<TextView>(R.id.tvRecommends)   // 옷 추천
 
             tvTime.text = item.fcstTime
-            tvRainType.text = getRainType(item.rainType)
             tvHumidity.text = item.humidity
             tvSky.text = getSky(item.sky)
             tvTemp.text = item.temp + "°"
             tvRecommends.text = getRecommends(item.temp.toInt())
+
+//            이미지 아이콘
+            val rainTypeIcon = getRainType(item.rainType)
+            Glide.with(itemView.context)
+                .load(rainTypeIcon)
+                .into(ivRainType)
         }
     }
 //    이미지로 불러오게
 //    수정해야할듯
 
     // 강수 형태
-    fun getRainType(rainType : String) : String {
+    fun getRainType(rainType : String) : Int {
         return when(rainType) {
-            "0" -> "없음"
-//             비 이미지를 로드하고싶음
-//                     Glide.with(context)
-//                    .load(R.drawable.back
-//
-            "1" -> "비"
-            "2" -> "비/눈"
-            "3" -> "눈"
-            else -> "오류 rainType : " + rainType
+//            "0" -> "맑음"
+//            "1" -> "비"
+//            "2" -> "비/눈"
+//            "3" -> "눈"
+//            else -> "오류 rainType : " + rainType
+            "0" -> R.drawable.sun
+            "1" -> R.drawable.rain
+            "2" -> R.drawable.rasn
+            "3" -> R.drawable.snow
+            else -> R.drawable.error // 강수 형태를 알 수 없는 경우 기본 이미지
         }
     }
 

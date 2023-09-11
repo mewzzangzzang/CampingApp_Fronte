@@ -164,8 +164,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="#00FF0000"
                 android:padding="8dp"
-                android:background="#F0F0F0">
+                >
 
                 <!-- 댓글 내용입력창 카드뷰 -->
                 <androidx.cardview.widget.CardView
@@ -193,7 +194,6 @@
                         android:text="작성"
                         android:textSize="15sp" />
                 </androidx.cardview.widget.CardView>
-
 
             </LinearLayout>
             <!-- 댓글작성 레이아웃 닫음 -->
