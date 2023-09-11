@@ -54,6 +54,9 @@ class BoardWrite : AppCompatActivity() {
 //        binding.postbtn.setOnClickListener {
 //            saveBoardData(currentUserUid)
 //        }
+        binding.postbtn.setOnClickListener{
+            saveBoardData(currentUserUid)
+        }
         binding.postbtn.setOnClickListener {
             if (binding.postbtn.isEnabled) {
                 if (binding.title.text.isEmpty()) {
@@ -69,6 +72,7 @@ class BoardWrite : AppCompatActivity() {
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
         }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         requestLauncher = registerForActivityResult(
