@@ -107,7 +107,7 @@ class MyPageActivity : AppCompatActivity() {
                 var inputStream = contentResolver.openInputStream(it.data!!.data!!)
                 val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream!!.close()
-                inputStream = null
+//                inputStream = null
 
                 bitmap?.let {
                     Log.d("kkang","결과 뷰에 적용하기 전")
@@ -130,14 +130,14 @@ class MyPageActivity : AppCompatActivity() {
 
 
 
-    fun changeVisibility(mode: String) {
-        if (mode == "loging") {
-            binding.run {
-                logoutBtn.visibility = View.VISIBLE
-            }
-        } else if (mode === "logout") {
-        }
-    }
+//    fun changeVisibility(mode: String) {
+//        if (mode == "loging") {
+//            binding.run {
+//                logoutBtn.visibility = View.VISIBLE
+//            }
+//        } else if (mode === "logout") {
+//        }
+//    }
 
 
 }
@@ -181,6 +181,7 @@ class MyPageActivity : AppCompatActivity() {
         finishAffinity()
         val intent = Intent(this@MyPageActivity, MainActivity::class.java)
         startActivity(intent)
+        System.exit(0)
     }
 
     private fun deleteUser(){
@@ -194,9 +195,10 @@ class MyPageActivity : AppCompatActivity() {
                 finishAffinity()
                 val intent = Intent(this@MyPageActivity, MainActivity::class.java)
                 startActivity(intent)
+                System.exit(0)
             }
     }
-
+//탈퇴
     val eventHandler = object : DialogInterface.OnClickListener {
         override fun onClick(p0: DialogInterface?, p1: Int) {
             if (p1 == DialogInterface.BUTTON_POSITIVE) {
@@ -204,7 +206,7 @@ class MyPageActivity : AppCompatActivity() {
             }
         }
     }
-
+//로그아웃
     val logoutHandler=object :DialogInterface.OnClickListener{
         override fun onClick(dialog: DialogInterface?, lw1: Int) {
             if(lw1==DialogInterface.BUTTON_POSITIVE){
