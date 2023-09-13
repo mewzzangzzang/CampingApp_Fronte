@@ -1,8 +1,10 @@
 package com.camp.campingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -169,5 +171,15 @@ class PetListLocationActivity : AppCompatActivity() {
         }
 
 
+    }//oncreate
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        startActivity(Intent(this, MainActivity::class.java))
+        return super.onOptionsItemSelected(item)
     }
 }

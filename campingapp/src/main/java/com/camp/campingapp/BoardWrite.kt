@@ -34,9 +34,11 @@ class BoardWrite : AppCompatActivity() {
     private lateinit var requestLauncher: ActivityResultLauncher<Intent>
     val customColor = Color.parseColor("#6A856B")
 
+
     companion object {
         const val REQUEST_CODE_ADD_BOARD = 123
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +50,15 @@ class BoardWrite : AppCompatActivity() {
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
         Log.d("BoardWrite", "현재UID: $currentUserUid")
 
+
+
         val loggedInUsername = MyApplication.userData?.username
         binding.username.text = loggedInUsername ?: "Guest"
+//        val loggedInUsername = MyApplication.userData?.username
+//           binding.username.text = loggedInUsername
+        Log.d("zzz", "현재UID: $loggedInUsername")
+
+
 
 //        binding.postbtn.setOnClickListener {
 //            saveBoardData(currentUserUid)
@@ -112,7 +121,10 @@ class BoardWrite : AppCompatActivity() {
 
 
         })
-    }//oncreate
+        
+    }//oncreate닫음
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -148,6 +160,7 @@ class BoardWrite : AppCompatActivity() {
             "title" to binding.title.text.toString(),
             "content" to binding.addEditView.text.toString(),
             "date" to dateToString(Date()),
+//            "username" to username,
             "username" to username,
             "uid" to currentUserUid // 현재 사용자의 UID 추가
         )
@@ -198,4 +211,7 @@ class BoardWrite : AppCompatActivity() {
         setResult(Activity.RESULT_OK)
         finish()
     }
+
+
+
 }
