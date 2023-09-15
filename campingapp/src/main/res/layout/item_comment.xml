@@ -8,9 +8,8 @@
 <!--전체 호라이즌-->
 <!--    콘텐츠 버티컬-->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 <!--날짜. 이름 버티컬 리니어-->

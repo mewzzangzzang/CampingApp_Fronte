@@ -2,6 +2,7 @@ package com.camp.campingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.camp.campingapp.databinding.ActivityGlampingLocationBinding
 import com.camp.campingapp.glampingFragment.GlampFragment1
@@ -156,6 +157,18 @@ class GlampingLocationActivity : AppCompatActivity() {
                 .replace(R.id.frameLayout, currentFragment!!)
                 .commit()
         }
-        
+
+        // ActionBar에 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+
+    // ActionBar의 뒤로가기 버튼 클릭 시 호출되는 메서드
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() // 이전 화면으로 돌아가기
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

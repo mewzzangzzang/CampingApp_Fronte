@@ -60,21 +60,19 @@ class BoardWrite : AppCompatActivity() {
 
 
 
-//        binding.postbtn.setOnClickListener {
-//            saveBoardData(currentUserUid)
-//        }
+
         binding.postbtn.setOnClickListener{
             saveBoardData(currentUserUid)
         }
-        binding.postbtn.setOnClickListener {
-            if (binding.postbtn.isEnabled) {
-                if (binding.title.text.isEmpty()) {
-                    showToast("텍스트를 입력하세요.")
-                } else {
-//                    saveBoardData(currentUserUid)
-                }
-            }
-        }
+//        binding.postbtn.setOnClickListener {
+//            if (binding.postbtn.isEnabled) {
+//                if (binding.title.text.isEmpty()) {
+//                    showToast("텍스트를 입력하세요.")
+//                } else {
+////                    saveBoardData(currentUserUid)
+//                }
+//            }
+//        }
 
         binding.upload.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
@@ -97,30 +95,32 @@ class BoardWrite : AppCompatActivity() {
         }
 
 //     binding.title editText입력시 버튼 활성화 기능
-        binding.title.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                //텍스트를 입력 후
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //텍스트 입력 전
-            }
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //텍스트 입력 중
-                if(binding.title.length() < 1) { // 제목이 1글자이상
-                    binding.postbtn.isClickable = false // 버튼 클릭할수 없게
-                    binding.postbtn.isEnabled = false // 버튼 비활성화
-                    showToast("제목을 입력해주세요")
+//        binding.title.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(p0: Editable?) {
+//                //텍스트를 입력 후
+//            }
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                //텍스트 입력 전
+//            }
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                //텍스트 입력 중
+//                if(binding.title.length() < 1) { // 제목이 1글자이상
+//                    binding.postbtn.isClickable = false // 버튼 클릭할수 없게
+//                    binding.postbtn.isEnabled = false // 버튼 비활성화
+//                    showToast("제목을 입력해주세요")
+//
+//                } else {
+//                    binding.postbtn.isClickable = true // 버튼 클릭할수 있게
+//                    binding.postbtn.isEnabled = true // 버튼 활성화
+//                    binding.postbtn.setBackgroundColor(customColor)
+//                    saveBoardData(currentUserUid)
+//
+//                }
+//            }
+//
+//
+//        })
 
-                } else {
-                    binding.postbtn.isClickable = true // 버튼 클릭할수 있게
-                    binding.postbtn.isEnabled = true // 버튼 활성화
-                    binding.postbtn.setBackgroundColor(customColor)
-
-                }
-            }
-
-
-        })
         
     }//oncreate닫음
 

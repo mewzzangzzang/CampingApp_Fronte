@@ -56,13 +56,13 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/btnlogin"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="right"
-                android:layout_marginLeft="300dp"
-                android:src="@mipmap/ic_launcher_foreground" />
+<!--            <ImageView-->
+<!--                android:id="@+id/btnlogin"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:layout_marginLeft="300dp"-->
+<!--                android:src="@mipmap/ic_launcher_foreground" />-->
         </RelativeLayout>
 
 

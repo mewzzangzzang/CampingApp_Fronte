@@ -216,6 +216,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="20dp">
 
@@ -226,7 +227,9 @@
                 android:fontFamily="@font/sans_light"
                 android:padding="15dp"
                 android:text="문화와 예술의 만남이 있는 축제로, 다양한 전시와 공연으로 예술의 세계를 탐험해보세요."
-                android:textSize="15dp"></TextView>
+                android:textSize="15dp">
+
+            </TextView>
 
         </androidx.cardview.widget.CardView>
 
