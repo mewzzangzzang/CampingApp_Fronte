@@ -140,18 +140,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, TourActivity::class.java)
             startActivity(intent)
         }
-//        로그인, 인증
-        binding.btnlogin.setOnClickListener {
-            if(MyApplication.checkAuth()){
-                val intent=Intent(this@MainActivity, MyPageActivity::class.java)
-                startActivity(intent)
-            }
-            else{
-            val intent = Intent(this@MainActivity, AuthActivity::class.java)
-            startActivity(intent)
-        }
 
-        }
 
         binding.btnWeather.setOnClickListener {
             val intent = Intent(this@MainActivity, WeatherActivity::class.java)
@@ -182,8 +171,14 @@ class MainActivity : AppCompatActivity() {
 //        로그인버튼
         when (item.itemId) {
             R.id.action_login -> {
-                val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                if(MyApplication.checkAuth()){
+                val intent=Intent(this@MainActivity, MyPageActivity::class.java)
                 startActivity(intent)
+            }
+            else{
+            val intent = Intent(this@MainActivity, AuthActivity::class.java)
+            startActivity(intent)
+        }
                 return true
             }
 //            뒤로가기
