@@ -60,43 +60,6 @@ class AuthActivity : AppCompatActivity() {
             changeVisibility("logout")
         }
 
-//호스트 로그인
-        if(MyApplication.checkAuth()){
-            changeVisibility("h_login")
-        }else {
-            changeVisibility("logout")
-        }
-
-        //인텐트로 후처리하는 코드
-//        val requestLauncher = registerForActivityResult(
-//            ActivityResultContracts.StartActivityForResult())
-//        {
-//            //구글 로그인 결과 처리...........................
-//            //it.data구글로 인증된 정보가 들어있음
-//            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-//            try {
-//                val account = task.getResult(ApiException::class.java)!!
-//                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-//                //인증객체,인증수단(등록된 이메일,구글인증)
-//                MyApplication.auth.signInWithCredential(credential)
-//                    //구글 인증으로 성공 후 실행할 로직,
-//                    .addOnCompleteListener(this){ task ->
-//                        if(task.isSuccessful){
-//
-//                            //구글인증으로 된 이메일의 현재앱의 로그인된 email 재할당하는 부분
-//                            MyApplication.email = account.email
-//                            //changeVisibility각모드마다 보여주는 뷰가 다름
-//
-//
-//                            changeVisibility("login")
-//                        }else {
-//                            changeVisibility("logout")
-//                        }
-//                    }
-//            }catch (e: ApiException){
-//                changeVisibility("logout")
-//            }
-//        }
 
         binding.authPhotoView.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK)
@@ -130,39 +93,6 @@ class AuthActivity : AppCompatActivity() {
         binding.goSignInBtn.setOnClickListener{
             changeVisibility("signin")
         }
-//        binding.goHostSignBtn.setOnClickListener{
-//            changeVisibility("h_signin")
-//        }
-//        binding.goGoogleSignInBtn.setOnClickListener{
-//            changeVisibility("G_signin")
-//        }
-
-
-//        binding.googleLoginBtn.setOnClickListener {
-//            val gso = GoogleSignInOptions
-//                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestEmail()
-//                .build()
-//            val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
-//            requestLauncher.launch(signInIntent)
-//        }
-//
-//        binding.googleSignBtn.setOnClickListener {
-//            val gso = GoogleSignInOptions
-//                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestEmail()
-//                .build()
-//            saveUser()
-//            binding.authEmailEditView.text.clear()
-//            binding.authPasswordEditView.text.clear()
-//            binding.authUsernameEditView.text.clear()
-//            binding.authAddressEditView.text.clear()
-//            binding.authTelEditView.text.clear()
-//            val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
-//            requestLauncher.launch(signInIntent)
-//        }
 
         binding.signBtn.setOnClickListener {
             //이메일,비밀번호 회원가입........................
@@ -198,42 +128,6 @@ class AuthActivity : AppCompatActivity() {
             }
         }
 
-//        binding.hostSignBtn.setOnClickListener {
-//            //호스트이메일,비밀번호 회원가입........................
-//            val email = binding.authEmailEditView.text.toString()
-//            val password = binding.authPasswordEditView.text.toString()
-//            val username = binding.authHostUsernameEditView.text.toString()
-//
-//
-//            MyApplication.auth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this){task ->
-//                    saveHost()
-//                    binding.authEmailEditView.text.clear()
-//                    binding.authPasswordEditView.text.clear()
-//                    binding.authHostUsernameEditView.text.clear()
-//                    binding.authHostTelEditView.text.clear()
-//                    binding.authHostCampNameEditView.text.clear()
-//                    binding.authHostAddressEditView.text.clear()
-//                    if(task.isSuccessful){
-//                        MyApplication.auth.currentUser?.sendEmailVerification()
-//                            ?.addOnCompleteListener{ sendTask ->
-//                                if(sendTask.isSuccessful){
-//                                    Toast.makeText(baseContext, "host회원가입에서 성공, 전송된 메일을 확인해 주세요",
-//                                        Toast.LENGTH_SHORT).show()
-//                                    changeVisibility("logout")
-//                                    addUserToDatabase(username, email, auth.currentUser?.uid!!)
-//                                }else {
-//                                    Toast.makeText(baseContext, "메일 발송 실패", Toast.LENGTH_SHORT).show()
-//                                    changeVisibility("logout")
-//                                }
-//                            }
-//                    }else {
-//                        Toast.makeText(baseContext, "회원가입 실패", Toast.LENGTH_SHORT).show()
-//                        changeVisibility("logout")
-//                    }
-//                }
-//        }
-
         binding.loginBtn.setOnClickListener {
             //이메일, 비밀번호 로그인.......................
             val email = binding.authEmailEditView.text.toString()
@@ -247,8 +141,10 @@ class AuthActivity : AppCompatActivity() {
                             MyApplication.email = email
                             changeVisibility("login")
                             Toast.makeText(baseContext, "로그인 성공.", Toast.LENGTH_SHORT).show()
+                            finish()
                             val intent = Intent(this@AuthActivity, MainActivity::class.java)
                             startActivity(intent)
+                            System.runFinalization()
                         }else {
                             Toast.makeText(baseContext, "전송된 메일로 이메일 인증이 되지 않았습니다.", Toast.LENGTH_SHORT).show()
                         }
@@ -257,11 +153,6 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
         }
-
-
-
-
-
         // ActionBar에 뒤로가기 버튼 활성화
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }//oncreate닫음
@@ -293,13 +184,6 @@ class AuthActivity : AppCompatActivity() {
             .centerCrop()
             .into(binding.authPhotoView)
     }
-
-    private fun signOut() {
-        // [START auth_sign_out]
-        Firebase.auth.signOut()
-        // [END auth_sign_out]
-    }
-
     private fun uploadImage(docId: String, imageUrl: String){
         db.collection("user").document(docId)
             .update("imageUrl", imageUrl)
@@ -326,14 +210,6 @@ class AuthActivity : AppCompatActivity() {
                 Log.d("khs", "data save error", it)
             }
     }
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-    private fun showToastAndFinish(message: String) {
-        showToast(message)
-        setResult(Activity.RESULT_OK)
-        finish()
-    }
 
     private fun saveUser() {
         val uid = MyApplication.auth.currentUser?.uid ?: ""
@@ -354,41 +230,6 @@ class AuthActivity : AppCompatActivity() {
                 Log.d("khs", "data save error", it)
             }
     }
-
-//    private fun saveHost() {
-//        val uid = MyApplication.auth.currentUser?.uid ?: ""
-//        val data = mapOf(
-//            "uid" to uid,
-//            "email" to binding.authEmailEditView.text.toString(),
-//            "password" to binding.authPasswordEditView.text.toString(),
-//            "username" to binding.authHostUsernameEditView.text.toString(),
-//            "campname" to binding.authHostCampNameEditView.text.toString(),
-//            "addr" to binding.authHostAddressEditView.text.toString(),
-//            "tel" to binding.authHostTelEditView.text.toString()
-//        )
-//        MyApplication.db.collection("host")
-//            .add(data)
-//            .addOnFailureListener {
-//                Log.d("khs", "data save error", it)
-//            }
-//    }
-
-    private fun updateUser(uid: String) {
-        val data = mapOf(
-            "email" to binding.authEmailEditView.text.toString(),
-            "password" to binding.authPasswordEditView.text.toString(),
-            "username" to binding.authUsernameEditView.text.toString(),
-            "address" to binding.authAddressEditView.text.toString(),
-            "tel" to binding.authTelEditView.text.toString()
-        )
-        MyApplication.db.collection("user")
-            .document(uid) // 해당 uid를 가진 문서를 찾음
-            .set(data, SetOptions.merge()) // 데이터 업데이트
-            .addOnFailureListener{
-                Log.d("khs", "data update error", it)
-            }
-    }
-
 
     private fun addUserToDatabase(name: String, email: String, uId: String){
         rdb.child("user").child(uId).setValue(User(name, email, uId))
@@ -411,17 +252,8 @@ class AuthActivity : AppCompatActivity() {
                 loginBtn.visibility= View.GONE
                 authTelEditView.visibility=View.GONE
                 signBtn.visibility= View.GONE
-//                googleLoginBtn.visibility= View.GONE
-//                facebookLoginBtn.visibility=View.GONE
-//                authSNS.visibility=View.GONE
-//                authHostUsernameEditView.visibility=View.GONE
-//                authHostAddressEditView.visibility=View.GONE
-//                authHostCampNameEditView.visibility=View.GONE
-//                authHostTelEditView.visibility=View.GONE
-//                goHostSignBtn.visibility=View.GONE
-//                hostSignBtn.visibility=View.GONE
-//                goGoogleSignInBtn.visibility=View.GONE
-//                googleSignBtn.visibility=View.GONE
+                authPhotoView.visibility=View.GONE
+
             }
 
         }else if(mode === "logout"){
@@ -439,18 +271,7 @@ class AuthActivity : AppCompatActivity() {
                 authTelEditView.visibility=View.GONE
                 loginBtn.visibility = View.VISIBLE
                 authPhotoView.visibility=View.GONE
-//              authTypeEditView.visibility = View.GONE
-//                facebookLoginBtn.visibility=View.VISIBLE
-//                goHostSignBtn.visibility=View.VISIBLE
-//                authHostTelEditView.visibility=View.GONE
-//                authHostAddressEditView.visibility=View.GONE
-//                authHostCampNameEditView.visibility=View.GONE
-//                authHostUsernameEditView.visibility=View.GONE
-//                goGoogleSignInBtn.visibility=View.VISIBLE
-//                hostSignBtn.visibility=View.GONE
-//                googleSignBtn.visibility=View.GONE
-//                googleLoginBtn.visibility = View.VISIBLE
-//                authSNS.visibility=View.VISIBLE
+
             }
         }else if(mode === "signin"){
             binding.run {
@@ -466,18 +287,7 @@ class AuthActivity : AppCompatActivity() {
                 authAddressEditView.visibility=View.VISIBLE
                 authUsernameEditView.visibility=View.VISIBLE
                 authPhotoView.visibility=View.VISIBLE
-//                authHostUsernameEditView.visibility=View.GONE
-//                authHostTelEditView.visibility=View.GONE
-//                authHostAddressEditView.visibility=View.GONE
-//                authHostCampNameEditView.visibility=View.GONE
-//                authTypeEditView.visibility = View.VISIBLE
-//                facebookLoginBtn.visibility=View.GONE
-//                goHostSignBtn.visibility=View.GONE
-//                goGoogleSignInBtn.visibility=View.GONE
-//                hostSignBtn.visibility=View.GONE
-//                googleLoginBtn.visibility = View.GONE
-//                authSNS.visibility=View.GONE
-//                googleSignBtn.visibility=View.GONE
+
             }
         }
         else if(mode==="h_signin"){
@@ -492,17 +302,7 @@ class AuthActivity : AppCompatActivity() {
                 authPasswordEditView.visibility = View.VISIBLE
                 authAddressEditView.visibility=View.GONE
                 authUsernameEditView.visibility=View.GONE
-//                authHostUsernameEditView.visibility=View.VISIBLE
-//                authHostTelEditView.visibility=View.VISIBLE
-//                googleLoginBtn.visibility = View.GONE
-//                facebookLoginBtn.visibility=View.GONE
-//                goHostSignBtn.visibility=View.GONE
-//                goGoogleSignInBtn.visibility=View.GONE
-//                hostSignBtn.visibility = View.VISIBLE
-//                authSNS.visibility=View.GONE
-//                googleSignBtn.visibility=View.GONE
-//                authHostAddressEditView.visibility=View.VISIBLE
-//                authHostCampNameEditView.visibility=View.VISIBLE
+
             }
         }
         else if(mode==="G_signin"){
@@ -518,19 +318,7 @@ class AuthActivity : AppCompatActivity() {
                 authAddressEditView.visibility=View.VISIBLE
                 authUsernameEditView.visibility=View.VISIBLE
                 authTelEditView.visibility=View.VISIBLE
-//                authHostUsernameEditView.visibility=View.GONE
-//                authHostTelEditView.visibility=View.GONE
-//                googleLoginBtn.visibility = View.GONE
-//                facebookLoginBtn.visibility=View.GONE
-//                goHostSignBtn.visibility=View.GONE
-//                goGoogleSignInBtn.visibility=View.GONE
-//                hostSignBtn.visibility=View.GONE
-//                authSNS.visibility=View.GONE
-//                googleSignBtn.visibility=View.VISIBLE
-//                authHostAddressEditView.visibility=View.GONE
-//                authHostCampNameEditView.visibility=View.GONE
             }
         }
-
     }
 }
