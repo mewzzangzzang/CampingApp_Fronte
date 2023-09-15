@@ -118,6 +118,9 @@ class FesDetailActivity : AppCompatActivity(),OnMapReadyCallback{
 //                    overlay.infoWindow = InfoWindow(customInfoWindow, marker.position)
 //                    true
 //                }
+                // 가져온 위도, 경도 값으로 position 세팅
+                marker.setPosition(LatLng(lat, lnt))
+                marker.setMap(naverMap)
 
                 val cameraPosition = CameraPosition( // 카메라 위치 변경
                     LatLng(lat, lnt),  // 위치 지정
