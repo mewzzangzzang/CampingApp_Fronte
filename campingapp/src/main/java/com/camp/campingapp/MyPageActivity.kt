@@ -1,8 +1,11 @@
 package com.camp.campingapp
 
+import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +24,7 @@ import com.camp.campingapp.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlin.system.exitProcess
 
 class MyPageActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyPageBinding
@@ -74,6 +78,8 @@ class MyPageActivity : AppCompatActivity() {
                 setPositiveButton("네",logoutHandler)
                 setNegativeButton("아니오",logoutHandler)
                 show()
+
+
             }
         }
 
@@ -107,7 +113,7 @@ class MyPageActivity : AppCompatActivity() {
                 var inputStream = contentResolver.openInputStream(it.data!!.data!!)
                 val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream!!.close()
-//                inputStream = null
+                inputStream = null
 
                 bitmap?.let {
                     Log.d("kkang","결과 뷰에 적용하기 전")
@@ -130,14 +136,14 @@ class MyPageActivity : AppCompatActivity() {
 
 
 
-//    fun changeVisibility(mode: String) {
-//        if (mode == "loging") {
-//            binding.run {
-//                logoutBtn.visibility = View.VISIBLE
-//            }
-//        } else if (mode === "logout") {
-//        }
-//    }
+    fun changeVisibility(mode: String) {
+        if (mode == "loging") {
+            binding.run {
+                logoutBtn.visibility = View.VISIBLE
+            }
+        } else if (mode === "logout") {
+        }
+    }
 
 
 }
@@ -179,9 +185,19 @@ class MyPageActivity : AppCompatActivity() {
         //이메일 널로 할당
         Toast.makeText(baseContext, "로그아웃 되었습니다",Toast.LENGTH_SHORT).show()
         finishAffinity()
+//        restartApplication(this)
         val intent = Intent(this@MyPageActivity, MainActivity::class.java)
         startActivity(intent)
-        System.exit(0)
+        System.runFinalization()
+//        System.exit(0)
+    }
+    private fun restartApplication(mContext: Context) {
+        val packageManager: PackageManager = mContext.packageManager
+        val intent = packageManager.getLaunchIntentForPackage(mContext.packageName)
+        val componentName = intent!!.component
+        val mainIntent = Intent.makeRestartActivityTask(componentName)
+        mContext.startActivity(mainIntent)
+        exitProcess(0)
     }
 
     private fun deleteUser(){
@@ -192,13 +208,13 @@ class MyPageActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "탈퇴 되었습니다",Toast.LENGTH_SHORT ).show()
                 }
                 changeVisibility("logout")
-                finishAffinity()
+                finish()
                 val intent = Intent(this@MyPageActivity, MainActivity::class.java)
                 startActivity(intent)
-                System.exit(0)
+                System.runFinalization()
             }
     }
-//탈퇴
+
     val eventHandler = object : DialogInterface.OnClickListener {
         override fun onClick(p0: DialogInterface?, p1: Int) {
             if (p1 == DialogInterface.BUTTON_POSITIVE) {
@@ -206,7 +222,7 @@ class MyPageActivity : AppCompatActivity() {
             }
         }
     }
-//로그아웃
+
     val logoutHandler=object :DialogInterface.OnClickListener{
         override fun onClick(dialog: DialogInterface?, lw1: Int) {
             if(lw1==DialogInterface.BUTTON_POSITIVE){
@@ -214,6 +230,7 @@ class MyPageActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun calculateInSampleSize(fileUri: Uri, reqWidth: Int, reqHeight: Int): Int {
         val options = BitmapFactory.Options()
