@@ -56,7 +56,7 @@ android {
 
 dependencies {
 
-    //파이어베이스 파트
+    //파이어베이스 파트b
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")

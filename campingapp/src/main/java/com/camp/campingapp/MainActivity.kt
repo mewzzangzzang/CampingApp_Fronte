@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     //뒤로가기버튼 2번시 종료
-    private var backPressedTime: Long = 0
-    private val doubleBackPressInterval: Long = 3000 // 3초
+//    private var backPressedTime: Long = 0
+//    private val doubleBackPressInterval: Long = 3000 // 3초
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //        뒤로가기버튼활성화
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 캠핑장
 //        binding.btnmenu1.setOnClickListener {
@@ -190,19 +190,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - backPressedTime < doubleBackPressInterval) {
-            super.onBackPressed()
-        } else {
-            Toast.makeText(
-                this,
-                "뒤로 버튼을 한 번 더 누르면 종료됩니다.",
-                Toast.LENGTH_SHORT
-            ).show()
-            backPressedTime = currentTime
-        }
-    }
+//    override fun onBackPressed() {
+//        val currentTime = System.currentTimeMillis()
+//        if (currentTime - backPressedTime < doubleBackPressInterval) {
+//            super.onBackPressed()
+//        } else {
+//            Toast.makeText(
+//                this,
+//                "뒤로 버튼을 한 번 더 누르면 종료됩니다.",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//            backPressedTime = currentTime
+//        }
+//    }
 
     inner class PanelEventListener : SlidingUpPanelLayout.PanelSlideListener {
         // 패널이 슬라이드 중일 때
