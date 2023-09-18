@@ -101,66 +101,66 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         // 일반야영장
-        binding.commCamp.setOnClickListener{
-            val intent = Intent(this@MainActivity, CampCommActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 글램핑
-        binding.glamping.setOnClickListener{
-            val intent = Intent(this@MainActivity, CampGlampingActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 카라반
-        binding.caravan.setOnClickListener{
-            val intent = Intent(this@MainActivity, CaravanActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 자동차야영장
-        binding.carCamp.setOnClickListener{
-            val intent = Intent(this@MainActivity, CampCarActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 애완견 가능
-        binding.petCamp.setOnClickListener{
-            val intent = Intent(this@MainActivity, PetListActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 관광지
-        binding.btnmenu3.setOnClickListener {
-            val intent = Intent(this@MainActivity, Board::class.java)
-            startActivity(intent)
-        }
-        // 커뮤니티
-        binding.btnmenu4.setOnClickListener {
-            val intent = Intent(this@MainActivity, TourActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        binding.btnWeather.setOnClickListener {
-            val intent = Intent(this@MainActivity, WeatherActivity::class.java)
-            startActivity(intent)
-        }
-//        축제
-        binding.btnmenu5.setOnClickListener {
-            val intent = Intent(this@MainActivity, FesActivity::class.java)
-            startActivity(intent)
-        }
-//        shop
-        binding.btnmenu6.setOnClickListener {
-            val intent = Intent(this@MainActivity,ShopActivity::class.java)
-            startActivity(intent)
-        }
-//       chatmin
-        binding.btnmenu7.setOnClickListener {
-            val intent = Intent(this@MainActivity,ChatMainActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.commCamp.setOnClickListener{
+//            val intent = Intent(this@MainActivity, CampCommActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // 글램핑
+//        binding.glamping.setOnClickListener{
+//            val intent = Intent(this@MainActivity, CampGlampingActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // 카라반
+//        binding.caravan.setOnClickListener{
+//            val intent = Intent(this@MainActivity, CaravanActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // 자동차야영장
+//        binding.carCamp.setOnClickListener{
+//            val intent = Intent(this@MainActivity, CampCarActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // 애완견 가능
+//        binding.petCamp.setOnClickListener{
+//            val intent = Intent(this@MainActivity, PetListActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // 관광지
+//        binding.btnmenu3.setOnClickListener {
+//            val intent = Intent(this@MainActivity, Board::class.java)
+//            startActivity(intent)
+//        }
+//        // 커뮤니티
+//        binding.btnmenu4.setOnClickListener {
+//            val intent = Intent(this@MainActivity, TourActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//
+//        binding.btnWeather.setOnClickListener {
+//            val intent = Intent(this@MainActivity, WeatherActivity::class.java)
+//            startActivity(intent)
+//        }
+////        축제
+//        binding.btnmenu5.setOnClickListener {
+//            val intent = Intent(this@MainActivity, FesActivity::class.java)
+//            startActivity(intent)
+//        }
+////        shop
+//        binding.btnmenu6.setOnClickListener {
+//            val intent = Intent(this@MainActivity,ShopActivity::class.java)
+//            startActivity(intent)
+//        }
+////       chatmin
+//        binding.btnmenu7.setOnClickListener {
+//            val intent = Intent(this@MainActivity,ChatMainActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }//oncreate
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity() {
                     val firstAddress = addressList?.getOrNull(0)
                     val areaName = firstAddress?.region?.area1?.name
 //                    Toast.makeText(this@MainActivity, "주소: $areaName", Toast.LENGTH_LONG).show()
-                    binding.addressTextView.text = "$areaName"
+//                    binding.addressTextView.text = "$areaName"
                 } else {
 //                    Toast.makeText(this@MainActivity, "주소를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
                 }
