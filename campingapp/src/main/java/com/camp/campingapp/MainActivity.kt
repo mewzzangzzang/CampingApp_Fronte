@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.os.Looper
 import android.view.Menu
@@ -71,7 +72,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val slidePanel = binding.mainFrame                      // SlidingUpPanel
+        val slidePanel = binding.mainFrame
+    // SlidingUpPanel
 //        slidePanel.addPanelSlideListener(PanelEventListener())  // 이벤트 리스너 추가
 
 //        // 패널 열고 닫기
@@ -164,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
     }//oncreate
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_login, menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -186,8 +188,16 @@ class MainActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
+
+            R.id.action_alarm-> {
+
+                val intent=Intent(this@MainActivity, ChatMainActivity::class.java)
+
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
+
     }
 
 //    override fun onBackPressed() {
