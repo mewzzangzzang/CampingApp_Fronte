@@ -192,13 +192,15 @@ class MainActivity : AppCompatActivity() {
             R.id.action_alarm-> {
 
                 val intent=Intent(this@MainActivity, ChatMainActivity::class.java)
-
+                startActivity(intent)
                 return true
+
             }
             else -> return super.onOptionsItemSelected(item)
         }
 
     }
+
 
 //    override fun onBackPressed() {
 //        val currentTime = System.currentTimeMillis()
