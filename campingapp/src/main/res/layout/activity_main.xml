@@ -44,7 +44,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:src="@drawable/circle_b29b9b"/>
+            android:background="@drawable/circle_b29b9b"
+            android:src="@drawable/icon_pets_24"
+            android:scaleType="centerInside"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +65,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:src="@drawable/circle_b29b9b"/>
+            android:background="@drawable/circle_b29b9b"
+            android:src="@drawable/icon_forest_24"
+            android:scaleType="centerInside"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +87,9 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/circle_b29b9b" />
+                    android:src="@drawable/icon_tent_24"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/circle_b29b9b" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +116,9 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/circle_b29b9b"/>
+                android:src="@drawable/icon_car_24"
+                android:scaleType="centerInside"
+                android:background="@drawable/circle_b29b9b"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,7 +139,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:src="@drawable/circle_b29b9b"/>
+            android:src="@drawable/icon_directions_car_24"
+            android:scaleType="centerInside"
+            android:background="@drawable/circle_b29b9b"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -154,7 +164,10 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/circle_b29b9b" />
+                android:src="@drawable/icon_tour_24"
+                android:scaleType="centerInside"
+                android:background="@drawable/circle_b29b9b"
+                />
 
             <TextView
                 android:layout_width="wrap_content"

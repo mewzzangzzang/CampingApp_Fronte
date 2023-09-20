@@ -44,6 +44,7 @@ class ShopActivity : AppCompatActivity() {
     //    private var coords: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityShopBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
