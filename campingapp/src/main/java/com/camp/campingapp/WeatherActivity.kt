@@ -272,7 +272,7 @@ class WeatherActivity : AppCompatActivity() {
 
         val tvDate = findViewById<TextView>(R.id.tvDate)                                // 오늘 날짜 텍스트뷰
         weatherRecyclerView = findViewById<RecyclerView>(R.id.weatherRecyclerView)  // 날씨 리사이클러 뷰
-        val btnRefresh = findViewById<Button>(R.id.btnRefresh)                          // 새로고침 버튼
+//        val btnRefresh = findViewById<Button>(R.id.btnRefresh)                          // 새로고침 버튼
 
         // 리사이클러 뷰 매니저 설정
         weatherRecyclerView.layoutManager = LinearLayoutManager(this@WeatherActivity)
@@ -284,10 +284,10 @@ class WeatherActivity : AppCompatActivity() {
         setWeather(nx, ny)
 
         // <새로고침> 버튼 누를 때 날씨 정보 다시 가져오기
-        btnRefresh.setOnClickListener {
-            setWeather(nx, ny)
-
-        }
+//        btnRefresh.setOnClickListener {
+//            setWeather(nx, ny)
+//
+//        }
     }
 
     // 날씨 가져와서 설정하기
