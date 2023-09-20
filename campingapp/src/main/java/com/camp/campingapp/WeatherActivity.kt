@@ -1,30 +1,16 @@
 package com.camp.campingapp
-import android.content.Context
-import android.content.pm.PackageManager
-import android.location.Location
-import android.os.Build
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.camp.campingapp.databinding.ActivityWeatherBinding
 import com.camp.campingapp.model.ModelWeather
-
 import com.camp.campingapp.retrofit.ApiObject
 import com.camp.campingapp.retrofit.ITEM
 import com.camp.campingapp.retrofit.WEATHER
 import com.camp.campingapp.recycler.WeatherAdapter
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
 import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat

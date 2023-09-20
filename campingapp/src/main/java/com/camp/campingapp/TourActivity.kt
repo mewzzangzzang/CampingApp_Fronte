@@ -30,23 +30,21 @@ import retrofit2.Response
 
 class TourActivity : AppCompatActivity() {
 
-    private var mFusedLocationProviderClient: FusedLocationProviderClient? =
-        null //현재 위치를 가져오기 위한 변수
+    private var mFusedLocationProviderClient: FusedLocationProviderClient? = null //현재 위치를 가져오기 위한 변수
     lateinit var mLastLocation: Location // 위치 값을 가지고 있는 객체
     private lateinit var handler: Handler
     private var lastUpdateTimestamp = 0L
     private val updateDelayMillis = 40000
     //리사이클러 뷰 업데이트 딜레이 업데이트 주기 생성
-
-    //    internal lateinit var mLocationRequest: LocationRequest // 위치 정보 요청의 매개변수를 저장하는
-    lateinit var mLocationRequest: LocationRequest  // 위치 정보 요청의 매개변수를 저장하는
+    //internal lateinit var mLocationRequest: LocationRequest
+    //위치 정보 요청의 매개변수를 저장하는
+    lateinit var mLocationRequest: LocationRequest
+    // 위치 정보 요청의 매개변수를 저장하는
     private val REQUEST_PERMISSION_LOCATION = 10
 
     private var mapX : String = ""
     private var mapY : String=""
 //    private var coords: String = ""
-
-
     lateinit var binding: ActivityTourBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

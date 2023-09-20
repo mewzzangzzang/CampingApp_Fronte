@@ -2,9 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CampingApp" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/acbar</item>
-        <item name="android:fontFamily">@font/bagel</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
         <item name="android:textSize">22sp</item>
         <item name="titleTextColor">@color/black</item>
     </style>
-    <style name="Theme.CampingApp" parent="Base.Theme.CampingApp" />
+    <style name="Theme.CampingApp" parent="Base.Theme.CampingApp" >
+        
+
+    </style>
+
 </resources>

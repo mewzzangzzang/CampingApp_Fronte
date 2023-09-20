@@ -310,7 +310,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -319,7 +319,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="여기는 사실 보드지롱" />
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>
